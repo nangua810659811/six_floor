@@ -17,28 +17,49 @@ import com.alibaba.fastjson.JSONObject;
 public class RedisUtil {
 
 	public static JedisPool pool = new JedisPool(new JedisPoolConfig(),
-			"104.194.79.148");
+			"104.194.79.148", 6378);
 
 	public static void saveObject(String key, Object data) {
 		Jedis jedis = pool.getResource();
-		jedis.set(key, JSONObject.toJSONString(data));
-		pool.returnResource(jedis);
+		try {
+			jedis.set(key, JSONObject.toJSONString(data));
+		} finally {
+			if (jedis != null)
+				pool.returnResource(jedis);
+		}
 	}
 
 	public static void saveObject(String key, Object data, int seconds) {
 		Jedis jedis = pool.getResource();
-		jedis.setex(key, seconds, JSONObject.toJSONString(data));
-		pool.returnResource(jedis);
+		try {
+			jedis.setex(key, seconds, JSONObject.toJSONString(data));
+		} finally {
+			if (jedis != null)
+				pool.returnResource(jedis);
+		}
 	}
 
-	public static Object getObject(String key) {
+	public static JSONObject getObject(String key) {
 		Jedis jedis = pool.getResource();
-		String jstr = jedis.get(key);
-		pool.returnResource(jedis);
 		try {
-			return JSONObject.parse(jstr);
+			String jstr = jedis.get(key);
+			return (JSONObject) JSONObject.parse(jstr);
 		} catch (Exception e) {
-			return null;
+
+		} finally {
+			if (jedis != null)
+				pool.returnResource(jedis);
+		}
+		return null;
+	}
+
+	public static void removeObject(String key) {
+		Jedis jedis = pool.getResource();
+		try {
+			jedis.del(key);
+		} finally {
+			if (jedis != null)
+				pool.returnResource(jedis);
 		}
 	}
 }
