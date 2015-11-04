@@ -24,8 +24,8 @@
 
 	<insert id="UNIFYUM-USER-META-INSERT">
 		insert into user_meta
-		(user_name,password,auth_token,login_time,gmt_created,gmt_modified)
-		values(#userName#,#password#,#authToken#,#loginTime#,#gmtCreated#,#gmtModified#);
+		(user_name,password,gmt_created,gmt_modified)
+		values(#userName#,#password#,#gmtCreated#,#gmtModified#);
 	</insert>
 
 	<update id="UNIFYUM-USER-META-UPDATE">

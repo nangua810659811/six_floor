@@ -3,8 +3,12 @@
  */
 package com.bupt.qrj.unifyum.dal.test.dao;
 
-import junit.framework.TestCase;
+import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertNotNull;
+import static junit.framework.Assert.assertNull;
+import static junit.framework.Assert.assertTrue;
 
+import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -12,11 +16,12 @@ import com.bupt.qrj.unifyum.dal.dao.UserMetaDAO;
 import com.bupt.qrj.unifyum.dal.dataobject.UserMetaDO;
 
 /**
- * @author renjun.qrj 2015年10月31日:下午7:13:11 com.bupt.qrj.dao.UserMetaDAOTestCase
- *         unifyum-dal 用途:
+ * @author renjun.qrj 2015骞�0鏈�1鏃�涓嬪崍7:13:11
+ *         com.bupt.qrj.dao.UserMetaDAOTestCase unifyum-dal 鐢ㄩ�:
  *
  */
-public class UserMetaDAOTestCase extends TestCase {
+
+public class UserMetaDAOTestCase {
 
 	public ApplicationContext getContext() {
 		ApplicationContext context = new ClassPathXmlApplicationContext(
@@ -26,6 +31,7 @@ public class UserMetaDAOTestCase extends TestCase {
 		return context;
 	}
 
+	@Test
 	public void testInsert() {
 		UserMetaDO um = new UserMetaDO();
 		um.setUserName("qrj-test");
@@ -33,7 +39,7 @@ public class UserMetaDAOTestCase extends TestCase {
 		UserMetaDAO dao = (UserMetaDAO) getContext().getBean("userMetaDAO");
 		assertNotNull(dao);
 		dao.add(um);
-		// 保证没有异常
+
 		assertTrue(true);
 		UserMetaDO um2 = dao.get(um);
 		assertNotNull(um2);

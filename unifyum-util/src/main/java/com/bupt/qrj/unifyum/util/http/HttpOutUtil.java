@@ -2,7 +2,7 @@
  * Alipay.com Inc.
  * Copyright (c) 2004-2014 All Rights Reserved.
  */
-package com.bupt.qrj.unifyum.api.util;
+package com.bupt.qrj.unifyum.util.http;
 
 import java.io.PrintWriter;
 
@@ -11,18 +11,16 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.bupt.qrj.unifyum.api.controller.impl.UserMetaControllerImpl;
-
 /**
  * @author renjun.qrj 2015年10月31日:下午9:22:40
  *         com.bupt.qrj.unifyum.api.util.WebUtil unifyum-api 用途:
  *
  */
-public class WebUtil {
+public class HttpOutUtil {
 
 	/** 日志 **/
 	private static final Logger LOGGER = LoggerFactory
-			.getLogger(UserMetaControllerImpl.class);
+			.getLogger(HttpOutUtil.class);
 
 	/**
 	 * 向客户端输出数据。

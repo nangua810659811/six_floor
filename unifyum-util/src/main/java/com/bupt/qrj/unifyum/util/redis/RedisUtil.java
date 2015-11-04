@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.bupt.qrj.unifyum.api.util;
+package com.bupt.qrj.unifyum.util.redis;
 
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;

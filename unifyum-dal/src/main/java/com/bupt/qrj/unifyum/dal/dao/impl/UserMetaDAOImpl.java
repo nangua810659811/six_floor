@@ -36,11 +36,12 @@ public class UserMetaDAOImpl extends SqlMapClientDaoSupport implements
 			throw new IllegalArgumentException(
 					"Can't insert a null data(mobilelbsMerchantSubcategoryDO) object into db.");
 		}
-
+		LOGGER.debug("do the userMeta add");
 		userMeta.setGmtCreated(new Date());
 		userMeta.setGmtModified(new Date());
 		this.getSqlMapClientTemplate().insert("UNIFYUM-USER-META-INSERT",
 				userMeta);
+		LOGGER.debug("do the userMeta success");
 
 	}
 
@@ -55,9 +56,11 @@ public class UserMetaDAOImpl extends SqlMapClientDaoSupport implements
 			throw new IllegalArgumentException(
 					"Can't insert a null data(mobilelbsMerchantSubcategoryDO) object into db.");
 		}
+		LOGGER.debug("do the userMeta update password");
 		userMeta.setGmtModified(new Date());
 		this.getSqlMapClientTemplate().update("UNIFYUM-USER-META-UPDATE",
 				userMeta);
+		LOGGER.debug("do the userMeta update password success");
 	}
 
 	/*
@@ -72,8 +75,11 @@ public class UserMetaDAOImpl extends SqlMapClientDaoSupport implements
 		}
 		if (userMeta.getUserName() == null && userMeta.getAuthToken() == null)
 			return null;
-		return (UserMetaDO) this.getSqlMapClientTemplate().queryForObject(
-				"UNIFYUM-USER-META-GET", userMeta);
+		LOGGER.debug("do the userMeta get ");
+		UserMetaDO resultDO = (UserMetaDO) this.getSqlMapClientTemplate()
+				.queryForObject("UNIFYUM-USER-META-GET", userMeta);
+		LOGGER.debug("do the userMeta get success");
+		return resultDO;
 	}
 
 	/*
@@ -86,8 +92,10 @@ public class UserMetaDAOImpl extends SqlMapClientDaoSupport implements
 
 		if (userMeta == null || userMeta.getUserName() == null)
 			return;
+		LOGGER.debug("do the userMeta delete");
 		this.getSqlMapClientTemplate().delete("UNIFYUM-USER-META-DELETE",
 				userMeta);
+		LOGGER.debug("do the userMeta success");
 	}
 
 }

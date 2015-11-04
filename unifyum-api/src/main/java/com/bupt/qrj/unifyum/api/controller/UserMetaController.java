@@ -17,6 +17,9 @@ public interface UserMetaController {
 	public void register(HttpServletRequest request,
 			HttpServletResponse response);
 
+	public void unregister(HttpServletRequest request,
+			HttpServletResponse response);
+
 	public void login(HttpServletRequest request, HttpServletResponse response);
 
 	public void logout(HttpServletRequest request, HttpServletResponse response);

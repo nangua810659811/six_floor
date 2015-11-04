@@ -119,10 +119,10 @@
 			<artifactId>spring-orm</artifactId>
 		</dependency>
 
-
-
-
-
+		<dependency>
+			<groupId>com.bupt.qrj</groupId>
+			<artifactId>unifyum-util</artifactId>
+		</dependency>
 
 	</dependencies>
 	<build>
