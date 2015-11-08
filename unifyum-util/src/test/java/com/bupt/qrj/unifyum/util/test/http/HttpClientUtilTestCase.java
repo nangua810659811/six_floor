@@ -5,6 +5,7 @@ package com.bupt.qrj.unifyum.util.test.http;
 
 import static junit.framework.Assert.assertTrue;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.alibaba.fastjson.JSONObject;
@@ -16,6 +17,7 @@ import com.bupt.qrj.unifyum.util.http.HttpClientUtil;
  *         unifyum-util ÓÃÍ¾:
  *
  */
+@Ignore("not need to run with maven")
 public class HttpClientUtilTestCase {
 
 	private final String REGISTER_URL = "http://localhost:8080/unifyum/usermanagement.req?action=register";
@@ -26,7 +28,7 @@ public class HttpClientUtilTestCase {
 	public void testPost() {
 
 		JSONObject rs_params = new JSONObject();
-		rs_params.put("userName", "qurenjun-test");
+		rs_params.put("userName", "111");
 		rs_params.put("password", "123456");
 		// ÏÈ×ö×¢²á
 		String httpRet = HttpClientUtil.doPostRequest(REGISTER_URL, rs_params);

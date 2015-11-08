@@ -2,7 +2,8 @@
 <!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
 <sqlMap namespace="unifyum">
 
-	<resultMap id="RM.UserMeta" class="com.bupt.qrj.unifyum.dal.dataobject.UserMetaDO">
+	<resultMap id="RM.UserMeta"
+		class="com.bupt.qrj.unifyum.dal.dataobject.UserMetaDO">
 		<result property="id" column="id" javaType="long" jdbcType="DECIMAL" />
 		<result property="userName" column="user_name" javaType="java.lang.String"
 			jdbcType="VARCHAR" />
@@ -34,6 +35,12 @@
 			<isNotNull prepend="," property="password">
 				password = #password#
 			</isNotNull>
+			<isNotNull prepend="," property="loginTime">
+				login_time = #loginTime#
+			</isNotNull>
+			<isNotNull prepend="," property="authToken">
+				auth_token = #authToken#
+			</isNotNull>
 		</dynamic>
 		where user_name = #userName#
 	</update>
@@ -50,9 +57,9 @@
 			</isNotNull>
 		</dynamic>
 	</select>
-	
+
 	<delete id="UNIFYUM-USER-META-DELETE">
-	   delete from user_meta where user_name = #userName#
+		delete from user_meta where user_name = #userName#
 	</delete>
 
 </sqlMap>

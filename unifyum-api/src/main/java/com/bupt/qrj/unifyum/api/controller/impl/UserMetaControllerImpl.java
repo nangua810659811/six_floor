@@ -3,6 +3,8 @@
  */
 package com.bupt.qrj.unifyum.api.controller.impl;
 
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -14,8 +16,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.alibaba.fastjson.JSONObject;
 import com.bupt.qrj.unifyum.api.controller.UserMetaController;
-import com.bupt.qrj.unifyum.api.result.UserRegisterResult;
-import com.bupt.qrj.unifyum.api.result.UserUnRegisterResult;
+import com.bupt.qrj.unifyum.api.generator.UserAuthTokenGenerator;
+import com.bupt.qrj.unifyum.api.result.usermeta.CheckLoginResult;
+import com.bupt.qrj.unifyum.api.result.usermeta.UserLoginResult;
+import com.bupt.qrj.unifyum.api.result.usermeta.UserLogoutResult;
+import com.bupt.qrj.unifyum.api.result.usermeta.UserRegisterResult;
+import com.bupt.qrj.unifyum.api.result.usermeta.UserUnRegisterResult;
 import com.bupt.qrj.unifyum.dal.dao.UserMetaDAO;
 import com.bupt.qrj.unifyum.dal.dataobject.UserMetaDO;
 import com.bupt.qrj.unifyum.util.http.HttpOutUtil;
@@ -101,6 +107,8 @@ public class UserMetaControllerImpl implements UserMetaController {
 			}
 		} catch (Exception e) {
 			result.setErrMsg(e.getMessage());
+			LOGGER.warn("exception when unRegister: " + e.getMessage());
+
 		}
 		HttpOutUtil.outData(response, JSONObject.toJSONString(result));
 	}
@@ -114,8 +122,52 @@ public class UserMetaControllerImpl implements UserMetaController {
 	 */
 	@RequestMapping(method = { RequestMethod.POST }, params = "action=login")
 	public void login(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
+		// 1) 检查参数格式
+		// 2) 检查用户是否已经登录 (登录token以及上次登录时间比对)
+		// 3) 检查密码是否正确
+		/**
+		 * 登录不做超时 不做密码失败冻结，后期会加上
+		 * */
+		UserLoginResult result = new UserLoginResult();
+		result.setSuccess(false);
+		result.setErrMsg("发生未知错误");
 
+		try {
+			String userName = request.getParameter("userName");
+			String password = request.getParameter("password");
+			// 先是参数检查
+			if (userName == null || userName.isEmpty() || password == null
+					|| password.isEmpty()) {
+				result.setErrMsg("输入参数有误");
+			} else {
+				// 获取用户的数据
+				UserMetaDO uMetaDO = new UserMetaDO();
+				uMetaDO.setUserName(userName);
+				UserMetaDO userMeta = userMetaDAO.get(uMetaDO);
+				if (userMeta == null) {
+					result.setErrMsg("用户名输入错误");
+				} else {
+					// 检查用户密码是否正确
+					if (password.equals(userMeta.getPassword())) {
+						Date loginTime = new Date();
+						String authToken = UserAuthTokenGenerator.generate(
+								userName, loginTime);
+						userMeta.setAuthToken(authToken);
+						userMeta.setLoginTime(loginTime);
+						userMeta.setGmtModified(new Date());
+						userMetaDAO.update(userMeta);
+						result.setSuccess(true);
+						result.setAuthToken(authToken);
+						result.setLoginTime(loginTime);
+					}
+				}
+			}
+		} catch (Exception e) {
+			result.setErrMsg("exception" + e.getMessage());
+			LOGGER.warn("exception when login: " + e.getMessage());
+		}
+		// 输出结果
+		HttpOutUtil.outData(response, JSONObject.toJSONString(result));
 	}
 
 	/*
@@ -127,7 +179,33 @@ public class UserMetaControllerImpl implements UserMetaController {
 	 */
 	@RequestMapping(method = { RequestMethod.POST }, params = "action=logout")
 	public void logout(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
+		UserLogoutResult result = new UserLogoutResult();
+		try {
+			String userName = request.getParameter("userName");
+			String authToken = request.getParameter("authToken");
+			if (userName == null || userName.isEmpty() || authToken == null
+					|| authToken.isEmpty()) {
+				result.setErrMsg("输入信息错误");
+			} else {
+				// 获取用户的数据
+				UserMetaDO uMetaDO = new UserMetaDO();
+				uMetaDO.setAuthToken(authToken);
+				uMetaDO.setUserName(userName);
+				UserMetaDO userMeta = userMetaDAO.get(uMetaDO);
+				if (userMeta == null) {
+					result.setErrMsg("用户信息错误");
+				} else {
+					userMeta.setAuthToken("");
+					userMetaDAO.update(userMeta);
+					result.setSuccess(true);
+				}
+			}
+		} catch (Exception e) {
+			result.setErrMsg("exception" + e.getMessage());
+			LOGGER.warn("exception when checkLogin: " + e.getMessage());
+		}
+		// 输出结果
+		HttpOutUtil.outData(response, JSONObject.toJSONString(result));
 
 	}
 
@@ -141,8 +219,32 @@ public class UserMetaControllerImpl implements UserMetaController {
 	@RequestMapping(method = { RequestMethod.POST }, params = "action=checkLogin")
 	public void checkLogin(HttpServletRequest request,
 			HttpServletResponse response) {
-		// TODO Auto-generated method stub
-
+		CheckLoginResult result = new CheckLoginResult();
+		result.setSuccess(false);
+		result.setErrMsg("未知错误");
+		// 输出结果
+		try {
+			String authToken = request.getParameter("authToken");
+			if (authToken == null || authToken.isEmpty()) {
+				result.setErrMsg("输入参数错误");
+			} else {
+				// 获取用户的数据
+				UserMetaDO uMetaDO = new UserMetaDO();
+				uMetaDO.setAuthToken(authToken);
+				UserMetaDO userMeta = userMetaDAO.get(uMetaDO);
+				if (userMeta == null) {
+					result.setErrMsg("获取登录信息失败");
+				} else {
+					result.setSuccess(true);
+					result.setUserName(userMeta.getUserName());
+				}
+			}
+		} catch (Exception e) {
+			result.setErrMsg("exception" + e.getMessage());
+			LOGGER.warn("exception when checkLogin: " + e.getMessage());
+		}
+		// 输出结果
+		HttpOutUtil.outData(response, JSONObject.toJSONString(result));
 	}
 
 	/**
