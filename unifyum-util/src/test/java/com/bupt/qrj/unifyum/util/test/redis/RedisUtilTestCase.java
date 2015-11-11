@@ -7,6 +7,7 @@ import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNull;
 import static junit.framework.Assert.assertTrue;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.alibaba.fastjson.JSONObject;
@@ -17,7 +18,7 @@ import com.bupt.qrj.unifyum.util.redis.RedisUtil;
  *         com.bupt.qrj.unifyum.api.test.util.RedisUtilTestCase unifyum-api ”√Õæ:
  *
  */
-
+@Ignore
 public class RedisUtilTestCase {
 
 	@Test

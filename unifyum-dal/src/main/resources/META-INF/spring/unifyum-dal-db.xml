@@ -14,7 +14,7 @@
 		destroy-method="close">
 		<property name="driverClass" value="com.mysql.jdbc.Driver"></property>
 		<property name="jdbcUrl"
-			value="jdbc:mysql://104.194.79.148:3306/zhang">
+			value="jdbc:mysql://123.57.221.17:3306/zhang">
 		</property> 
 		<property name="user" value="root">
 		</property>

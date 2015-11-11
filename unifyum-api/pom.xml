@@ -148,7 +148,17 @@
 	<build>
 		<finalName>unifyum</finalName>
 		<plugins>
-
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<configuration>
+					<url>http://123.57.221.17:8080/manager/text</url>
+					<server>tomcat</server>
+					<username>tomcat</username>
+					<password>tomcat</password>
+					<path>/unifyum</path>
+				</configuration>
+			</plugin>
 		</plugins>
 
 	</build>
