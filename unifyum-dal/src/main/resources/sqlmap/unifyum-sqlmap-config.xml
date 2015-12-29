@@ -8,4 +8,5 @@
 		maxTransactions="3000" useStatementNamespaces="false" />
 	
 	<sqlMap resource="sqlmap/UserMeta-sqlmap-mapping.xml" />
+	<sqlMap resource="sqlmap/UserImage-sqlmap-mapping.xml" />
 </sqlMapConfig>

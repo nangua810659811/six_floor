@@ -14,4 +14,9 @@
 		class="com.bupt.qrj.unifyum.dal.dao.impl.UserMetaDAOImpl"
 		parent="unifyumSqlMapClientDAO" />
 
+	<bean id="userImageDAO"
+		class="com.bupt.qrj.unifyum.dal.dao.impl.UserImageDAOImpl"
+		parent="unifyumSqlMapClientDAO" />
+
+
 </beans>

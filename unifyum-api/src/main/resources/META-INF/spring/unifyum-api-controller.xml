@@ -2,12 +2,14 @@
 
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
-	xmlns:sofa="http://img.alipay.net/dtd/schema/service" xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:webflow="http://www.springframework.org/schema/webflow-config"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
          http://img.alipay.net/dtd/schema/service http://img.alipay.net/dtd/schema/service/sofa-service.xsd
          http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
-         http://www.springframework.org/schema/webflow-config http://www.springframework.org/schema/webflow-config/spring-webflow-config-2.0.xsd"
+         http://www.springframework.org/schema/webflow-config http://www.springframework.org/schema/webflow-config/spring-webflow-config-2.0.xsd
+       http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd"
 	default-autowire="byName">
 
 
@@ -40,6 +42,12 @@
 	<bean name="mappingJacksonHttpMessageConverter"
 		class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter" />
 
-
+	<mvc:interceptors>  
+            <mvc:interceptor>
+               <mvc:mapping path="/*" />
+               <bean class="com.bupt.qrj.unifyum.api.interceptor.AuthTokenInterceptor">
+               </bean>
+           </mvc:interceptor>
+   </mvc:interceptors>           
 
 </beans>
