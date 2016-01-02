@@ -1,0 +1,12 @@
+=2015-12-30 07:37:51 DEBUG main com.bupt.qrj.unifyum.dal.dao.impl.UserMetaDAOImpl - do the userMeta add
+=2015-12-30 07:37:51 DEBUG main com.bupt.qrj.unifyum.dal.dao.impl.UserMetaDAOImpl - do the userMeta success
+=2015-12-30 07:37:51 DEBUG main com.bupt.qrj.unifyum.dal.dao.impl.UserMetaDAOImpl - do the userMeta get 
+=2015-12-30 07:37:51 DEBUG main com.bupt.qrj.unifyum.dal.dao.impl.UserMetaDAOImpl - do the userMeta get success
+=2015-12-30 07:37:51 DEBUG main com.bupt.qrj.unifyum.dal.dao.impl.UserMetaDAOImpl - do the userMeta update password
+=2015-12-30 07:37:52 DEBUG main com.bupt.qrj.unifyum.dal.dao.impl.UserMetaDAOImpl - do the userMeta update password success
+=2015-12-30 07:37:52 DEBUG main com.bupt.qrj.unifyum.dal.dao.impl.UserMetaDAOImpl - do the userMeta get 
+=2015-12-30 07:37:52 DEBUG main com.bupt.qrj.unifyum.dal.dao.impl.UserMetaDAOImpl - do the userMeta get success
+=2015-12-30 07:37:52 DEBUG main com.bupt.qrj.unifyum.dal.dao.impl.UserMetaDAOImpl - do the userMeta delete
+=2015-12-30 07:37:52 DEBUG main com.bupt.qrj.unifyum.dal.dao.impl.UserMetaDAOImpl - do the userMeta success
+=2015-12-30 07:37:52 DEBUG main com.bupt.qrj.unifyum.dal.dao.impl.UserMetaDAOImpl - do the userMeta get 
+=2015-12-30 07:37:52 DEBUG main com.bupt.qrj.unifyum.dal.dao.impl.UserMetaDAOImpl - do the userMeta get success

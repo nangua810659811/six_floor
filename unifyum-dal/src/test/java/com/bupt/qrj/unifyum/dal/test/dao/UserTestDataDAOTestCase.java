@@ -7,6 +7,7 @@ import static junit.framework.Assert.assertTrue;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -21,6 +22,7 @@ import com.bupt.qrj.unifyum.dal.dataobject.UserTestDataDO;
  * ”√Õæ: 
  *
  */
+@Ignore
 public class UserTestDataDAOTestCase {
     public ApplicationContext getContext() {
         ApplicationContext context = new ClassPathXmlApplicationContext(new String[] {

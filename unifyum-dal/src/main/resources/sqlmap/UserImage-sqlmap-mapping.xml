@@ -29,7 +29,7 @@
 	</select>
 
     <select id="UNIFYUM-USER-IMAGE-GET" resultMap="RM.UserImage">
-		select * from user_image where id = #id#;
+		select * from user_image where id = #id# ;
 	</select>
 
 </sqlMap>
