@@ -18,5 +18,8 @@
 		class="com.bupt.qrj.unifyum.dal.dao.impl.UserImageDAOImpl"
 		parent="unifyumSqlMapClientDAO" />
 
+	<bean id="userTestDataDAO"
+		class="com.bupt.qrj.unifyum.dal.dao.impl.UserTestDataDAOImpl"
+		parent="unifyumSqlMapClientDAO" />
 
 </beans>
