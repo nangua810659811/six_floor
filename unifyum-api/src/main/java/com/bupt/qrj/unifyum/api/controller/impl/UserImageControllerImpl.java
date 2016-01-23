@@ -42,7 +42,7 @@ public class UserImageControllerImpl implements UserImageController {
         try {
             String imageStr = request.getParameter("image");
             if (imageStr == null || imageStr.isEmpty()) {
-                result.put("memo", "输入参数错误");
+                result.put("errMsg", "输入参数错误");
             } else {
                 UserImageDO image = new UserImageDO();
                 image.setUserName(userName);
