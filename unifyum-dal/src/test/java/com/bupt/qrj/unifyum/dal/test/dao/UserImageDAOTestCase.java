@@ -49,6 +49,11 @@ public class UserImageDAOTestCase {
         userImageDAO.addImage(image);
         image.setUserName("qurenjun");
         image.setImage("sfsdfsdf123");
+        image.setBlood("0");
+        image.setColor("1");
+        image.setMoisten("2");
+        image.setSatin("3");
+        image.setTexture("4");
         userImageDAO.addImage(image);
 
     }

@@ -25,6 +25,21 @@ public class UserImageDO {
     /**base64 的字符串 */
     private String image;
 
+    /**图像计算参数1*/
+    private String moisten;
+
+    /**图像计算参数2*/
+    private String blood;
+
+    /**图像计算参数3*/
+    private String color;
+
+    /**图像计算参数4*/
+    private String texture;
+
+    /**图像计算参数5*/
+    private String satin;
+
     /**
      * @return the id
      */
@@ -79,6 +94,76 @@ public class UserImageDO {
      */
     public void setImage(String image) {
         this.image = image;
+    }
+
+    /**
+     * @return the moisten
+     */
+    public String getMoisten() {
+        return moisten;
+    }
+
+    /**
+     * @param moisten the moisten to set
+     */
+    public void setMoisten(String moisten) {
+        this.moisten = moisten;
+    }
+
+    /**
+     * @return the blood
+     */
+    public String getBlood() {
+        return blood;
+    }
+
+    /**
+     * @param blood the blood to set
+     */
+    public void setBlood(String blood) {
+        this.blood = blood;
+    }
+
+    /**
+     * @return the color
+     */
+    public String getColor() {
+        return color;
+    }
+
+    /**
+     * @param color the color to set
+     */
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    /**
+     * @return the texture
+     */
+    public String getTexture() {
+        return texture;
+    }
+
+    /**
+     * @param texture the texture to set
+     */
+    public void setTexture(String texture) {
+        this.texture = texture;
+    }
+
+    /**
+     * @return the satin
+     */
+    public String getSatin() {
+        return satin;
+    }
+
+    /**
+     * @param satin the satin to set
+     */
+    public void setSatin(String satin) {
+        this.satin = satin;
     }
 
 }

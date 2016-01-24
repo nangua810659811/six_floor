@@ -11,19 +11,28 @@
 			jdbcType="TIMESTAMP" />
 		<result property="image" column="image" javaType="java.lang.String"
 			jdbcType="VARCHAR" />
-
+		<result property="moisten" column="moisten" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="blood" column="blood" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="color" column="color" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="texture" column="texture" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="satin" column="satin" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
 	</resultMap>
 
 
 	<insert id="UNIFYUM-USER-IMAGE-INSERT">
 		insert into user_image
-		(user_name,image)
-		values(#userName#,#image#);
+		(user_name,image,moisten,blood,color,texture,satin)
+		values(#userName#,#image#,#moisten#,#blood#,#color#,#texture#,#satin#);
 	</insert>
 
 
-	<select id="UNIFYUM-USER-IMAGE-LIST" resultMap="RM.UserImage">
-		select id,record_time,user_name,"" as image from user_image where user_name = #userName#
+	<select id="UNIFYUM-USER-IMAGE-LIST" resultClass="java.util.HashMap">
+		select id,record_time,user_name from user_image where user_name = #userName#
 		 order by record_time desc
 		;
 	</select>

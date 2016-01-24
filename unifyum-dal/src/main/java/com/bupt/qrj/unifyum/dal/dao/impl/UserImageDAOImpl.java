@@ -3,6 +3,9 @@
  */
 package com.bupt.qrj.unifyum.dal.dao.impl;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -42,9 +45,24 @@ public class UserImageDAOImpl extends SqlMapClientDaoSupport implements UserImag
      */
     @SuppressWarnings("unchecked")
     public List<UserImageDO> queryImageByUser(String userName) {
+        List<UserImageDO> imageDOList = null;
         if (userName == null || userName.isEmpty())
             return null;
-        return this.getSqlMapClientTemplate().queryForList("UNIFYUM-USER-IMAGE-LIST", userName);
+        @SuppressWarnings("rawtypes")
+        List<HashMap> retList = this.getSqlMapClientTemplate().queryForList(
+            "UNIFYUM-USER-IMAGE-LIST", userName);
+        if (retList != null && !retList.isEmpty()) {
+            imageDOList = new ArrayList<UserImageDO>();
+            for (HashMap imageDataMap : retList) {
+                UserImageDO imageDO = new UserImageDO();
+                imageDO.setId(new Long((Integer) imageDataMap.get("id")));
+                imageDO.setUserName((String) imageDataMap.get("user_name"));
+                Date timestamp = (Date) imageDataMap.get("record_time");
+                imageDO.setRecordTime(timestamp);
+                imageDOList.add(imageDO);
+            }
+        }
+        return imageDOList;
     }
 
     /* (non-Javadoc)
