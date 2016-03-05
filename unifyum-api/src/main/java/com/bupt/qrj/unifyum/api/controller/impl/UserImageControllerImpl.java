@@ -144,6 +144,17 @@ public class UserImageControllerImpl implements UserImageController {
         HttpOutUtil.outData(response, JSONObject.toJSONString(result));
     }
 
+    /* (non-Javadoc)
+     * @see com.bupt.qrj.unifyum.api.controller.UserImageController#jqList(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+     */
+    @RequestMapping(method = { RequestMethod.POST }, params = "action=jqList")
+    public void jqList(HttpServletRequest request, HttpServletResponse response) {
+        JSONObject result = new JSONObject();
+        result.put("success", false);
+        HttpOutUtil.outData(response, JSONObject.toJSONString(result));
+
+    }
+
     /**
      * @param userImageDAO the userImageDAO to set
      */

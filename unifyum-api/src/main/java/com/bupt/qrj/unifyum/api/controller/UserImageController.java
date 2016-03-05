@@ -19,6 +19,8 @@ public interface UserImageController {
 
     public void list(HttpServletRequest request, HttpServletResponse response);
 
+    public void jqList(HttpServletRequest request, HttpServletResponse response);
+
     public void view(HttpServletRequest request, HttpServletResponse response);
 
 }

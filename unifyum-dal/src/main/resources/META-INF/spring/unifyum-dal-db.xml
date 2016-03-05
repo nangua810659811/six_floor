@@ -26,7 +26,7 @@
 	<!-- ibatisÏà¹Ø -->
 
 	<!-- sqlMapClient -->
-	<bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+	<bean id="sqlMapClientq" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
 		<property name="dataSource" ref="unifyumDataSource" />
 		<property name="configLocation">
 			<value>classpath:sqlmap/unifyum-sqlmap-config.xml</value>
@@ -39,7 +39,7 @@
 			<ref bean="unifyumDataSource" />
 		</property>
 		<property name="sqlMapClient">
-			<ref bean="sqlMapClient" />
+			<ref bean="sqlMapClientq" />
 		</property>
 	</bean>
 

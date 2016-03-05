@@ -8,6 +8,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.junit.Ignore;
@@ -78,7 +79,21 @@ public class UserImageDAOTestCase {
         List<UserImageDO> doList = userImageDAO.queryImageByUser("qurenjun");
         assertNotNull(doList);
         assertEquals(doList.size(), 2);
+    }
 
+    @Ignore
+    @Test
+    public void testEList() {
+        ApplicationContext context = getContext();
+        UserImageDAO userImageDAO = (UserImageDAO) context.getBean("userImageDAO");
+        HashMap<String, Object> paraMap = new HashMap<String, Object>();
+        paraMap.put("userName", "qurenjun");
+        //  paraMap.put("limit", 100);
+        //  paraMap.put("offset", 200);
+        paraMap.put("texture", "2");
+        List<UserImageDO> doList = userImageDAO.queryImageByProps(paraMap);
+        assertNotNull(doList);
+        assertEquals(doList.size(), 2);
     }
 
     @Ignore
@@ -91,5 +106,19 @@ public class UserImageDAOTestCase {
             UserImageDO image = userImageDAO.getImage(ido.getId());
             assertNotNull(image);
         }
+    }
+
+    @Test
+    public void testCount() {
+        ApplicationContext context = getContext();
+        HashMap<String, Object> paraMap = new HashMap<String, Object>();
+        paraMap.put("userName", "qurenjun");
+        //  paraMap.put("limit", 100);
+        //  paraMap.put("offset", 200);
+        paraMap.put("blood", "100");
+
+        UserImageDAO userImageDAO = (UserImageDAO) context.getBean("userImageDAO");
+        Integer count = userImageDAO.count(paraMap);
+        assertNotNull(count);
     }
 }

@@ -4,6 +4,7 @@
 package com.bupt.qrj.unifyum.dal.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.bupt.qrj.unifyum.dal.dataobject.UserImageDO;
 
@@ -20,6 +21,10 @@ public interface UserImageDAO {
 
     public List<UserImageDO> queryImageByUser(String userName);
 
+    public List<UserImageDO> queryImageByProps(Map<String, Object> paras);
+
     public UserImageDO getImage(Long id);
+
+    public Integer count(Map<String, Object> paras);
 
 }

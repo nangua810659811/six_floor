@@ -31,14 +31,43 @@
 	</insert>
 
 
-	<select id="UNIFYUM-USER-IMAGE-LIST" resultClass="java.util.HashMap">
-		select id,record_time,user_name from user_image where user_name = #userName#
-		 order by record_time desc
+	<select id="UNIFYUM-USER-IMAGE-LIST" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		select
+		id,record_time,user_name from user_image where 
+		user_name = #userName#
+		<dynamic prepend="">
+			<isNotNull prepend="AND" property="moisten"> moisten = #moisten# </isNotNull>
+			<isNotNull prepend="AND" property="blood"> blood = #blood# </isNotNull>
+			<isNotNull prepend="AND" property="color"> color = #color# </isNotNull>
+			<isNotNull prepend="AND" property="texture"> texture = #texture# </isNotNull>
+			<isNotNull prepend="AND" property="satin"> satin = #satin# </isNotNull>
+		</dynamic>
+		order by #sortKey# #order#
+		<dynamic prepend="">
+		    <isNotNull prepend="limit" property="limit"> 
+		      #limit# 
+		      <isNotNull prepend="," property="offset">
+		      		#offset# 
+		      </isNotNull>
+		    </isNotNull>
+		</dynamic>
 		;
 	</select>
 
-    <select id="UNIFYUM-USER-IMAGE-GET" resultMap="RM.UserImage">
-		select * from user_image where id = #id# ;
+	<select id="UNIFYUM-USER-IMAGE-GET" resultMap="RM.UserImage">
+		select * from
+		user_image where id = #id# ;
 	</select>
 
+	<select id="UNIFYUM-USER-IMAGE-COUNT" resultClass="java.lang.Integer">
+		select
+		count(*) from user_image where user_name = #userName#
+		<dynamic prepend="">
+			<isNotNull prepend="AND" property="moisten"> moisten = #moisten# </isNotNull>
+			<isNotNull prepend="AND" property="blood"> blood = #blood# </isNotNull>
+			<isNotNull prepend="AND" property="color"> color = #color# </isNotNull>
+			<isNotNull prepend="AND" property="texture"> texture = #texture# </isNotNull>
+			<isNotNull prepend="AND" property="satin"> satin = #satin# </isNotNull>
+		</dynamic>
+	</select>
 </sqlMap>
