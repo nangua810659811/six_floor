@@ -46,7 +46,7 @@ public class UserTestDataControllerImpl implements UserTestDataController {
         result.put("success", false);
         String userName = (String) request.getAttribute("username");
         try {
-            Map<String, String> paramsMap = request.getParameterMap();
+            Map<String, String[]> paramsMap = request.getParameterMap();
             JSONObject testDataMap = new JSONObject();
             Iterator<String> paramKeyIter = paramsMap.keySet().iterator();
             //¥¶¿Ìparam
