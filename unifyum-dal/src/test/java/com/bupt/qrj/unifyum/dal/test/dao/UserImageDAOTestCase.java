@@ -81,7 +81,6 @@ public class UserImageDAOTestCase {
         assertEquals(doList.size(), 2);
     }
 
-    @Ignore
     @Test
     public void testEList() {
         ApplicationContext context = getContext();
@@ -90,7 +89,7 @@ public class UserImageDAOTestCase {
         paraMap.put("userName", "qurenjun");
         //  paraMap.put("limit", 100);
         //  paraMap.put("offset", 200);
-        paraMap.put("texture", "2");
+        //paraMap.put("texture", "2");
         List<UserImageDO> doList = userImageDAO.queryImageByProps(paraMap);
         assertNotNull(doList);
         assertEquals(doList.size(), 2);

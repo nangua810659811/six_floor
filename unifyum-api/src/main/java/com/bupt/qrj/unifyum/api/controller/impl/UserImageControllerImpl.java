@@ -152,7 +152,6 @@ public class UserImageControllerImpl implements UserImageController {
         JSONObject result = new JSONObject();
         result.put("success", false);
         HttpOutUtil.outData(response, JSONObject.toJSONString(result));
-
     }
 
     /**

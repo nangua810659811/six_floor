@@ -91,9 +91,6 @@ public class UserImageDAOImpl extends SqlMapClientDaoSupport implements UserImag
     @SuppressWarnings({ "rawtypes", "unchecked" })
     public List<UserImageDO> queryImageByProps(Map<String, Object> paras) {
         List<UserImageDO> imageDOList = null;
-        //没有用户名的时候返回null
-        if (!paras.containsKey("userName"))
-            return null;
         //如果没有设定sortKey 和 order，配置一个默认值
         if (!paras.containsKey("sortKey")) {
             paras.put("sortKey", "record_time");
