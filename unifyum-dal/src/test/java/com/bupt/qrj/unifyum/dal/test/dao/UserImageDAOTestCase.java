@@ -81,15 +81,18 @@ public class UserImageDAOTestCase {
         assertEquals(doList.size(), 2);
     }
 
+    @Ignore
     @Test
     public void testEList() {
         ApplicationContext context = getContext();
         UserImageDAO userImageDAO = (UserImageDAO) context.getBean("userImageDAO");
+        StringBuffer filterBuf = new StringBuffer();
+        filterBuf.append("user_name = 'qurenjun'");
+        filterBuf.append(" AND ");
+        filterBuf.append("blood = '0'");
+
         HashMap<String, Object> paraMap = new HashMap<String, Object>();
-        paraMap.put("userName", "qurenjun");
-        //  paraMap.put("limit", 100);
-        //  paraMap.put("offset", 200);
-        //paraMap.put("texture", "2");
+        paraMap.put("filterStr", filterBuf.toString());
         List<UserImageDO> doList = userImageDAO.queryImageByProps(paraMap);
         assertNotNull(doList);
         assertEquals(doList.size(), 2);
@@ -107,14 +110,16 @@ public class UserImageDAOTestCase {
         }
     }
 
+    @Ignore
     @Test
     public void testCount() {
         ApplicationContext context = getContext();
         HashMap<String, Object> paraMap = new HashMap<String, Object>();
-        paraMap.put("userName", "qurenjun");
-        //  paraMap.put("limit", 100);
-        //  paraMap.put("offset", 200);
-        paraMap.put("blood", "100");
+        StringBuffer filterBuf = new StringBuffer();
+        filterBuf.append("user_name = 'qurenjun'");
+        filterBuf.append(" AND ");
+        filterBuf.append("blood = '2'");
+        paraMap.put("filterStr", filterBuf.toString());
 
         UserImageDAO userImageDAO = (UserImageDAO) context.getBean("userImageDAO");
         Integer count = userImageDAO.count(paraMap);

@@ -51,7 +51,7 @@ public class UserImageDAOImpl extends SqlMapClientDaoSupport implements UserImag
         if (userName == null || userName.isEmpty())
             return null;
         //输入参数
-        paraMap.put("userName", userName);
+        paraMap.put("filterStr", "user_name = '" + userName + "'");
         paraMap.put("sortKey", "record_time");
         paraMap.put("order", "desc");
         @SuppressWarnings("rawtypes")
@@ -75,11 +75,11 @@ public class UserImageDAOImpl extends SqlMapClientDaoSupport implements UserImag
         UserImageDO imageDO = new UserImageDO();
         imageDO.setId(new Long((Integer) imageDataMap.get("id")));
         imageDO.setUserName((String) imageDataMap.get("user_name"));
-        imageDO.setBlood((String) imageDataMap.get("moisten"));
+        imageDO.setMoisten((String) imageDataMap.get("moisten"));
         imageDO.setBlood((String) imageDataMap.get("blood"));
-        imageDO.setBlood((String) imageDataMap.get("color"));
-        imageDO.setBlood((String) imageDataMap.get("texture"));
-        imageDO.setBlood((String) imageDataMap.get("satin"));
+        imageDO.setColor((String) imageDataMap.get("color"));
+        imageDO.setTexture((String) imageDataMap.get("texture"));
+        imageDO.setSatin((String) imageDataMap.get("satin"));
         Date timestamp = (Date) imageDataMap.get("record_time");
         imageDO.setRecordTime(timestamp);
         return imageDO;
@@ -125,9 +125,6 @@ public class UserImageDAOImpl extends SqlMapClientDaoSupport implements UserImag
      * @see com.bupt.qrj.unifyum.dal.dao.UserImageDAO#count(java.lang.String)
      */
     public Integer count(Map<String, Object> paras) {
-        //没有用户名的时候返回null
-        if (!paras.containsKey("userName"))
-            return null;
         return (Integer) this.getSqlMapClientTemplate().queryForObject("UNIFYUM-USER-IMAGE-COUNT",
             paras);
     }

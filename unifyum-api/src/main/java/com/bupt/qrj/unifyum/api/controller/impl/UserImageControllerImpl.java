@@ -3,7 +3,9 @@
  */
 package com.bupt.qrj.unifyum.api.controller.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.bupt.qrj.unifyum.api.controller.UserImageController;
 import com.bupt.qrj.unifyum.dal.dao.UserImageDAO;
@@ -30,11 +33,35 @@ import com.bupt.qrj.unifyum.util.http.HttpOutUtil;
 @RequestMapping("/imagemanagement.req")
 public class UserImageControllerImpl implements UserImageController {
 
-    private UserImageDAO      userImageDAO;
+    private UserImageDAO              userImageDAO;
 
-    private static JSONObject solutionData = new JSONObject();
+    private static JSONObject         solutionData = new JSONObject();
 
-    private static JSONObject adviceData   = new JSONObject();
+    private static JSONObject         adviceData   = new JSONObject();
+
+    /**
+     * jqgrid 的op 到 sql 语句的 map
+     * */
+    private final Map<String, String> jqOpMapping  = new HashMap<String, String>() {
+                                                       {
+                                                           //等于
+                                                           put("eq", " = ");
+                                                           //不等于
+                                                           put("ne", " != ");
+                                                           //开始于
+                                                           put("bw", " like ");
+                                                           //不开始于
+                                                           put("bn", " not like ");
+                                                           //结束于
+                                                           put("ew", " like ");
+                                                           //不结束于
+                                                           put("en", " not like ");
+                                                           //包含
+                                                           put("cn", " like ");
+                                                           //不包含
+                                                           put("nc", " not like ");
+                                                       }
+                                                   };
 
     {
         solutionData.put("productSuggest", "建议您使用A产品");
@@ -147,11 +174,155 @@ public class UserImageControllerImpl implements UserImageController {
     /* (non-Javadoc)
      * @see com.bupt.qrj.unifyum.api.controller.UserImageController#jqList(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
      */
-    @RequestMapping(method = { RequestMethod.POST }, params = "action=jqList")
+    @RequestMapping(method = { RequestMethod.POST, RequestMethod.GET }, params = "action=jqList")
     public void jqList(HttpServletRequest request, HttpServletResponse response) {
-        JSONObject result = new JSONObject();
-        result.put("success", false);
+        HashMap<String, Object> paraMap = new HashMap<String, Object>();
+
+        processFilterParams(request, paraMap);
+        JSONObject result = null;
+        Integer count = 0;
+        List<UserImageDO> imageDOList = null;
+        try {
+            count = userImageDAO.count(paraMap);
+            if (count > 0) {
+                //更新页码信息
+                processPageParams(request, paraMap, count);
+                imageDOList = userImageDAO.queryImageByProps(paraMap);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        result = buildJqResult(imageDOList, paraMap, count);
         HttpOutUtil.outData(response, JSONObject.toJSONString(result));
+    }
+
+    /**
+     * processFilterParams 2016年3月6日
+     * 2016年3月6日.上午9:58:42
+     * return: void 
+     */
+    private void processFilterParams(HttpServletRequest request, HashMap<String, Object> paraMap) {
+        Map reqMap = request.getParameterMap();
+        String searchSwitch = request.getParameter("_search");
+        StringBuffer filterBuffer = new StringBuffer();
+        if (searchSwitch.equalsIgnoreCase("true")) {
+
+            String filters = request.getParameter("filters");
+            JSONObject filterJSON = JSONObject.parseObject(filters);
+            String groupOp = filterJSON.getString("groupOp");
+            JSONArray rules = filterJSON.getJSONArray("rules");
+            int iterCount = 1;
+            for (Object rule : rules) {
+                JSONObject ruleJSON = (JSONObject) rule;
+                String keyName = ruleJSON.getString("field");
+                String op = ruleJSON.getString("op");
+                String sqlOp = jqOpMapping.get(op) == null ? " = " : jqOpMapping.get(op);
+                String data = ruleJSON.getString("data");
+                //记录个数，拼接groupOp
+                filterBuffer.append(" ");
+                filterBuffer.append(keyName);
+                filterBuffer.append(sqlOp);
+                filterBuffer.append(prepareFilterData(data, op));
+                filterBuffer.append(" ");
+                if (iterCount != rules.size()) {
+                    filterBuffer.append(groupOp);
+                }
+                iterCount++;
+            }
+            //输出结果
+            String filterStr = filterBuffer.toString();
+            if (filterStr != null && !filterStr.isEmpty()) {
+                paraMap.put("filterStr", filterBuffer.toString());
+            }
+        }
+    }
+
+    private String prepareFilterData(String data, String op) {
+        if (op.equals("bw") || op.equals("bn")) {
+            //开始于
+            data = data + "%";
+        } else if (op.equals("ew") || op.equals("en")) {
+            //结束于
+            data = "%" + data;
+        } else if (op.equals("cn") || op.equals("nc")) {
+            //包含于
+            data = "%" + data + "%";
+        }
+        //字符串类型的处理
+        data = "'" + data + "'";
+
+        return data;
+    }
+
+    /**
+     * processRequestParams 2016年3月6日
+     * 2016年3月6日.上午9:44:45
+     * return: void 
+     * @param count 
+     */
+    private void processPageParams(HttpServletRequest request, HashMap<String, Object> paraMap,
+                                   Integer count) {
+        //当前处于第几页
+        Long page = Long.valueOf(request.getParameter("page"));
+        //每一页中的记录个数
+        Long rows = Long.valueOf(request.getParameter("rows"));
+        paraMap.put("page", page);
+        paraMap.put("limit", (page - 1) * rows);
+        paraMap.put("offset", rows);
+        //计算
+        //排序的列
+        String sortKey = request.getParameter("sidx");
+        paraMap.put("sortKey", sortKey);
+        //排序的顺序
+        String order = request.getParameter("sord");
+        paraMap.put("order", order);
+    }
+
+    /**
+     * buildJqResult 2016年3月6日
+     * 2016年3月6日.上午12:25:41
+     * return: JSONObject 
+     * @param count 
+     * @param paraMap 
+     */
+    private JSONObject buildJqResult(List<UserImageDO> imageDOList,
+                                     HashMap<String, Object> paraMap, Integer count) {
+        JSONObject result = new JSONObject();
+        JSONArray rows = new JSONArray();
+        result.put("records", count);
+        result.put("rows", rows);
+
+        if (imageDOList == null || imageDOList.isEmpty()) {
+            result.put("total", 0);
+            result.put("page", 0);
+        } else {
+            Integer offset = ((Long) paraMap.get("offset")).intValue();
+            int total = count / offset;
+            if (count % offset != 0) {
+                total++;
+            }
+
+            result.put("total", total);
+            if (paraMap.containsKey("page")) {
+                result.put("page", paraMap.get("page"));
+            } else {
+                result.put("page", 1);
+            }
+            //开始转换
+            for (UserImageDO imageDO : imageDOList) {
+                JSONObject data = new JSONObject();
+                data.put("user_name", imageDO.getUserName());
+                data.put("blood", imageDO.getBlood());
+                data.put("moisten", imageDO.getMoisten());
+                data.put("color", imageDO.getColor());
+                data.put("texture", imageDO.getTexture());
+                data.put("satin", imageDO.getSatin());
+                data.put("record_time", imageDO.getRecordTime());
+                data.put("id", imageDO.getId());
+                rows.add(data);
+            }
+        }
+        return result;
     }
 
     /**
