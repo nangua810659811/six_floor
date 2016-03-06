@@ -8,12 +8,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import sun.misc.BASE64Decoder;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
@@ -173,6 +176,33 @@ public class UserImageControllerImpl implements UserImageController {
         }
         //Êä³ö½á¹û
         HttpOutUtil.outData(response, JSONObject.toJSONString(result));
+    }
+
+    /* (non-Javadoc)
+     * @see com.bupt.qrj.unifyum.api.controller.UserImageController#showImage(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+     */
+    @SuppressWarnings("restriction")
+    @RequestMapping(method = { RequestMethod.GET }, params = "action=showImg")
+    public void showImage(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            Long imageId = Long.parseLong(request.getParameter("id"));
+            if (imageId != null) {
+                UserImageDO image = userImageDAO.getImage(imageId);
+                if (image != null) {
+                    byte[] imageData = null;
+                    BASE64Decoder decoder = new BASE64Decoder();
+                    imageData = decoder.decodeBuffer(image.getImage());
+                    if (imageData != null) {
+                        response.setContentType("image/jpg");
+                        ServletOutputStream outputStream = response.getOutputStream();
+                        outputStream.write(imageData);
+                        outputStream.close();
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /* (non-Javadoc)

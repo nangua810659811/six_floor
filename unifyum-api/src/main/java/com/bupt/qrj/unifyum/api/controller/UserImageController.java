@@ -23,4 +23,6 @@ public interface UserImageController {
 
     public void view(HttpServletRequest request, HttpServletResponse response);
 
+    public void showImage(HttpServletRequest request, HttpServletResponse response);
+
 }
