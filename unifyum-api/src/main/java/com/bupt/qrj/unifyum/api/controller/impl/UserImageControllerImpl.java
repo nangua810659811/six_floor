@@ -60,6 +60,10 @@ public class UserImageControllerImpl implements UserImageController {
                                                            put("cn", " like ");
                                                            //不包含
                                                            put("nc", " not like ");
+                                                           //大于等于
+                                                           put("ge", " >= ");
+                                                           //小于等于
+                                                           put("le", " <= ");
                                                        }
                                                    };
 
