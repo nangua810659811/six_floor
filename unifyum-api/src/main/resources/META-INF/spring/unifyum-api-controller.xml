@@ -2,7 +2,7 @@
 
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
-    xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:webflow="http://www.springframework.org/schema/webflow-config"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
@@ -38,16 +38,22 @@
 		</property>
 	</bean>
 
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!--<property name="maxUploadSize" value="10485760"></property> -->
+	</bean>
+
+
 
 	<bean name="mappingJacksonHttpMessageConverter"
 		class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter" />
 
-	<mvc:interceptors>  
-            <mvc:interceptor>
-               <mvc:mapping path="/*" />
-               <bean class="com.bupt.qrj.unifyum.api.interceptor.AuthTokenInterceptor">
-               </bean>
-           </mvc:interceptor>
-   </mvc:interceptors>           
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/*" />
+			<bean class="com.bupt.qrj.unifyum.api.interceptor.AuthTokenInterceptor">
+			</bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
 
 </beans>

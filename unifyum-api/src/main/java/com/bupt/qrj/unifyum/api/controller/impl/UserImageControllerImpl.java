@@ -3,6 +3,8 @@
  */
 package com.bupt.qrj.unifyum.api.controller.impl;
 
+import java.util.Base64;
+import java.util.Base64.Encoder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,6 +17,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import sun.misc.BASE64Decoder;
 
@@ -85,6 +89,35 @@ public class UserImageControllerImpl implements UserImageController {
     /* (non-Javadoc)
      * @see com.bupt.qrj.unifyum.api.controller.UserImageController#upload(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
      */
+
+    private JSONObject processImageStr(String userName, String imageStr) {
+        JSONObject picData = new JSONObject();
+        //生成随机数
+        Random rand = new Random();
+        int moisten = rand.nextInt(10) + 1;
+        int blood = rand.nextInt(10) + 1;
+        int color = rand.nextInt(10) + 1;
+        int texture = rand.nextInt(10) + 1;
+        int satin = rand.nextInt(10) + 1;
+        //保存图像
+        UserImageDO image = new UserImageDO();
+        image.setUserName(userName);
+        image.setImage(imageStr);
+        image.setMoisten(String.valueOf(moisten));
+        image.setBlood(String.valueOf(blood));
+        image.setTexture(String.valueOf(texture));
+        image.setSatin(String.valueOf(satin));
+        image.setColor(String.valueOf(color));
+        userImageDAO.addImage(image);
+        //返回结果json
+        picData.put("moisten", String.valueOf(moisten));
+        picData.put("blood", String.valueOf(blood));
+        picData.put("color", String.valueOf(color));
+        picData.put("texture", String.valueOf(texture));
+        picData.put("satin", String.valueOf(satin));
+        return picData;
+    }
+
     @RequestMapping(method = { RequestMethod.POST }, params = "action=upload")
     public void upload(HttpServletRequest request, HttpServletResponse response) {
         JSONObject result = new JSONObject();
@@ -95,27 +128,7 @@ public class UserImageControllerImpl implements UserImageController {
             if (imageStr == null || imageStr.isEmpty()) {
                 result.put("errMsg", "输入参数错误");
             } else {
-                Random rand = new Random();
-                int moisten = rand.nextInt(10) + 1;
-                int blood = rand.nextInt(10) + 1;
-                int color = rand.nextInt(10) + 1;
-                int texture = rand.nextInt(10) + 1;
-                int satin = rand.nextInt(10) + 1;
-                UserImageDO image = new UserImageDO();
-                image.setUserName(userName);
-                image.setImage(imageStr);
-                image.setMoisten(String.valueOf(moisten));
-                image.setBlood(String.valueOf(blood));
-                image.setTexture(String.valueOf(texture));
-                image.setSatin(String.valueOf(satin));
-                image.setColor(String.valueOf(color));
-                userImageDAO.addImage(image);
-                JSONObject picData = new JSONObject();
-                picData.put("moisten", String.valueOf(moisten));
-                picData.put("blood", String.valueOf(blood));
-                picData.put("color", String.valueOf(color));
-                picData.put("texture", String.valueOf(texture));
-                picData.put("satin", String.valueOf(satin));
+                JSONObject picData = processImageStr(userName, imageStr);
                 result.put("adviceData", adviceData);
                 result.put("solutionData", solutionData);
                 result.put("picData", picData);
@@ -203,6 +216,36 @@ public class UserImageControllerImpl implements UserImageController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    /* (non-Javadoc)
+     * @see com.bupt.qrj.unifyum.api.controller.UserImageController#updateImage(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse, org.springframework.web.multipart.MultipartFile)
+     */
+    @RequestMapping(method = { RequestMethod.GET, RequestMethod.POST }, params = "action=imageUpload")
+    public void updateImage(HttpServletRequest request, HttpServletResponse response,
+                            @RequestParam MultipartFile file) {
+        JSONObject result = new JSONObject();
+        JSONArray filesArr = new JSONArray();
+        result.put("files", filesArr);
+        JSONObject testFile = new JSONObject();
+        filesArr.add(testFile);
+        testFile.put("name", file.getName());
+
+        try {
+            byte[] imageBytes = file.getBytes();
+            Encoder encoder = Base64.getEncoder();
+            String imageStr = encoder.encodeToString(imageBytes);
+            //保存文件
+            processImageStr("Administrator", imageStr);
+            testFile.put("size", file.getSize());
+            testFile.put("url", "viewImage");
+            testFile.put("thumbnailUrl", "");
+            testFile.put("deleteUrl", "");
+            testFile.put("deleteType", "DELETE");
+        } catch (Exception exp) {
+            testFile.put("error", exp.getMessage());
+        }
+        HttpOutUtil.outData(response, JSONObject.toJSONString(result));
     }
 
     /* (non-Javadoc)
@@ -365,5 +408,4 @@ public class UserImageControllerImpl implements UserImageController {
     public void setUserImageDAO(UserImageDAO userImageDAO) {
         this.userImageDAO = userImageDAO;
     }
-
 }
