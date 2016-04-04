@@ -10,4 +10,5 @@
 	<sqlMap resource="sqlmap/UserMeta-sqlmap-mapping.xml" />
 	<sqlMap resource="sqlmap/UserImage-sqlmap-mapping.xml" />
 	<sqlMap resource="sqlmap/UserTestData-sqlmap-mapping.xml" />
+	<sqlMap resource="sqlmap/SkinTestData-sqlmap-mapping.xml" />
 </sqlMapConfig>

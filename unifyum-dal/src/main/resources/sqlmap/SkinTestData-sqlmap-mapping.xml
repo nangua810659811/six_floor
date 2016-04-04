@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="GB2312" ?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="unifyum">
+
+	<resultMap id="RM.SkinTestData"
+		class="com.bupt.qrj.unifyum.dal.dataobject.SkinTestDataDO">
+		<result property="id" column="id" javaType="long" jdbcType="DECIMAL" />
+		<result property="userName" column="user_name" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="type" column="type" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="value" column="value" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="gmtCreated" column="gmt_created" javaType="java.util.Date"
+			jdbcType="DATETIME" />
+		<result property="gmtModified" column="gmt_modified" javaType="java.util.Date"
+			jdbcType="DATETIME" />
+	</resultMap>
+
+	<insert id="UNIFYUM-SKIN-TEST-DATA-INSERT">
+		insert into skin_test_data
+		(user_name,type,value,gmt_created,gmt_modified)
+		values(#userName#,#type#,#value#,#gmtCreated#,#gmtModified#);
+	</insert>
+
+
+	<select id="UNIFYUM-SKIN-TEST-DATA-LIST" resultMap="RM.SkinTestData">
+		select * from 
+		   (select * from skin_test_data where user_name=#userName# order by gmt_created  desc) as temp   
+		group by type;		
+	</select>
+
+
+	<select id="UNIFYUM-SKIN-TEST-USER-LIST" resultClass="java.lang.String">
+		select user_name from  skin_test_data	group by user_name;		
+	</select>
+
+
+
+</sqlMap>

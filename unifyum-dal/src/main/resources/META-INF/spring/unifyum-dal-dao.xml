@@ -10,16 +10,17 @@
          http://www.springframework.org/schema/webflow-config http://www.springframework.org/schema/webflow-config/spring-webflow-config-2.0.xsd"
 	default-autowire="byName">
 
-	<bean id="userMetaDAO"
-		class="com.bupt.qrj.unifyum.dal.dao.impl.UserMetaDAOImpl"
+	<bean id="userMetaDAO" class="com.bupt.qrj.unifyum.dal.dao.impl.UserMetaDAOImpl"
 		parent="unifyumSqlMapClientDAO" />
 
-	<bean id="userImageDAO"
-		class="com.bupt.qrj.unifyum.dal.dao.impl.UserImageDAOImpl"
+	<bean id="userImageDAO" class="com.bupt.qrj.unifyum.dal.dao.impl.UserImageDAOImpl"
 		parent="unifyumSqlMapClientDAO" />
 
-	<bean id="userTestDataDAO"
-		class="com.bupt.qrj.unifyum.dal.dao.impl.UserTestDataDAOImpl"
+	<bean id="userTestDataDAO" class="com.bupt.qrj.unifyum.dal.dao.impl.UserTestDataDAOImpl"
 		parent="unifyumSqlMapClientDAO" />
+
+	<bean id="skinTestDataDAO" class="com.bupt.qrj.unifyum.dal.dao.impl.SkinTestDataDAOImpl"
+		parent="unifyumSqlMapClientDAO" />
+
 
 </beans>
