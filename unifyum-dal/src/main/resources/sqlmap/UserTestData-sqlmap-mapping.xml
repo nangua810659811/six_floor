@@ -7,8 +7,7 @@
 		<result property="id" column="id" javaType="long" jdbcType="DECIMAL" />
 		<result property="userName" column="user_name" javaType="java.lang.String"
 			jdbcType="VARCHAR" />
-		<result property="testData" column="test_data" 
-			jdbcType="LONGBLOB" />
+		<result property="testData" column="test_data" jdbcType="LONGBLOB" />
 		<result property="gmtCreated" column="gmt_created" javaType="java.util.Date"
 			jdbcType="DATETIME" />
 		<result property="gmtModified" column="gmt_modified" javaType="java.util.Date"
@@ -17,13 +16,38 @@
 
 
 	<insert id="UNIFYUM-USER-TEST-DATA-INSERT">
-		insert into user_test_data(user_name,test_data,gmt_created,gmt_modified)
-		                    values(#userName#,#testData#,#gmtCreated#,#gmtModified#);
+		insert into
+		user_test_data(user_name,test_data,gmt_created,gmt_modified)
+		values(#userName#,#testData#,#gmtCreated#,#gmtModified#);
 	</insert>
 
 
 	<select id="UNIFYUM-USER-TEST-DATA-GET" resultMap="RM.UserTestData">
-		select * from user_test_data where user_name = #userName# order by gmt_modified desc limit 1 ;
+		select * from
+		user_test_data where user_name = #userName# order by gmt_modified desc
+		limit 1 ;
 	</select>
+
+	<select id="UNIFYUM-USER-TEST-DATA-LIST" parameterClass="java.util.HashMap"
+		resultMap="RM.UserTestData">
+		select * from
+		user_test_data where user_name = #userName# 
+		<dynamic prepend="">
+			<isNotNull prepend="order by" property="sortKey">
+				$sortKey$
+				<isNotNull prepend=""  property="order">
+					$order$
+				</isNotNull>
+			</isNotNull>
+			
+			<isNotNull prepend="limit" property="limit">
+				#limit#
+				<isNotNull prepend="," property="offset">
+					#offset#
+				</isNotNull>
+			</isNotNull>
+		</dynamic>
+	</select>
+
 
 </sqlMap>

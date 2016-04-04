@@ -5,6 +5,7 @@ package com.bupt.qrj.unifyum.dal.dao.impl;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,11 +30,28 @@ public class UserTestDataDAOImpl extends SqlMapClientDaoSupport implements UserT
     /* (non-Javadoc)
      * @see com.bupt.qrj.unifyum.dal.dao.UserTestDataDAO#get(java.lang.String)
      */
-    public List<UserTestDataDO> get(String userName) {
+    public UserTestDataDO get(String userName) {
         LOGGER.debug("do the userTestData get start");
         List<UserTestDataDO> rets = this.getSqlMapClientTemplate().queryForList(
             "UNIFYUM-USER-TEST-DATA-GET", userName);
-        LOGGER.debug("do the userTestData get over,data is over ");
+        if (rets != null && rets.size() > 0) {
+            LOGGER.debug("do the userTestData get over,data is over ,return data");
+            return rets.get(0);
+        } else {
+            LOGGER.debug("do the userTestData get over,data is over ,return null");
+            return null;
+        }
+
+    }
+
+    /* (non-Javadoc)
+     * @see com.bupt.qrj.unifyum.dal.dao.UserTestDataDAO#list(java.util.Map)
+     */
+    public List<UserTestDataDO> list(Map params) {
+        LOGGER.debug("do the userTestData list start");
+        List<UserTestDataDO> rets = this.getSqlMapClientTemplate().queryForList(
+            "UNIFYUM-USER-TEST-DATA-LIST", params);
+        LOGGER.debug("do the userTestData list start");
         return rets;
     }
 

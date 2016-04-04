@@ -21,4 +21,7 @@ public interface UserTestDataController {
                                                                                  throws UnsupportedEncodingException;
 
     void getTestData(HttpServletRequest request, HttpServletResponse response);
+
+    void jqList(HttpServletRequest request, HttpServletResponse response);
+
 }

@@ -4,6 +4,7 @@
 package com.bupt.qrj.unifyum.dal.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.bupt.qrj.unifyum.dal.dataobject.UserTestDataDO;
 
@@ -18,5 +19,13 @@ public interface UserTestDataDAO {
 
     void insert(UserTestDataDO dataDO);
 
-    List<UserTestDataDO> get(String userName);
+    /**
+     * 获取最新的一条
+     * */
+    UserTestDataDO get(String userName);
+
+    /**
+     * 获取全部的,用userName 过滤，可以传limit和start
+     * */
+    List<UserTestDataDO> list(Map params);
 }

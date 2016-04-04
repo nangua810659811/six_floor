@@ -7,7 +7,9 @@ import static junit.framework.Assert.assertTrue;
 import static org.junit.Assert.assertNotNull;
 
 import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -46,11 +48,12 @@ public class UserTestDataDAOTestCase {
     public static void main(String[] args) throws UnsupportedEncodingException {
         ApplicationContext context = getContext();
         UserTestDataDAO dao = (UserTestDataDAO) context.getBean("userTestDataDAO");
-        UserTestDataDO testD = new UserTestDataDO();
-        testD.setUserName("qurenjun123");
-        testD.setTestData("ÇúÈÊ¾ü".getBytes("utf8"));
-        dao.insert(testD);
-        assertTrue(true);
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("userName", "zijin");
+        params.put("orderKey", "gmt_created");
+        params.put("limit", 10);
+        List<UserTestDataDO> datal = dao.list(params);
+        assertNotNull(datal);
     }
 
     @Test
@@ -65,12 +68,24 @@ public class UserTestDataDAOTestCase {
     }
 
     @Test
-    public void qtestZGet() {
+    public void testZGet() {
         ApplicationContext context = getContext();
         UserTestDataDAO dao = (UserTestDataDAO) context.getBean("userTestDataDAO");
-        List<UserTestDataDO> data = dao.get("qurenjun123");
+        UserTestDataDO data = dao.get("qurenjun123");
         assertNotNull(data);
         // assertEquals(data.toString(), "sdfdsfsdf12345");
+    }
+
+    @Test
+    public void testList() {
+        ApplicationContext context = getContext();
+        UserTestDataDAO dao = (UserTestDataDAO) context.getBean("userTestDataDAO");
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("userName", "zijin");
+        params.put("orderKey", "gmt_created");
+        params.put("limit", 10);
+        List<UserTestDataDO> datal = dao.list(params);
+        assertNotNull(datal);
     }
 
 }
