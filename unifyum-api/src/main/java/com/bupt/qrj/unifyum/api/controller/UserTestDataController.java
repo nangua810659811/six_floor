@@ -3,6 +3,8 @@
  */
 package com.bupt.qrj.unifyum.api.controller;
 
+import java.io.UnsupportedEncodingException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -15,7 +17,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 public interface UserTestDataController {
 
-    void updateTestData(HttpServletRequest request, HttpServletResponse response);
+    void updateTestData(HttpServletRequest request, HttpServletResponse response)
+                                                                                 throws UnsupportedEncodingException;
 
     void getTestData(HttpServletRequest request, HttpServletResponse response);
 }

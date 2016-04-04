@@ -3,7 +3,10 @@
  */
 package com.bupt.qrj.unifyum.api.controller.impl;
 
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -41,8 +44,10 @@ public class UserTestDataControllerImpl implements UserTestDataController {
      * @see com.bupt.qrj.unifyum.api.controller.UserTestDataController#updateTestData(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
      */
     @RequestMapping(method = { RequestMethod.POST }, params = "action=update")
-    public void updateTestData(HttpServletRequest request, HttpServletResponse response) {
+    public void updateTestData(HttpServletRequest request, HttpServletResponse response)
+                                                                                        throws UnsupportedEncodingException {
         JSONObject result = new JSONObject();
+        request.setCharacterEncoding("UTF-8");
         result.put("success", false);
         String userName = (String) request.getAttribute("username");
         try {
@@ -62,52 +67,28 @@ public class UserTestDataControllerImpl implements UserTestDataController {
             } else {
                 UserTestDataDO testDataDO = new UserTestDataDO();
                 testDataDO.setUserName(userName);
-                String oldTestData = userTestDataDAO.get(userName);
-                if (oldTestData == null || oldTestData.isEmpty()) {
-                    Iterator<Map.Entry<String, Object>> testDIter = testDataMap.entrySet()
-                        .iterator();
-                    //处理testData,为空的值就要去掉~!!
-                    while (testDIter.hasNext()) {
-                        Map.Entry<String, Object> entry = testDIter.next();
-                        String value = String.valueOf(entry.getValue());
-                        if (value == null || value.isEmpty() || value.equals("\"\"")) {
-                            testDIter.remove();
-                        }
-                    }
-                    if (testDataMap.isEmpty()) {
-                        result.put("errMsg", "输入的参数有问题");
-                    } else {
-                        testDataDO.setTestData(testDataMap.toJSONString());
-                        userTestDataDAO.insert(testDataDO);
-                        result.put("success", true);
-                    }
-                } else {
-                    JSONObject oldTestDataMap = new JSONObject();
-                    try {
-                        oldTestDataMap = JSONObject.parseObject(oldTestData);
-                    } catch (Exception e) {
-                        LOGGER.warn("get old test data error: ", e);
-                    }
-                    oldTestDataMap.putAll(testDataMap);
-                    Iterator<Map.Entry<String, Object>> testDIter = oldTestDataMap.entrySet()
-                        .iterator();
-                    //处理testData,为空的值就要去掉~!!
-                    while (testDIter.hasNext()) {
-                        Map.Entry<String, Object> entry = testDIter.next();
-                        String value = String.valueOf(entry.getValue());
+                JSONObject oldTestDataMap = new JSONObject();
 
-                        if (value == null || value.isEmpty() || value.equals("\"\"")) {
-                            testDIter.remove();
-                        }
+                oldTestDataMap.putAll(testDataMap);
+                Iterator<Map.Entry<String, Object>> testDIter = oldTestDataMap.entrySet()
+                    .iterator();
+                //处理testData,为空的值就要去掉~!!
+                while (testDIter.hasNext()) {
+                    Map.Entry<String, Object> entry = testDIter.next();
+                    String value = String.valueOf(entry.getValue());
+
+                    if (value == null || value.isEmpty() || value.equals("\"\"")) {
+                        testDIter.remove();
                     }
-                    if (oldTestDataMap.isEmpty()) {
-                        testDataDO.setTestData("");
-                    } else {
-                        testDataDO.setTestData(oldTestDataMap.toJSONString());
-                    }
-                    userTestDataDAO.update(testDataDO);
-                    result.put("success", true);
                 }
+
+                if (oldTestDataMap.isEmpty()) {
+                    testDataDO.setTestData("".getBytes());
+                } else {
+                    testDataDO.setTestData(oldTestDataMap.toJSONString().getBytes("utf8"));
+                }
+                userTestDataDAO.insert(testDataDO);
+                result.put("success", true);
             }
         } catch (Exception e) {
             LOGGER.warn("exp happened: ", e);
@@ -126,13 +107,14 @@ public class UserTestDataControllerImpl implements UserTestDataController {
         result.put("success", false);
         String userName = (String) request.getAttribute("username");
         try {
-            String testDataStr = userTestDataDAO.get(userName);
+            List<UserTestDataDO> testDOs = userTestDataDAO.get(userName);
+            String testDataStr = new String(testDOs.get(0).getTestData(), StandardCharsets.UTF_8);
             if (testDataStr == null || testDataStr.isEmpty()) {
                 result.put("errMsg", "目前没有任何测试数据");
             } else {
                 //测试一下能不能解析
-                JSONObject testData = JSONObject.parseObject(testDataStr);
-                result.put("data", testData);
+                JSONObject testDataJstr = JSONObject.parseObject(testDataStr);
+                result.put("data", testDataJstr);
                 result.put("success", true);
             }
         } catch (Exception e) {

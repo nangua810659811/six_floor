@@ -7,8 +7,8 @@
 		<result property="id" column="id" javaType="long" jdbcType="DECIMAL" />
 		<result property="userName" column="user_name" javaType="java.lang.String"
 			jdbcType="VARCHAR" />
-		<result property="testData" column="test_data" javaType="java.lang.String"
-			jdbcType="VARCHAR" />
+		<result property="testData" column="test_data" 
+			jdbcType="LONGBLOB" />
 		<result property="gmtCreated" column="gmt_created" javaType="java.util.Date"
 			jdbcType="DATETIME" />
 		<result property="gmtModified" column="gmt_modified" javaType="java.util.Date"
@@ -22,14 +22,8 @@
 	</insert>
 
 
-	<select id="UNIFYUM-USER-TEST-DATA-GET" resultClass="java.lang.String">
-		select test_data from user_test_data where user_name = #userName# order by gmt_modified desc limit 1 ;
+	<select id="UNIFYUM-USER-TEST-DATA-GET" resultMap="RM.UserTestData">
+		select * from user_test_data where user_name = #userName# order by gmt_modified desc limit 1 ;
 	</select>
-	
-	<update id="UNIFYUM-USER-TEST-DATA-UPDATE">
-	    update user_test_data set test_data = #testData#, gmt_modified = #gmtModified#
-	                          where user_name = #userName#;
-	</update>
-
 
 </sqlMap>

@@ -4,6 +4,7 @@
 package com.bupt.qrj.unifyum.dal.dao.impl;
 
 import java.util.Date;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,12 +29,12 @@ public class UserTestDataDAOImpl extends SqlMapClientDaoSupport implements UserT
     /* (non-Javadoc)
      * @see com.bupt.qrj.unifyum.dal.dao.UserTestDataDAO#get(java.lang.String)
      */
-    public String get(String userName) {
+    public List<UserTestDataDO> get(String userName) {
         LOGGER.debug("do the userTestData get start");
-        String testData = (String) this.getSqlMapClientTemplate().queryForObject(
+        List<UserTestDataDO> rets = this.getSqlMapClientTemplate().queryForList(
             "UNIFYUM-USER-TEST-DATA-GET", userName);
-        LOGGER.debug("do the userTestData get over,data is " + testData);
-        return testData;
+        LOGGER.debug("do the userTestData get over,data is over ");
+        return rets;
     }
 
     /* (non-Javadoc)
@@ -45,16 +46,6 @@ public class UserTestDataDAOImpl extends SqlMapClientDaoSupport implements UserT
         dataDO.setGmtModified(new Date());
         this.getSqlMapClientTemplate().insert("UNIFYUM-USER-TEST-DATA-INSERT", dataDO);
         LOGGER.debug("do the userTestData insert over");
-    }
-
-    /* (non-Javadoc)
-     * @see com.bupt.qrj.unifyum.dal.dao.UserTestDataDAO#update(com.bupt.qrj.unifyum.dal.dataobject.UserTestDataDO)
-     */
-    public void update(UserTestDataDO dataDO) {
-        LOGGER.debug("do the userTestData update start");
-        dataDO.setGmtModified(new Date());
-        this.getSqlMapClientTemplate().update("UNIFYUM-USER-TEST-DATA-UPDATE", dataDO);
-        LOGGER.debug("do the userTestData update over");
     }
 
 }

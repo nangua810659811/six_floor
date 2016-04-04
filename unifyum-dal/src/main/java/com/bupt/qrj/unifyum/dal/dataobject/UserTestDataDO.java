@@ -17,7 +17,7 @@ public class UserTestDataDO {
 
     private String userName;
 
-    private String testData;
+    private byte[] testData;
 
     private Date   gmtCreated;
 
@@ -54,14 +54,14 @@ public class UserTestDataDO {
     /**
      * @return the testData
      */
-    public String getTestData() {
+    public byte[] getTestData() {
         return testData;
     }
 
     /**
      * @param testData the testData to set
      */
-    public void setTestData(String testData) {
+    public void setTestData(byte[] testData) {
         this.testData = testData;
     }
 

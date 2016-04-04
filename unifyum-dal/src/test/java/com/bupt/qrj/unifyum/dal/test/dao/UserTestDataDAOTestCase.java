@@ -4,10 +4,11 @@
 package com.bupt.qrj.unifyum.dal.test.dao;
 
 import static junit.framework.Assert.assertTrue;
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-import org.junit.Ignore;
+import java.io.UnsupportedEncodingException;
+import java.util.List;
+
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -22,9 +23,9 @@ import com.bupt.qrj.unifyum.dal.dataobject.UserTestDataDO;
  * ÓÃÍ¾: 
  *
  */
-@Ignore
+//@Ignore
 public class UserTestDataDAOTestCase {
-    public ApplicationContext getContext() {
+    public static ApplicationContext getContext() {
         ApplicationContext context = new ClassPathXmlApplicationContext(new String[] {
                 "META-INF/spring/unifyum-dal-dao.xml", "META-INF/spring/unifyum-dal-db.xml" });
         assertTrue(context.containsBean("userTestDataDAO"));
@@ -37,7 +38,17 @@ public class UserTestDataDAOTestCase {
         UserTestDataDAO dao = (UserTestDataDAO) context.getBean("userTestDataDAO");
         UserTestDataDO testD = new UserTestDataDO();
         testD.setUserName("qurenjun123");
-        testD.setTestData("sdfdsfsdf");
+        testD.setTestData("ÇúÈÊ¾ü".getBytes());
+        dao.insert(testD);
+        assertTrue(true);
+    }
+
+    public static void main(String[] args) throws UnsupportedEncodingException {
+        ApplicationContext context = getContext();
+        UserTestDataDAO dao = (UserTestDataDAO) context.getBean("userTestDataDAO");
+        UserTestDataDO testD = new UserTestDataDO();
+        testD.setUserName("qurenjun123");
+        testD.setTestData("ÇúÈÊ¾ü".getBytes("utf8"));
         dao.insert(testD);
         assertTrue(true);
     }
@@ -48,18 +59,18 @@ public class UserTestDataDAOTestCase {
         UserTestDataDAO dao = (UserTestDataDAO) context.getBean("userTestDataDAO");
         UserTestDataDO testD = new UserTestDataDO();
         testD.setUserName("qurenjun123");
-        testD.setTestData("sdfdsfsdf12345");
-        dao.update(testD);
+        testD.setTestData("ÇúÈÊ¾ü".getBytes());
+        dao.insert(testD);
         assertTrue(true);
     }
 
     @Test
-    public void testZGet() {
+    public void qtestZGet() {
         ApplicationContext context = getContext();
         UserTestDataDAO dao = (UserTestDataDAO) context.getBean("userTestDataDAO");
-        String data = dao.get("qurenjun123");
+        List<UserTestDataDO> data = dao.get("qurenjun123");
         assertNotNull(data);
-        assertEquals(data, "sdfdsfsdf12345");
+        // assertEquals(data.toString(), "sdfdsfsdf12345");
     }
 
 }

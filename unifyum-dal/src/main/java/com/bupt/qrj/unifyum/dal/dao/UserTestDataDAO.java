@@ -3,6 +3,8 @@
  */
 package com.bupt.qrj.unifyum.dal.dao;
 
+import java.util.List;
+
 import com.bupt.qrj.unifyum.dal.dataobject.UserTestDataDO;
 
 /**
@@ -16,7 +18,5 @@ public interface UserTestDataDAO {
 
     void insert(UserTestDataDO dataDO);
 
-    void update(UserTestDataDO dataDO);
-
-    String get(String userName);
+    List<UserTestDataDO> get(String userName);
 }
