@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.bupt.qrj.unifyum.api.controller.SkinTestDataController;
 import com.bupt.qrj.unifyum.dal.dao.SkinTestDataDAO;
@@ -89,6 +90,44 @@ public class SkinTestDataControllerImpl implements SkinTestDataController {
                 }
                 //把最后更新时间记录上
                 result.put("lastModifiedTime", lastModified.getTime());
+            }
+        } catch (Exception e) {
+            result.put("errMsg", e.getMessage());
+            e.printStackTrace();
+        }
+        //输出结果
+        HttpOutUtil.outData(response, JSONObject.toJSONString(result));
+    }
+
+    /* (non-Javadoc)
+     * @see com.bupt.qrj.unifyum.api.controller.SkinTestDataController#jqList(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+     */
+    @RequestMapping(method = { RequestMethod.POST }, params = "action=jqList")
+    public void jqList(HttpServletRequest request, HttpServletResponse response) {
+        JSONObject result = new JSONObject();
+        result.put("success", false);
+        //测量人员个数
+        Integer uCount = 0;
+        try {
+            List<String> userNames = skinTestDataDAO.listUsers();
+            if (userNames == null || userNames.size() == 0) {
+                result.put("errMsg", "没有此用户的数据");
+            } else {
+                JSONArray jArray = new JSONArray();
+                result.put("datas", jArray);
+                for (String userName : userNames) {
+                    JSONObject dataJson = new JSONObject();
+                    dataJson.put("userName", userName);
+                    jArray.add(dataJson);
+                    List<SkinTestDataDO> skinDOs = skinTestDataDAO.list(userName);
+                    if (skinDOs != null && skinDOs.size() > 0) {
+                        for (SkinTestDataDO skinDO : skinDOs) {
+                            dataJson.put(skinDO.getType(), skinDO.getValue());
+                        }
+                    }
+                }
+                result.put("success", true);
+
             }
         } catch (Exception e) {
             result.put("errMsg", e.getMessage());

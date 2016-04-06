@@ -46,7 +46,7 @@ public class AuthTokenInterceptor extends HandlerInterceptorAdapter {
         String[] notCheckURL = new String[] { "/usermanagement.req?action=login",
                 "/usermanagement.req?action=register", "/usermanagement.req?action=unregister",
                 "/imagemanagement.req?action=jqList", "/imagemanagement.req?action=showImg",
-                "/imagemanagement.req?action=imageUpload" };
+                "/imagemanagement.req?action=imageUpload", "/skintestdata.req?action=jqList" };
         String cPath = req.getContextPath();
         String URI = req.getRequestURI();
         String testURL = URI.substring(cPath.length());

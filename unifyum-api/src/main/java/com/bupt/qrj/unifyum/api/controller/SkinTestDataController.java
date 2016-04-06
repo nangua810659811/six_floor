@@ -19,4 +19,6 @@ public interface SkinTestDataController {
 
     public void list(HttpServletRequest request, HttpServletResponse response);
 
+    public void jqList(HttpServletRequest request, HttpServletResponse response);
+
 }
