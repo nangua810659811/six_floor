@@ -52,4 +52,6 @@
 		  parent="unifyumSqlMapClientDAO" />
 	<bean id="missionJsonDAO" class="com.bupt.qrj.unifyum.dal.dao.impl.missionJsonDAOImpl"
 		  parent="unifyumSqlMapClientDAO" />
+	<bean id="exceptionDtlDAO" class="com.bupt.qrj.unifyum.dal.dao.impl.exceptionDtlDAOImpl"
+		  parent="unifyumSqlMapClientDAO" />
 </beans>

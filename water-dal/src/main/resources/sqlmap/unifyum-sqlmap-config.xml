@@ -26,4 +26,5 @@
     <sqlMap resource="sqlmap/picinfo-sqlmap-mapping.xml" />
 	<sqlMap resource="sqlmap/collect-sqlmap-mapping.xml" />
 	<sqlMap resource="sqlmap/missionJson-sqlmap-mapping.xml" />
+	<sqlMap resource="sqlmap/exceptionDtl-sqlmap-mapping.xml" />
 </sqlMapConfig>

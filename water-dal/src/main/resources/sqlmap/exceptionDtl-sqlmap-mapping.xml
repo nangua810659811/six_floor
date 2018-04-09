@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="GB2312" ?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="unifyum">
+
+
+	<resultMap id="RM.exceptionDtl"
+			   class="com.bupt.qrj.unifyum.dal.dataobject.exceptionDtlDO">
+		<result property="workshop" column="workshop" javaType="java.lang.String"
+				jdbcType="VARCHAR" nullValue="0"/>
+		<result property="event" column="event" javaType="java.lang.String"
+				jdbcType="VARCHAR" nullValue="0"/>
+		<result property="checkpoint" column="checkpoint" javaType="java.lang.String"
+				jdbcType="VARCHAR" nullValue="0"/>
+		<result property="description" column="description" javaType="java.lang.String"
+				jdbcType="VARCHAR" nullValue="0"/>
+		<result property="report_worker" column="report_worker" javaType="java.lang.String"
+				jdbcType="VARCHAR" nullValue="0"/>
+		<result property="report_time" column="report_time" javaType="java.lang.String"
+				jdbcType="VARCHAR" nullValue="0"/>
+		<result property="status" column="status" javaType="java.lang.String"
+				jdbcType="int" nullValue="0"/>
+		<result property="level" column="level" javaType="java.lang.String"
+				jdbcType="int" nullValue="0"/>
+        <result property="id" column="id" javaType="java.lang.String"
+                jdbcType="int" nullValue="0"/>
+	</resultMap>
+
+	<select id="select-exception-dtl" resultMap="RM.exceptionDtl">
+		select id,workshop,event,checkpoint,level,description,report_worker,report_time,status from exception where status = #status# report_time between #ymmin# and #ymmax#;
+	</select>
+
+
+
+	<!--<select id="USER-LIST" resultClass="java.lang.String">-->
+		<!--select user_name from  login	group by user_name;		-->
+	<!--</select>-->
+
+	<!--<select id="UNIFYUM-USER-GET" parameterClass="com.bupt.qrj.unifyum.dal.dataobject.UserDO"-->
+		<!--resultMap="RM.User">-->
+		<!--select * from user-->
+		<!--<dynamic prepend="where">-->
+			<!--<isNotNull prepend="AND" property="userName">-->
+				<!--user_name = #userName#-->
+			<!--</isNotNull>-->
+		<!--</dynamic>-->
+	<!--</select>-->
+
+</sqlMap>

@@ -1826,5 +1826,60 @@ public class MissionControllerImpl implements MissionController {
     }
 
 
+    @RequestMapping(method = { RequestMethod.POST }, params = "action=exceptionDetail")
+    public void exceptionDetail(HttpServletRequest request, HttpServletResponse response) {
 
+//    	ApplicationContext context=getContext();
+        exceptionDtlDAOImpl exceptionDtlDAO=(exceptionDtlDAOImpl) context.getBean("exceptionDtlDAO");
+
+        JSONObject result = new JSONObject();
+        result.put("result",10001);
+
+        try {
+
+            String time1 = request.getParameter("time1");
+            String time2 = request.getParameter("time2");
+            String status = request.getParameter("abnormal_status");
+            if (time1==null||time1.isEmpty()||time2==null||time2.isEmpty()) {
+//            time2 = new SimpleDateFormat("yyyy-MM").format(new Date());
+                result.put("errMsg", "输入参数有误");
+                result.put("result","10001");
+//            SimpleDateFormat ym=new SimpleDateFormat("yyyy-MM");
+//            Calendar ymmax = Calendar.getInstance();
+//            ymmax.setTime(ym.parse(time2));
+//            ymmax.add(Calendar.MONTH,-5);
+//            Date dt1 = ymmax.getTime();
+//            time1 = ym.format(dt1);
+//            System.out.println(time1+","+time2);
+            } else {
+            List<exceptionDtlDO> exDtl = exceptionDtlDAO.list(time1,time2,status);
+            if(exDtl.isEmpty()){
+                result.put("errMsg","empty");
+            }else{
+                ArrayList<JSONObject> exception = new ArrayList<JSONObject>();
+                for(exceptionDtlDO exceptionDtl : exDtl){
+                    JSONObject data1 = new JSONObject();
+                    data1.put("abnormal_id",exceptionDtl.getId());
+                    data1.put("abnormal_time",exceptionDtl.getReport_time());
+                    data1.put("abnormal_person",exceptionDtl.getReport_worker());
+                    data1.put("workshop",exceptionDtl.getWorkshop());
+                    data1.put("abnormal_check_point",exceptionDtl.getCheckpoint());
+                    data1.put("abnormal_description",exceptionDtl.getDescription());
+                    data1.put("abnormal_level",exceptionDtl.getLevel());
+                    exception.add(data1);
+                }
+
+
+                result.put("data",exception);
+                result.put("essMsg","10000");
+                result.put("result","10000");
+                }
+            }
+        } catch (Exception e) {
+            result.put("essMsg", e.getMessage());
+            LOGGER.warn("exception when login: " + e.getMessage());
+        }
+        // 输出结果
+        HttpOutUtil.outData(response, JSONObject.toJSONString(result));
+    }
 }
