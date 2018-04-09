@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/water-api/water-api.iml" filepath="$PROJECT_DIR$/water-api/water-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/water-dal/water-dal.iml" filepath="$PROJECT_DIR$/water-dal/water-dal.iml" />
+      <module fileurl="file://$PROJECT_DIR$/water-parent.iml" filepath="$PROJECT_DIR$/water-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/water-util/water-util.iml" filepath="$PROJECT_DIR$/water-util/water-util.iml" />
+    </modules>
+  </component>
+</project>

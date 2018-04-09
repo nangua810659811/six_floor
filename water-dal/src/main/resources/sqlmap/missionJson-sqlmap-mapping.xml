@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="GB2312" ?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="unifyum">
+
+	<resultMap id="RM.missionJson"
+		class="com.bupt.qrj.unifyum.dal.dataobject.missionJsonDO">
+
+		<result property="mission_id" column="mission_id" javaType="java.lang.String"
+			jdbcType="int" nullValue="0"/>
+		<result property="event_id" column="event_id" javaType="java.lang.String"
+			jdbcType="int" nullValue="0"/>
+		<result property="big_json" column="big_json" javaType="java.lang.String"
+				jdbcType="VARCHAR" nullValue="0"/>
+
+
+	</resultMap>
+
+
+	<insert id="mission-json">
+        insert into mission_json
+        (mission_id,event_id,big_json)
+        values(#mission_id#,#event_id#,#big_json#);
+	</insert>
+
+
+
+</sqlMap>

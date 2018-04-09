@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="GB2312" ?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="unifyum">
+
+
+	<resultMap id="RM.checkInfo"
+			   class="com.bupt.qrj.unifyum.dal.dataobject.checkInfoDO">
+		<result property="finish_time" column="finish_time" javaType="java.lang.String"
+				jdbcType="VARCHAR" nullValue="0"/>
+		<result property="mission_id" column="mission_id" javaType="java.lang.String"
+				jdbcType="VARCHAR" nullValue="0"/>
+		<result property="mission_condition" column="mission_condition" javaType="java.lang.String"
+				jdbcType="VARCHAR" nullValue="0"/>
+		<result property="worker_name" column="worker_name" javaType="java.lang.String"
+				jdbcType="VARCHAR" nullValue="0"/>
+
+
+	</resultMap>
+
+	<select id="select-finish-mission" resultMap="RM.checkInfo">
+		select mission_id,mission_condition,worker_name,finish_time from mission where mission_condition = "5" order by mission_id desc;
+	</select>
+
+
+
+	<!--<select id="USER-LIST" resultClass="java.lang.String">-->
+		<!--select user_name from  login	group by user_name;		-->
+	<!--</select>-->
+
+	<!--<select id="UNIFYUM-USER-GET" parameterClass="com.bupt.qrj.unifyum.dal.dataobject.UserDO"-->
+		<!--resultMap="RM.User">-->
+		<!--select * from user-->
+		<!--<dynamic prepend="where">-->
+			<!--<isNotNull prepend="AND" property="userName">-->
+				<!--user_name = #userName#-->
+			<!--</isNotNull>-->
+		<!--</dynamic>-->
+	<!--</select>-->
+
+</sqlMap>

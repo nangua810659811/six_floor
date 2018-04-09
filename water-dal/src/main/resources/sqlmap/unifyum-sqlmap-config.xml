@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF8"?>
+<!DOCTYPE sqlMapConfig PUBLIC "-//ibatis.apache.org//DTD SQL Map Config 2.0//EN"
+		"http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
+
+<sqlMapConfig>
+	<settings cacheModelsEnabled="true" enhancementEnabled="false"
+		lazyLoadingEnabled="false" maxRequests="3000" maxSessions="3000"
+		maxTransactions="3000" useStatementNamespaces="false" />
+	
+    <sqlMap resource="sqlmap/User-sqlmap-mapping.xml" />
+
+    <sqlMap resource="sqlmap/MissionReturn-sqlmap-mapping.xml" />
+	<sqlMap resource="sqlmap/SeekWjs-sqlmap-mapping.xml" />
+	<sqlMap resource="sqlmap/MapInfo-sqlmap-mapping.xml" />
+	<sqlMap resource="sqlmap/setMission-sqlmap-mapping.xml" />
+	<sqlMap resource="sqlmap/workerlogin-sqlmap-mapping.xml" />
+    <sqlMap resource="sqlmap/checkInfo-sqlmap-mapping.xml" />
+    <sqlMap resource="sqlmap/location-sqlmap-mapping.xml" />
+    <sqlMap resource="sqlmap/miscondition-sqlmap-mapping.xml" />
+	<sqlMap resource="sqlmap/arrangeinsert-sqlmap-mapping.xml" />
+	<sqlMap resource="sqlmap/arrangeseek-sqlmap-mapping.xml" />
+	<sqlMap resource="sqlmap/arrangeseekmis-sqlmap-mapping.xml" />
+	<sqlMap resource="sqlmap/arrangepermis-sqlmap-mapping.xml" />
+	<sqlMap resource="sqlmap/search-sqlmap-mapping.xml" />
+	<sqlMap resource="sqlmap/feedback-sqlmap-mapping.xml" />
+    <sqlMap resource="sqlmap/picinfo-sqlmap-mapping.xml" />
+	<sqlMap resource="sqlmap/collect-sqlmap-mapping.xml" />
+	<sqlMap resource="sqlmap/missionJson-sqlmap-mapping.xml" />
+</sqlMapConfig>

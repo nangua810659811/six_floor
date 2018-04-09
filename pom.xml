@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.bupt.qrj</groupId>
-	<artifactId>unifyum-parent</artifactId>
+	<artifactId>water-parent</artifactId>
 	<version>1.0.0</version>
 	<name>Bupt qrj unify user management </name>
 	<url></url>
@@ -12,6 +12,54 @@
 	<properties>
 		<spring.version>3.0.5.RELEASE</spring.version>
 	</properties>
+
+ <!--  <build>
+ <pluginManagement>  
+    <plugins>   
+        <plugin>  
+            <groupId>org.apache.tomcat.maven</groupId>  
+            <artifactId>tomcat7-maven-plugin</artifactId>  
+            <version>2.0-SNAPSHOT</version>  
+            <configuration>  
+                <url>http://localhost:8080/manager/text</url>   
+                <server>tomcat</server>
+                <username>admin</username>
+                <password>admin</password>
+                <path>/unifyum</path>  
+            </configuration>  
+        </plugin>  
+    </plugins>  
+</pluginManagement>  
+</build>
+
+ <repositories> 
+<repository>  
+    <id>people.apache.snapshots</id>  
+    <url>  
+        http://repository.apache.org/content/groups/snapshots-group/  
+    </url>  
+    <releases>  
+        <enabled>false</enabled>  
+    </releases>  
+    <snapshots>  
+        <enabled>true</enabled>  
+    </snapshots>  
+</repository>  
+</repositories>
+<pluginRepositories>
+<pluginRepository>
+<id>apache.snapshots</id>
+<name>Apache Snapshots</name>
+<url>http://repository.apache.org/content/groups/snapshots-group/</url>
+<releases>
+<enabled>false</enabled>
+</releases>
+<snapshots>
+<enabled>true</enabled>
+</snapshots>
+</pluginRepository>
+</pluginRepositories>-->
+            
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -41,12 +89,12 @@
 			<!-- 自己的bundle -->
 			<dependency>
 				<groupId>com.bupt.qrj</groupId>
-				<artifactId>unifyum-dal</artifactId>
+				<artifactId>water-dal</artifactId>
 				<version>1.0.0</version>
 			</dependency>
 			<dependency>
 				<groupId>com.bupt.qrj</groupId>
-				<artifactId>unifyum-util</artifactId>
+				<artifactId>water-util</artifactId>
 				<version>1.0.0</version>
 			</dependency>
 			<dependency>
@@ -200,14 +248,9 @@
 
 	</dependencyManagement>
 
-	<build>
-		<plugins>
-
-		</plugins>
-	</build>
 	<modules>
-		<module>unifyum-api</module>
-		<module>unifyum-dal</module>
-		<module>unifyum-util</module>
+		<module>water-api</module>
+		<module>water-dal</module>
+		<module>water-util</module>
 	</modules>
 </project>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="GB2312" ?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="unifyum">
+
+	<resultMap id="RM.location"
+		class="com.bupt.qrj.unifyum.dal.dataobject.locationDO">
+
+		<result property="phone" column="phone" javaType="java.lang.String"
+			jdbcType="VARCHAR" nullValue="0"/>
+		<result property="longitude" column="longitude" javaType="java.lang.String"
+			jdbcType="VARCHAR" nullValue="0"/>
+		<result property="latitude" column="latitude" javaType="java.lang.String"
+				jdbcType="VARCHAR" nullValue="0"/>
+		<result property="time" column="time" javaType="java.lang.String"
+			jdbcType="VARCHAR" nullValue="0"/>
+
+	</resultMap>
+
+	<resultMap id="RM.locationname"
+			   class="com.bupt.qrj.unifyum.dal.dataobject.locationnameDO">
+
+		<result property="phone" column="phone" javaType="java.lang.String"
+				jdbcType="VARCHAR" nullValue="0"/>
+		<result property="id" column="id" javaType="java.lang.String"
+				jdbcType="int" nullValue="0"/>
+
+
+	</resultMap>
+
+	<resultMap id="RM.locationinsert"
+			   class="com.bupt.qrj.unifyum.dal.dataobject.locationinsertDO">
+		<result property="latitude" column="latitude" javaType="java.lang.String"
+				jdbcType="VARCHAR" nullValue="0"/>
+		<result property="longitude" column="longitude" javaType="java.lang.String"
+				jdbcType="VARCHAR" nullValue="0"/>
+		<result property="id" column="id" javaType="java.lang.String"
+				jdbcType="int" nullValue="0"/>
+
+
+	</resultMap>
+
+	<update id="location-UPDATE">
+		update worker_info set longitude=#longitude# , latitude=#latitude# , time=#time#
+		where phone=#phone#;
+	</update>
+
+	<select id="location-select-name" resultMap="RM.locationname">
+		select id,phone from worker_info where phone = #phone#;
+	</select>
+
+<!--  parameterClass="com.bupt.qrj.unifyum.dal.dataobject.locationDO"
+            -->
+	<insert id="location-insert">
+		insert into worker_info
+		(worker_id,longitude,latitude)
+		values(#worker_id#,#longitude#,#latitude#);
+	</insert>
+
+
+</sqlMap>

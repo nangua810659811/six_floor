@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="GB2312" ?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="unifyum">
+
+	<resultMap id="RM.arrangeseek"
+		class="com.bupt.qrj.unifyum.dal.dataobject.arrangeseekDO">
+
+        <result property="worker_name" column="worker_name" javaType="java.lang.String"
+                jdbcType="varchar" nullValue="0"/>
+		<result property="team" column="team" javaType="java.lang.String"
+			    jdbcType="varchar" nullValue="0"/>
+        <result property="post" column="post" javaType="java.lang.String"
+                jdbcType="varchar" nullValue="0"/>
+        <result property="type" column="type" javaType="java.lang.String"
+                jdbcType="varchar" nullValue="0"/>
+        <result property="work_type" column="work_type" javaType="java.lang.String"
+                jdbcType="varchar" nullValue="0"/>
+		<result property="set_time" column="set_time" javaType="java.lang.String"
+				jdbcType="varchar" nullValue="0"/>
+		<result property="time_left" column="time_left" javaType="java.lang.String"
+				jdbcType="varchar" nullValue="0"/>
+
+	</resultMap>
+
+	<select id="arrange-seek-null" resultMap="RM.arrangeseek">
+		select arrange_worker.worker_name,worker_info.team,worker_info.post,arrange_worker.type,arrange_worker.work_type,arrange_worker.set_time from arrange_worker,worker_info
+		where arrange_worker.worker_name = worker_info.name and time_left = #time_left#;
+	</select>
+
+    <!--mission_condition = '1' and-->
+<!--    	<select id="seek-wjs" parameterClass="com.bupt.qrj.unifyum.dal.dataobject.seekwjsDO"
+                resultMap="RM.seekwjs">
+            select mission_id,house_id,house_address from mission
+            <dynamic prepend="where">
+                <isNotNull prepend="AND" property="phone">
+                    phone = #phone#
+                </isNotNull>
+            </dynamic>
+        </select>-->
+<!--
+           -->
+</sqlMap>

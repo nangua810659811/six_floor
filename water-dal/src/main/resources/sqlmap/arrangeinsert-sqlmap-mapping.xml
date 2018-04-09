@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="GB2312" ?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="unifyum">
+
+	<resultMap id="RM.arrangeinsert"
+		class="com.bupt.qrj.unifyum.dal.dataobject.arrangeinsertDO">
+
+		<result property="time_left" column="time_left" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="time_right" column="time_right" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="set_time" column="set_time" javaType="java.lang.String"
+				jdbcType="VARCHAR" />
+		<result property="type" column="type" javaType="java.lang.String"
+				jdbcType="VARCHAR" />
+		<result property="worker_name" column="worker_name" javaType="java.lang.String"
+				jdbcType="VARCHAR" />
+        <result property="worker_name" column="worker_name" javaType="java.lang.String"
+                jdbcType="VARCHAR" />
+
+	</resultMap>
+
+
+	<insert id="arrange-worker-insert">
+        insert into arrange_worker
+        (time_left,time_right,set_time,type,worker_name)
+        values(#time_left#,#time_right#,#set_time#,#type#,#worker_name#);
+	</insert>
+
+	<update id="arrange-worker-UPDATE">
+		update arrange_worker set time_left = #time_left#,set_time = #set_time#,worker_name = #worker_name# where type = #type#;
+	</update>
+
+
+    <update id="arrange-worker-condition-UPDATE">
+        update arrange_worker set work_type = '1' where time_left &lt;= #time_left# and time_right &gt;=#time_right# and set_time = #set_time# and worker_name =#worker_name#;
+    </update>
+
+</sqlMap>

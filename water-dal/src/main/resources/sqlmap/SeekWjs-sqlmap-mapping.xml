@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="GB2312" ?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="unifyum">
+
+
+
+	<resultMap id="RM.SeekWjs"
+			   class="com.bupt.qrj.unifyum.dal.dataobject.SeekWjsDO">
+		<result property="mission_id" column="mission_id" javaType="java.lang.String"
+				jdbcType="VARCHAR" nullValue="0"/>
+		<result property="mission_condition" column="mission_condition" javaType="java.lang.String"
+				jdbcType="VARCHAR" nullValue="0"/>
+		<result property="mission_addition" column="mission_addition" javaType="java.lang.String"
+				jdbcType="VARCHAR" nullValue="0"/>
+
+
+	</resultMap>
+
+
+	<select id="Mission-Seek-Wjs" resultMap="RM.SeekWjs">
+		select mission_id,mission_condition,mission_addition from mission where worker_phone = #phone# ;
+	</select>
+
+	<!--<select id="Mission-Value" parameterClass="map" resultClass="java.lang.String" remapResults="true" >-->
+		<!--select $column_key$ from mission where mission_id = #mission_id#;-->
+	<!--</select>-->
+
+	<!--<update id="Mission-Return-UPDATE">-->
+		<!--update mission_return set note_content=#note_content# where column_key=#column_key#;-->
+	<!--</update>-->
+
+	<!--<select id="Mission-Return-List" resultMap="RM.MissionReturn" >-->
+		<!--select column_key,note_name,note_content,font_color,font_size,level_one,level_two from mission_return where level_one = #level_one#;-->
+	<!--</select>-->
+
+
+	<!--<select id="Mission-Event-List" resultClass="java.lang.String" >-->
+		<!--select event from mission where mission_id = #mission_id#;-->
+	<!--</select>-->
+
+	<!--<select id="Mission-Return-first" resultMap="RM.MissionReturn" >-->
+		<!--select column_key,note_name,note_content,font_color,font_size,level_one,level_two from mission_return where column_key = "mission_id";-->
+	<!--</select>-->
+
+	<!--<select id="Mission-Event-Info" resultMap="RM.Event_Info" >-->
+		<!--select event_id,additions,font_color,font_size,event_name from event_info where event_id = $event_id$;-->
+	<!--</select>-->
+
+	<!--<select id="USER-LIST" resultClass="java.lang.String">-->
+		<!--select user_name from  login	group by user_name;		-->
+	<!--</select>-->
+
+	<!--<select id="UNIFYUM-USER-GET" parameterClass="com.bupt.qrj.unifyum.dal.dataobject.UserDO"-->
+		<!--resultMap="RM.User">-->
+		<!--select * from user-->
+		<!--<dynamic prepend="where">-->
+			<!--<isNotNull prepend="AND" property="userName">-->
+				<!--user_name = #userName#-->
+			<!--</isNotNull>-->
+		<!--</dynamic>-->
+	<!--</select>-->
+
+</sqlMap>

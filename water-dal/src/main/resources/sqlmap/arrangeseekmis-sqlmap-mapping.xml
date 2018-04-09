@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="GB2312" ?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="unifyum">
+
+	<resultMap id="RM.arrangeseekmis"
+		class="com.bupt.qrj.unifyum.dal.dataobject.arrangeseekmisDO">
+
+        <result property="set_start_time" column="set_start_time" javaType="java.lang.String"
+                jdbcType="varchar" nullValue="0"/>
+		<result property="set_start_time_code" column="set_start_time_code" javaType="java.lang.String"
+			    jdbcType="varchar" nullValue="0"/>
+        <result property="mission_condition" column="mission_condition" javaType="java.lang.String"
+                jdbcType="varchar" nullValue="0"/>
+        <result property="mission" column="mission" javaType="java.lang.String"
+                jdbcType="varchar" nullValue="0"/>
+
+
+	</resultMap>
+
+	<select id="arrange-seek-mis" resultMap="RM.arrangeseekmis">
+		select set_start_time,set_start_time_code,mission_condition,mission from mission where set_start_time &lt;= #timemax# and set_start_time &gt;= #timemin#;
+	</select>
+
+    <!--mission_condition = '1' and-->
+<!--    	<select id="seek-wjs" parameterClass="com.bupt.qrj.unifyum.dal.dataobject.seekwjsDO"
+                resultMap="RM.seekwjs">
+            select mission_id,house_id,house_address from mission
+            <dynamic prepend="where">
+                <isNotNull prepend="AND" property="phone">
+                    phone = #phone#
+                </isNotNull>
+            </dynamic>
+        </select>-->
+<!--
+           -->
+</sqlMap>

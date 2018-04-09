@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="GBK"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:sofa="http://img.alipay.net/dtd/schema/service" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:webflow="http://www.springframework.org/schema/webflow-config"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+         http://img.alipay.net/dtd/schema/service http://img.alipay.net/dtd/schema/service/sofa-service.xsd
+         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+         http://www.springframework.org/schema/webflow-config http://www.springframework.org/schema/webflow-config/spring-webflow-config-2.0.xsd"
+	default-autowire="byName">
+
+	<bean id="unifyumDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close">
+		<property name="driverClass" value="com.mysql.jdbc.Driver"></property>
+		<property name="jdbcUrl"
+			value="jdbc:mysql://localhost:3306/missionpro?max_allowed_packet=256M&amp;useUnicode=true&amp;characterEncoding=UTF-8">
+		</property> 
+		<property name="user" value="root">
+		</property>
+		<property name="password" value="M7Q0ZD4O">
+		</property>
+	</bean>
+<!---->
+<!--123456789-->
+	<!-- ibatis相关 -->
+
+	<!-- sqlMapClient -->
+	<bean id="sqlMapClientq" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+		<property name="dataSource" ref="unifyumDataSource" />
+		<!-- 自动扫描 unifyum-sqlmap-config.xml 文件 -->
+		<property name="configLocation">
+			<value>classpath:sqlmap/unifyum-sqlmap-config.xml</value>
+		</property>
+	</bean>
+
+	<!-- abstract DAO -->
+	<bean id="unifyumSqlMapClientDAO" abstract="true">
+		<property name="dataSource">
+			<ref bean="unifyumDataSource" />
+		</property>
+		<property name="sqlMapClient">
+			<ref bean="sqlMapClientq" />
+		</property>
+	</bean>
+
+	<!-- MySQL 对事务的支持 -->
+	<bean id="unifyumTransactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource">
+			<ref bean="unifyumDataSource" />
+		</property>
+	</bean>
+
+</beans>

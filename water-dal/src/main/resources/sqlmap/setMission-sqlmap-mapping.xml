@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="GB2312" ?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="unifyum">
+
+
+	<resultMap id="RM.Set_Mission"
+			   class="com.bupt.qrj.unifyum.dal.dataobject.setMissionDO">
+		<result property="name" column="name" javaType="java.lang.String"
+				jdbcType="VARCHAR" nullValue="0"/>
+		<result property="content" column="content" javaType="java.lang.String"
+				jdbcType="VARCHAR" nullValue="0"/>
+		<result property="font_color" column="font_color" javaType="java.lang.String"
+				jdbcType="VARCHAR" nullValue="0"/>
+		<result property="font_size" column="font_size" javaType="java.lang.String"
+				jdbcType="VARCHAR" nullValue="0"/>
+		<result property="array" column="array" javaType="java.lang.String"
+				jdbcType="VARCHAR" nullValue="0"/>
+		<result property="type" column="type" javaType="java.lang.String"
+				jdbcType="VARCHAR" nullValue="0"/>
+
+	</resultMap>
+	<resultMap id="RM.material"
+			   class="com.bupt.qrj.unifyum.dal.dataobject.materialDO">
+		<result property="type" column="type" javaType="java.lang.String"
+				jdbcType="int" nullValue="0"/>
+		<result property="description" column="description" javaType="java.lang.String"
+				jdbcType="VARCHAR" nullValue="0"/>
+
+		<result property="name" column="name" javaType="java.lang.String"
+				jdbcType="VARCHAR" nullValue="0"/>
+
+	</resultMap>
+    <resultMap id="RM.Event_Info"
+               class="com.bupt.qrj.unifyum.dal.dataobject.EventInfoDO">
+        <result property="event_id" column="event_id" javaType="java.lang.String"
+                jdbcType="VARCHAR" nullValue="0"/>
+        <result property="additions" column="additions" javaType="java.lang.String"
+                jdbcType="VARCHAR" nullValue="0"/>
+        <result property="font_color" column="font_color" javaType="java.lang.String"
+                jdbcType="VARCHAR" nullValue="0"/>
+        <result property="font_size" column="font_size" javaType="java.lang.String"
+                jdbcType="VARCHAR" nullValue="0"/>
+        <result property="event_name" column="event_name" javaType="java.lang.String"
+                jdbcType="VARCHAR" nullValue="0"/>
+
+    </resultMap>
+    <resultMap id="RM.Mission_Info_setMission"
+               class="com.bupt.qrj.unifyum.dal.dataobject.setMissioninfoDO">
+        <result property="mission_id" column="mission_id" javaType="java.lang.String"
+                jdbcType="int" nullValue="0"/>
+        <result property="mission" column="mission" javaType="java.lang.String"
+                jdbcType="VARCHAR" nullValue="0"/>
+
+
+    </resultMap>
+	<select id="Set_Mission-List" resultMap="RM.Set_Mission">
+		select name,content,font_color,font_size,array,type from set_mission_return where type = #type#;
+	</select>
+
+	<select id="Material-List" resultMap="RM.material">
+		select type,description,name from material where type = #type#;
+	</select>
+
+	<select id="Set_Mission-Info" resultMap="RM.Set_Mission">
+		select name,content,font_color,font_size,array,type from set_mission_return where type = #type# and array = #array#;
+	</select>
+
+    <select id="Event-Info-set" resultMap="RM.Event_Info">
+        select event_id,additions,font_color,font_size,event_name from event_info;
+    </select>
+    <select id="Mission-Info-set-select" resultMap="RM.Mission_Info_setMission">
+        select mission_id,mission from mission order by mission_id desc limit 5;
+    </select>
+
+	<!--<select id="USER-LIST" resultClass="java.lang.String">-->
+		<!--select user_name from  login	group by user_name;		-->
+	<!--</select>-->
+
+	<!--<select id="UNIFYUM-USER-GET" parameterClass="com.bupt.qrj.unifyum.dal.dataobject.UserDO"-->
+		<!--resultMap="RM.User">-->
+		<!--select * from user-->
+		<!--<dynamic prepend="where">-->
+			<!--<isNotNull prepend="AND" property="userName">-->
+				<!--user_name = #userName#-->
+			<!--</isNotNull>-->
+		<!--</dynamic>-->
+	<!--</select>-->
+
+</sqlMap>

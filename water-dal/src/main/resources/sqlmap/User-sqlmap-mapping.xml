@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="GB2312" ?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="unifyum">
+
+	<resultMap id="RM.User"
+		class="com.bupt.qrj.unifyum.dal.dataobject.UserDO">
+		<result property="userName" column="user_name" javaType="java.lang.String" jdbcType="VARCHAR" nullValue="0"/>
+		<result property="password" column="user_pwd" javaType="java.lang.String"
+			jdbcType="VARCHAR" nullValue="0"/>
+		<result property="user_level" column="user_level" javaType="java.lang.String"
+			jdbcType="CHAR" nullValue="0"/>
+	</resultMap>
+
+	
+
+
+	<select id="USER-DATA-LIST" resultMap="RM.User">
+		select * from 
+		   (select * from login where user_name=#userName# ) as temp;		
+	</select>
+
+
+	<select id="USER-LIST" resultClass="java.lang.String">
+		select user_name from  login	group by user_name;		
+	</select>
+
+	<select id="UNIFYUM-USER-GET" parameterClass="com.bupt.qrj.unifyum.dal.dataobject.UserDO"
+		resultMap="RM.User">
+		select * from user
+		<dynamic prepend="where">
+			<isNotNull prepend="AND" property="userName">
+				user_name = #userName#
+			</isNotNull>
+		</dynamic>
+	</select>
+
+</sqlMap>

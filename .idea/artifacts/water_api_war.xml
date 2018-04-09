@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="water-api:war">
+    <output-path>$PROJECT_DIR$/water-api/target</output-path>
+    <root id="archive" name="water.war">
+      <element id="artifact" artifact-name="water-api:war exploded" />
+    </root>
+  </artifact>
+</component>

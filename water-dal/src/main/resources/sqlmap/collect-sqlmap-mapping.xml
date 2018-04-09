@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="GB2312" ?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="unifyum">
+
+
+	<resultMap id="RM.collect"
+			   class="com.bupt.qrj.unifyum.dal.dataobject.collectDO">
+		<result property="time" column="time" javaType="java.lang.String"
+				jdbcType="VARCHAR" nullValue="0"/>
+		<result property="count" column="count" javaType="java.lang.String"
+				jdbcType="int" nullValue="0"/>
+
+
+
+	</resultMap>
+
+	<select id="select-exception" resultMap="RM.collect">
+		select date_format(report_time,'%Y-%m') as time, count(*) as count from exception  where date_format(report_time,'%Y-%m')
+		between #ymmin# and #ymmax#  group by time;
+	</select>
+
+
+
+	<!--<select id="USER-LIST" resultClass="java.lang.String">-->
+		<!--select user_name from  login	group by user_name;		-->
+	<!--</select>-->
+
+	<!--<select id="UNIFYUM-USER-GET" parameterClass="com.bupt.qrj.unifyum.dal.dataobject.UserDO"-->
+		<!--resultMap="RM.User">-->
+		<!--select * from user-->
+		<!--<dynamic prepend="where">-->
+			<!--<isNotNull prepend="AND" property="userName">-->
+				<!--user_name = #userName#-->
+			<!--</isNotNull>-->
+		<!--</dynamic>-->
+	<!--</select>-->
+
+</sqlMap>

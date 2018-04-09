@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="GB2312" ?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="unifyum">
+
+	<resultMap id="RM.condition"
+		class="com.bupt.qrj.unifyum.dal.dataobject.misconditionDO">
+
+		<result property="mission_id" column="mission_id" javaType="java.lang.String"
+			jdbcType="VARCHAR" nullValue="0"/>
+		<result property="mission_condition" column="mission_condition" javaType="java.lang.String"
+			jdbcType="VARCHAR" nullValue="0"/>
+
+
+	</resultMap>
+
+
+
+
+	<update id="condition-UPDATE">
+		update mission set mission_condition=#mission_condition#
+		where mission_id=#mission_id#;
+	</update>
+
+
+
+
+
+
+</sqlMap>

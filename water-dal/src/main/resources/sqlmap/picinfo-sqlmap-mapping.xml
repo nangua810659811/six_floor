@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="GB2312" ?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="unifyum">
+
+	<resultMap id="RM.picinfo"
+		class="com.bupt.qrj.unifyum.dal.dataobject.picinfoDO">
+		<result property="mission_id" column="mission_id" javaType="java.lang.String"
+			jdbcType="int" nullValue="0"/>
+		<result property="event_id" column="event_id" javaType="java.lang.String"
+			jdbcType="int" nullValue="0"/>
+		<result property="work_id" column="work_id" javaType="java.lang.String"
+			jdbcType="int" nullValue="0"/>
+		<result property="pic" column="pic" javaType="java.lang.String"
+				jdbcType="VARCHAR" nullValue="0"/>
+
+
+	</resultMap>
+
+
+	<!--<insert id="pic-info-insert">-->
+		<!--insert into mission_pic-->
+		<!--(mission_id,pic,pic_class,time)-->
+		<!--values(#mission_id#,#pic#,#pic_class#,#time#);-->
+	<!--</insert>-->
+
+
+	<select id="find-pic" parameterClass="com.bupt.qrj.unifyum.dal.dataobject.picinfoDO"
+			resultMap="RM.picinfo">
+		select mission_id,event_id,work_id,pic from mission_feedback where mission_id=#mission_id# and event_id= #event_id# and work_id=#work_id#;
+
+	</select>
+
+	<select id="find-pic-newest"
+			resultMap="RM.picinfo">
+		select mission_id,pic,pic_class,time from mission_pic order by id desc limit 1;
+
+	</select>
+
+</sqlMap>

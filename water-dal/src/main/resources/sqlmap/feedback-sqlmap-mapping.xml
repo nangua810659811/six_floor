@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="GB2312" ?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="unifyum">
+
+	<resultMap id="RM.feedback_1"
+		class="com.bupt.qrj.unifyum.dal.dataobject.feedbackDO">
+
+		<result property="event_id" column="event_id" javaType="java.lang.String"
+			jdbcType="int" nullValue="0"/>
+		<result property="mission_id" column="mission_id" javaType="java.lang.String"
+			jdbcType="int" nullValue="0"/>
+		<result property="work_name" column="work_name" javaType="java.lang.String"
+				jdbcType="VARCHAR" nullValue="0"/>
+		<result property="time" column="time" javaType="java.lang.String"
+			jdbcType="VARCHAR" nullValue="0"/>
+		<result property="data" column="data" javaType="java.lang.String"
+				jdbcType="VARCHAR" nullValue="0"/>
+		<result property="pic" column="pic" javaType="java.lang.String"
+				jdbcType="VARCHAR" nullValue="0"/>
+
+	</resultMap>
+
+
+	<!--<resultMap id="RM.feedback_2"-->
+			   <!--class="com.bupt.qrj.unifyum.dal.dataobject.feedbackDO">-->
+
+		<!--<result property="phone" column="phone" javaType="java.lang.String"-->
+				<!--jdbcType="VARCHAR" nullValue="0"/>-->
+		<!--<result property="longitude" column="longitude" javaType="java.lang.String"-->
+				<!--jdbcType="VARCHAR" nullValue="0"/>-->
+		<!--<result property="latitude" column="latitude" javaType="java.lang.String"-->
+				<!--jdbcType="VARCHAR" nullValue="0"/>-->
+		<!--<result property="time" column="time" javaType="java.lang.String"-->
+				<!--jdbcType="VARCHAR" nullValue="0"/>-->
+
+	<!--</resultMap>-->
+
+
+	<update id="feedback-UPDATE-data">
+		update mission_feedback set data=#data# ,time = #time#
+		where mission_id=#mission_id# and event_id = #event_id# and work_name=#work_name#;
+	</update>
+
+	<update id="feedback-UPDATE-pic">
+		update mission_feedback set pic=#pic# ,time = #time#
+        where mission_id=#mission_id# and event_id = #event_id# and work_name=#work_name#;
+	</update>
+	<insert id="feedback-insert-pic">
+        insert into mission_feedback
+        (mission_id,event_id,work_name,pic,time)
+        values(#mission_id#,#event_id#,#work_name#,#pic#,#time#);
+	</insert>
+	<insert id="feedback-insert-data">
+		insert into mission_feedback
+		(mission_id,event_id,work_name,data,time)
+		values(#mission_id#,#event_id#,#work_name#,#data#,#time#);
+	</insert>
+
+    <select id="feedback-seek" resultMap="RM.feedback_1">
+        select mission_id,pic,event_id,work_name,data,time from mission_feedback where mission_id=#mission_id# and event_id = #event_id# and work_name=#work_name#;
+    </select>
+
+<!--  parameterClass="com.bupt.qrj.unifyum.dal.dataobject.locationDO"
+            -->
+
+
+
+</sqlMap>

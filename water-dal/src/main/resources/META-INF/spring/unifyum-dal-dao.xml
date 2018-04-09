@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="GBK"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:sofa="http://img.alipay.net/dtd/schema/service" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:webflow="http://www.springframework.org/schema/webflow-config"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+         http://img.alipay.net/dtd/schema/service http://img.alipay.net/dtd/schema/service/sofa-service.xsd
+         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+         http://www.springframework.org/schema/webflow-config http://www.springframework.org/schema/webflow-config/spring-webflow-config-2.0.xsd"
+	default-autowire="byName">
+
+
+	<bean id="UserDAO" class="com.bupt.qrj.unifyum.dal.dao.impl.UserDAOImpl"
+		parent="unifyumSqlMapClientDAO" />
+
+
+
+	<bean id="MissionReturnDAO" class="com.bupt.qrj.unifyum.dal.dao.impl.MissionReturnDAOImpl"
+		  parent="unifyumSqlMapClientDAO" />
+
+	<bean id="SeekWjsDAO" class="com.bupt.qrj.unifyum.dal.dao.impl.SeekWjsDAOImpl"
+		  parent="unifyumSqlMapClientDAO" />
+
+	<bean id="MapInfoDAO" class="com.bupt.qrj.unifyum.dal.dao.impl.MapInfoDAOImpl"
+		  parent="unifyumSqlMapClientDAO" />
+	<bean id="setMissionDAO" class="com.bupt.qrj.unifyum.dal.dao.impl.setMissionDAOImpl"
+		  parent="unifyumSqlMapClientDAO" />
+	<bean id="workerloginDAO" class="com.bupt.qrj.unifyum.dal.dao.impl.workerloginDAOImpl"
+		  parent="unifyumSqlMapClientDAO" />
+	<bean id="checkInfoDAO" class="com.bupt.qrj.unifyum.dal.dao.impl.checkInfoDAOImpl"
+		  parent="unifyumSqlMapClientDAO" />
+	<bean id="locationDAO" class="com.bupt.qrj.unifyum.dal.dao.impl.locationDAOImpl"
+		  parent="unifyumSqlMapClientDAO" />
+	<bean id="conditionDAO" class="com.bupt.qrj.unifyum.dal.dao.impl.conditionDAOImpl"
+		  parent="unifyumSqlMapClientDAO" />
+	<bean id="arrangeinsertDAO" class="com.bupt.qrj.unifyum.dal.dao.impl.arrangeinsertDAOImpl"
+		  parent="unifyumSqlMapClientDAO" />
+	<bean id="arrangeseekDAO" class="com.bupt.qrj.unifyum.dal.dao.impl.arrangeseekDAOImpl"
+		  parent="unifyumSqlMapClientDAO" />
+	<bean id="arrangepermisDAO" class="com.bupt.qrj.unifyum.dal.dao.impl.arrangepermisDAOImpl"
+		  parent="unifyumSqlMapClientDAO" />
+	<bean id="searchDAO" class="com.bupt.qrj.unifyum.dal.dao.impl.searchDAOImpl"
+		  parent="unifyumSqlMapClientDAO" />
+	<bean id="feedbackDAO" class="com.bupt.qrj.unifyum.dal.dao.impl.feedbackDAOImpl"
+		  parent="unifyumSqlMapClientDAO" />
+	<bean id="findpicDAO" class="com.bupt.qrj.unifyum.dal.dao.impl.findpicDAOImpl"
+		  parent="unifyumSqlMapClientDAO" />
+	<bean id="MissionDetailDAO" class="com.bupt.qrj.unifyum.dal.dao.impl.MissionDetailDAOImpl"
+		  parent="unifyumSqlMapClientDAO" />
+	<bean id="collectDAO" class="com.bupt.qrj.unifyum.dal.dao.impl.collectDAOImpl"
+		  parent="unifyumSqlMapClientDAO" />
+	<bean id="missionJsonDAO" class="com.bupt.qrj.unifyum.dal.dao.impl.missionJsonDAOImpl"
+		  parent="unifyumSqlMapClientDAO" />
+</beans>

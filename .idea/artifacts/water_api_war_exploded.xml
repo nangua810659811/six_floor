@@ -1,0 +1,66 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="water-api:war exploded">
+    <output-path>$PROJECT_DIR$/water-api/target/water</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="water-api" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: com.alibaba:fastjson:1.1.33" />
+          <element id="library" level="project" name="Maven: commons-fileupload:commons-fileupload:1.3.1" />
+          <element id="library" level="project" name="Maven: commons-io:commons-io:2.2" />
+          <element id="library" level="project" name="Maven: redis.clients:jedis:2.4.0" />
+          <element id="library" level="project" name="Maven: org.apache.commons:commons-pool2:2.0" />
+          <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.4.0" />
+          <element id="library" level="project" name="Maven: org.slf4j:slf4j-log4j12:1.4.0" />
+          <element id="library" level="project" name="Maven: log4j:log4j:1.2.13" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-webmvc:3.0.5.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-asm:3.0.5.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-beans:3.0.5.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-context-support:3.0.5.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-expression:3.0.5.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-context:3.0.5.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-core:3.0.5.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-aop:3.0.5.RELEASE" />
+          <element id="library" level="project" name="Maven: aopalliance:aopalliance:1.0" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-web:3.0.5.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-test:3.0.5.RELEASE" />
+          <element id="library" level="project" name="Maven: taglibs:standard:1.1.2" />
+          <element id="library" level="project" name="Maven: javax.servlet.jsp.jstl:jstl-api:1.2" />
+          <element id="library" level="project" name="Maven: org.aspectj:aspectjweaver:1.8.5" />
+          <element id="library" level="project" name="Maven: commons-logging:commons-logging:1.2" />
+          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.6" />
+          <element id="library" level="project" name="Maven: commons-lang:commons-lang:2.6" />
+          <element id="library" level="project" name="Maven: org.apache.httpcomponents:httpcore:4.4" />
+          <element id="library" level="project" name="Maven: org.apache.httpcomponents:httpmime:4.4" />
+          <element id="library" level="project" name="Maven: org.apache.httpcomponents:httpclient:4.4" />
+          <element id="library" level="project" name="Maven: commons-codec:commons-codec:1.9" />
+          <element id="archive" name="water-dal-1.0.0.jar">
+            <element id="module-output" name="water-dal" />
+          </element>
+          <element id="library" level="project" name="Maven: org.apache.ibatis:ibatis-sqlmap:2.3.4.726" />
+          <element id="library" level="project" name="Maven: c3p0:c3p0:0.9.1.2" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-orm:3.0.5.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-jdbc:3.0.5.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-tx:3.0.5.RELEASE" />
+          <element id="archive" name="water-util-1.0.0.jar">
+            <element id="module-output" name="water-util" />
+          </element>
+          <element id="library" level="project" name="Maven: commons-httpclient:commons-httpclient:3.1" />
+          <element id="library" level="project" name="Maven: org.codehaus.jackson:jackson-core-asl:1.6.2" />
+          <element id="library" level="project" name="Maven: org.codehaus.jackson:jackson-mapper-asl:1.6.2" />
+          <element id="library" level="project" name="Maven: net.sf.json-lib:json-lib:jdk15:2.4" />
+          <element id="library" level="project" name="Maven: commons-beanutils:commons-beanutils:1.9.2" />
+          <element id="library" level="project" name="Maven: commons-collections:commons-collections:3.2.1" />
+          <element id="library" level="project" name="Maven: com.googlecode.json-simple:json-simple:1.1.1" />
+          <element id="library" level="project" name="Maven: net.sf.ezmorph:ezmorph:1.0.6" />
+        </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/water-api/target/water/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="javaee-facet-resources" facet="water-api/web/Web" />
+    </root>
+  </artifact>
+</component>
