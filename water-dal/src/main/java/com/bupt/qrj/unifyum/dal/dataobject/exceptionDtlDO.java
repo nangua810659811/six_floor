@@ -43,21 +43,7 @@ public class exceptionDtlDO {
 		this.report_time = report_time;
 	}
 
-	public int getStatus() {
-		return status;
-	}
 
-	public void setStatus(int status) {
-		this.status = status;
-	}
-
-	public int getLevel() {
-		return level;
-	}
-
-	public void setLevel(int level) {
-		this.level = level;
-	}
 
 	public String getWorkshop() {
 		return workshop;
@@ -82,17 +68,34 @@ public class exceptionDtlDO {
 
 	private String report_time;
 
-	private int status;
-	private int level;
-private int id;
+	public String getStatus() {
+		return status;
+	}
 
-	public int getId() {
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getLevel() {
+		return level;
+	}
+
+	public void setLevel(String level) {
+		this.level = level;
+	}
+
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
+
+	private String status;
+	private String level;
+	private String id;
+
 
 	private String workshop;
 
