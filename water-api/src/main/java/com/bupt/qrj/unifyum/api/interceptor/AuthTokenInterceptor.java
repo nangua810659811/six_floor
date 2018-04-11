@@ -49,7 +49,7 @@ public class AuthTokenInterceptor extends HandlerInterceptorAdapter {
                 "/arrange.req?action=MissionReturn","/arrange.req?action=arrangepemis","/mission.req?action=search","/mission.req?action=poyuntasklist",
                 "/mission.req?action=poyunupload","/mission.req?action=poyunformat","/mission.req?action=createformat","/mission.req?action=arrangeformat",
                 "/mission.req?action=mission_feedback","/imageDownload.req?action=filedownload","/imageUpload.req?action=upload","/mission.req?action=missiondetail",
-                "/mission.req?action=exception","/mission.req?action=missionJson","/mission.req?action=exceptionDetail"
+                "/mission.req?action=exception","/mission.req?action=missionJson","/mission.req?action=exceptionDetail","/arrange.req?action=arrangelist"
 
 
 		};

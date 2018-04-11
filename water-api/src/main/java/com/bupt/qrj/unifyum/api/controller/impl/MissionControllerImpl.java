@@ -1798,7 +1798,7 @@ public class MissionControllerImpl implements MissionController {
             String event_id = request.getParameter("event_id");
             String big_json = request.getParameter("big_json");
 
-
+            System.out.println(big_json);
 
             if (mission_id == null || mission_id.isEmpty() ||event_id == null || event_id.isEmpty()||big_json == null || big_json.isEmpty() ) {
                 result.put("errMsg", "输入参数有误");
@@ -1824,6 +1824,7 @@ public class MissionControllerImpl implements MissionController {
         // 输出结果
         HttpOutUtil.outData(response, JSONObject.toJSONString(result));
     }
+
 
 
     @RequestMapping(method = { RequestMethod.POST }, params = "action=exceptionDetail")

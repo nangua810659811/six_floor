@@ -54,4 +54,6 @@
 		  parent="unifyumSqlMapClientDAO" />
 	<bean id="exceptionDtlDAO" class="com.bupt.qrj.unifyum.dal.dao.impl.exceptionDtlDAOImpl"
 		  parent="unifyumSqlMapClientDAO" />
+	<bean id="arrangelistDAO" class="com.bupt.qrj.unifyum.dal.dao.impl.arrangelistDAOImpl"
+		  parent="unifyumSqlMapClientDAO" />
 </beans>

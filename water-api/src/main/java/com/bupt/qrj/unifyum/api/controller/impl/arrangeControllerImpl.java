@@ -363,6 +363,60 @@ public class arrangeControllerImpl implements arrangeController {
         HttpOutUtil.outData(response, JSONObject.toJSONString(data));
     }
 
+    @RequestMapping(method = { RequestMethod.POST }, params = "action=arrangelist")
+    public void arrangelist(HttpServletRequest request, HttpServletResponse response) {
+
+        //ApplicationContext context = getContext();
+        arrangelistDAOImpl arrangelistDAO = (arrangelistDAOImpl) context.getBean("arrangelistDAO");
+
+        JSONObject result = new JSONObject();
+        result.put("result", 10001);
+        JSONObject data = new JSONObject();
+        int i =0;
+        try {
+
+
+            String time = request.getParameter("tasktime");
+            String date1 = request.getParameter("taskdate");
+
+
+            String date = date1 +" 00:00:00";
+
+
+
+            List<arrangeListDO> arrangelist = arrangelistDAO.listarrangeList(date,time);
+            if (arrangelist.isEmpty()) {
+                result.put("result", 10002);
+                result.put("errMsg", "没有数据");
+                System.out.println("数据库为空");
+            } else {
+                result.put("result", 10000);
+                result.put("errMsg", "成功");
+                System.out.println("arrange-list");
+                ArrayList<JSONObject> arrangelistdata = new ArrayList<JSONObject>();
+
+                for (arrangeListDO arrangeListDO : arrangelist) {
+                    JSONObject data1 = new JSONObject();
+                    if(arrangeListDO.getWork_type().equals("1"))
+                    data1.put("name", arrangeListDO.getWorker_name()+"(排班)");
+                    else
+                        data1.put("name", arrangeListDO.getWorker_name());
+                    arrangelistdata.add(data1);
+                }
+                data.put("data", arrangelistdata);
+
+
+            }
+
+
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        data.put("result", result);
+        // 输出结果
+        HttpOutUtil.outData(response, JSONObject.toJSONString(data));
+    }
 
 
 
