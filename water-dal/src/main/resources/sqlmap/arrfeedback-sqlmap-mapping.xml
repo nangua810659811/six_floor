@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="GB2312" ?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="unifyum">
+
+	<resultMap id="RM.arrfeedback"
+		class="com.bupt.qrj.unifyum.dal.dataobject.arrfeedbackDO">
+
+		<result property="mission_description" column="mission_description" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="mission" column="mission" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="cover_fields" column="cover_fields" javaType="java.lang.String"
+				jdbcType="VARCHAR" />
+		<result property="mission_level" column="mission_level" javaType="java.lang.String"
+				jdbcType="VARCHAR" />
+		<result property="mission_source" column="mission_source" javaType="java.lang.String"
+				jdbcType="VARCHAR" />
+        <result property="mission_addition" column="mission_addition" javaType="java.lang.String"
+                jdbcType="VARCHAR" />
+		<result property="work_instrument" column="work_instrument" javaType="java.lang.String"
+				jdbcType="VARCHAR" />
+		<result property="event" column="event" javaType="java.lang.String"
+				jdbcType="VARCHAR" />
+	</resultMap>
+
+
+	<insert id="arr-feedback-insert">
+        insert into mission
+		(mission_description,mission,cover_fields,mission_level,mission_source,mission_addition,work_instrument,event)
+        values(#mission_description#,#mission#,#cover_fields#,#mission_level#,#mission_source#,#mission_addition#,#work_instrument#,#event#);
+	</insert>
+
+
+
+</sqlMap>

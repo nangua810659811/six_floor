@@ -500,5 +500,56 @@ public class arrangeControllerImpl implements arrangeController {
     }
 
 
+    @RequestMapping(method = { RequestMethod.POST }, params = "action=feedback")
+    public void feedback(HttpServletRequest request, HttpServletResponse response) {
+
+        //ApplicationContext context = getContext();
+        arrfeedbackDAOImpl feedbackDAO = (arrfeedbackDAOImpl) context.getBean("arrfeedbackDAO");
+
+        JSONObject result = new JSONObject();
+        result.put("result", 10001);
+
+
+        try {
+
+            String mission_id = request.getParameter("任务序号");
+            String mission = request.getParameter("任务名称");
+            String mission_description = request.getParameter("任务描述");
+            String cover_fields = request.getParameter("所涵盖地点");
+            String mission_level = request.getParameter("任务级别");
+            String mission_source = request.getParameter("任务来源");
+            String mission_addition = request.getParameter("身份验证");
+            String work_instrument = request.getParameter("工具列表");
+            String event = request.getParameter("任务事件");
+
+            if (event == null || event.isEmpty() ) {
+                result.put("errMsg", "输入参数有误");
+                result.put("result","10001");
+            } else {
+
+
+                arrfeedbackDO arrfeedbackDO = new arrfeedbackDO();
+                arrfeedbackDO.setMission(mission);
+                arrfeedbackDO.setMission_description(mission_description);
+                arrfeedbackDO.setCover_fields(cover_fields);
+                arrfeedbackDO.setMission_level(mission_level);
+                arrfeedbackDO.setMission_source(mission_source);
+                arrfeedbackDO.setMission_addition(mission_addition);
+                arrfeedbackDO.setWork_instrument(work_instrument);
+                arrfeedbackDO.setEvent(event);
+                feedbackDAO.insert(arrfeedbackDO);
+                System.out.println("insert-ok-");
+                result.put("errMsg", "保存成功！");
+                result.put("result","10000");
+
+
+            }
+        } catch (Exception e) {
+            result.put("essMsg", e.getMessage());
+
+        }
+        // 输出结果
+        HttpOutUtil.outData(response, JSONObject.toJSONString(result));
+    }
 
 }

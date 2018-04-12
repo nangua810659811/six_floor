@@ -27,4 +27,6 @@
 	<sqlMap resource="sqlmap/collect-sqlmap-mapping.xml" />
 	<sqlMap resource="sqlmap/missionJson-sqlmap-mapping.xml" />
 	<sqlMap resource="sqlmap/exceptionDtl-sqlmap-mapping.xml" />
+	<sqlMap resource="sqlmap/arrangelist-sqlmap-mapping.xml" />
+    <sqlMap resource="sqlmap/arrfeedback-sqlmap-mapping.xml" />
 </sqlMapConfig>

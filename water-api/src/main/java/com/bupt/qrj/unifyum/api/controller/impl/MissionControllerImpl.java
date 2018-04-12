@@ -1811,7 +1811,7 @@ public class MissionControllerImpl implements MissionController {
                 missionJsonDO.setEvent_id(event_id);
                 missionJsonDO.setBig_json(big_json);
                 missionJsonDAO.insert(missionJsonDO);
-                System.out.println("insert-ok");
+                System.out.println("insert-ok\\\"1\\\"||\\\"2\\\"");
                 result.put("errMsg", "保存成功！");
                 result.put("result","10000");
 
