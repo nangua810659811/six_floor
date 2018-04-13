@@ -8,7 +8,7 @@
 			jdbcType="int" nullValue="0"/>
 		<result property="event_id" column="event_id" javaType="java.lang.String"
 			jdbcType="int" nullValue="0"/>
-		<result property="work_id" column="work_id" javaType="java.lang.String"
+		<result property="work_name" column="work_name" javaType="java.lang.String"
 			jdbcType="int" nullValue="0"/>
 		<result property="pic" column="pic" javaType="java.lang.String"
 				jdbcType="VARCHAR" nullValue="0"/>
@@ -26,7 +26,7 @@
 
 	<select id="find-pic" parameterClass="com.bupt.qrj.unifyum.dal.dataobject.picinfoDO"
 			resultMap="RM.picinfo">
-		select mission_id,event_id,work_id,pic from mission_feedback where mission_id=#mission_id# and event_id= #event_id# and work_id=#work_id#;
+		select mission_id,event_id,work_name,pic from mission_feedback where mission_id=#mission_id# and event_id= #event_id# and work_name=#work_name#;
 
 	</select>
 

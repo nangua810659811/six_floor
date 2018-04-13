@@ -1883,4 +1883,50 @@ public class MissionControllerImpl implements MissionController {
         // 输出结果
         HttpOutUtil.outData(response, JSONObject.toJSONString(result));
     }
+
+
+    @RequestMapping(method = { RequestMethod.POST }, params = "action=addauditor")
+    public void addauditor(HttpServletRequest request, HttpServletResponse response) {
+
+        //ApplicationContext context = getContext();
+        addauditorDAOImpl addauditorDAO = (addauditorDAOImpl) context.getBean("addauditorDAO");
+
+        JSONObject result = new JSONObject();
+        result.put("result", 10001);
+
+
+        try {
+
+            String mission_id = request.getParameter("mission_id");
+            String auditor_opinion = request.getParameter("audit_opinion");
+            String auditor = request.getParameter("auditor");
+            String auditor_time = request.getParameter("audit_time");
+
+
+            if (mission_id == null || mission_id.isEmpty() ||auditor == null || auditor.isEmpty()||auditor_time == null || auditor_time.isEmpty() ) {
+                result.put("errMsg", "输入参数有误");
+                result.put("result","10001");
+            } else {
+
+
+                addauditorDO addauditorDO = new addauditorDO();
+                addauditorDO.setMission_id(mission_id);
+                addauditorDO.setAuditor(auditor);
+                addauditorDO.setAuditor_opinion(auditor_opinion);
+                addauditorDO.setAuditor_time(auditor_time);
+                addauditorDAO.update(addauditorDO);
+                System.out.println("update-ok");
+                result.put("errMsg", "保存成功！");
+                result.put("result","10000");
+
+
+            }
+        } catch (Exception e) {
+            result.put("essMsg", e.getMessage());
+
+        }
+        // 输出结果
+        HttpOutUtil.outData(response, JSONObject.toJSONString(result));
+    }
+
 }

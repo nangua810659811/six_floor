@@ -518,14 +518,16 @@ public class arrangeControllerImpl implements arrangeController {
             String cover_fields = request.getParameter("所涵盖地点");
             String mission_level = request.getParameter("任务级别");
             String mission_source = request.getParameter("任务来源");
-            String mission_addition = request.getParameter("身份验证");
+            String authen_method = request.getParameter("身份验证");
             String work_instrument = request.getParameter("工具列表");
-            String event = request.getParameter("任务事件");
+            String detail_info = request.getParameter("任务事件");
 
-            if (event == null || event.isEmpty() ) {
+            if (detail_info == null || detail_info.isEmpty() ) {
                 result.put("errMsg", "输入参数有误");
                 result.put("result","10001");
             } else {
+
+
 
 
                 arrfeedbackDO arrfeedbackDO = new arrfeedbackDO();
@@ -534,9 +536,9 @@ public class arrangeControllerImpl implements arrangeController {
                 arrfeedbackDO.setCover_fields(cover_fields);
                 arrfeedbackDO.setMission_level(mission_level);
                 arrfeedbackDO.setMission_source(mission_source);
-                arrfeedbackDO.setMission_addition(mission_addition);
+                arrfeedbackDO.setAuthen_method(authen_method);
                 arrfeedbackDO.setWork_instrument(work_instrument);
-                arrfeedbackDO.setEvent(event);
+                arrfeedbackDO.setDetail_info(detail_info);
                 feedbackDAO.insert(arrfeedbackDO);
                 System.out.println("insert-ok-");
                 result.put("errMsg", "保存成功！");
@@ -552,4 +554,61 @@ public class arrangeControllerImpl implements arrangeController {
         HttpOutUtil.outData(response, JSONObject.toJSONString(result));
     }
 
+
+    @RequestMapping(method = { RequestMethod.POST }, params = "action=set_mission")
+    public void set_mission(HttpServletRequest request, HttpServletResponse response) {
+
+        //ApplicationContext context = getContext();
+        arrsetmisDAOImpl arrsetmisDAO = (arrsetmisDAOImpl) context.getBean("arrsetmisDAO");
+
+        JSONObject result = new JSONObject();
+        result.put("result", 10001);
+
+
+        try {
+
+            String period_start_time = request.getParameter("time1");
+            String period_end_time = request.getParameter("time2");
+            String mission = request.getParameter("taskname");
+            String worker_name = request.getParameter("taskpeople");
+            String set_start_time_code = request.getParameter("tasktime");
+
+
+            if (mission == null || mission.isEmpty() ) {
+                result.put("errMsg", "输入参数有误");
+                result.put("result","10001");
+            } else {
+                arrfeedbackDO arrfeedbackDO = new arrfeedbackDO();
+                arrfeedbackDO.setMission(mission);
+
+                arrfeedbackDO user = arrsetmisDAO.get(arrfeedbackDO);
+
+                arrsetmisDO arrsetmisDO = new arrsetmisDO();
+                arrsetmisDO.setMission(mission);
+                arrsetmisDO.setMission_description(user.getMission_description());
+                arrsetmisDO.setCover_fields(user.getCover_fields());
+                arrsetmisDO.setMission_level(user.getMission_level());
+                arrsetmisDO.setMission_source(user.getMission_source());
+                arrsetmisDO.setAuthen_method(user.getAuthen_method());
+                arrsetmisDO.setWork_instrument(user.getWork_instrument());
+                arrsetmisDO.setDetail_info(user.getDetail_info());
+
+                arrsetmisDO.setPeriod_start_time(period_start_time);
+                arrsetmisDO.setPeriod_end_time(period_end_time);
+                arrsetmisDO.setWorker_name(worker_name);
+                arrsetmisDO.setSet_start_time_code(set_start_time_code);
+                arrsetmisDAO.insert(arrsetmisDO);
+                System.out.println("insert-ok-");
+                result.put("errMsg", "保存成功！");
+                result.put("result","10000");
+
+
+            }
+        } catch (Exception e) {
+            result.put("essMsg", e.getMessage());
+
+        }
+        // 输出结果
+        HttpOutUtil.outData(response, JSONObject.toJSONString(result));
+    }
 }

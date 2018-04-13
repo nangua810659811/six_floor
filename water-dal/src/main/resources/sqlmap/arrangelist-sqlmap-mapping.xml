@@ -2,7 +2,7 @@
 <!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
 <sqlMap namespace="unifyum">
 
-	<resultMap id="RM.arrangeinsert"
+	<resultMap id="RM.arrangeList"
 		class="com.bupt.qrj.unifyum.dal.dataobject.arrangeListDO">
 
 		<result property="set_time" column="set_time" javaType="java.lang.String"

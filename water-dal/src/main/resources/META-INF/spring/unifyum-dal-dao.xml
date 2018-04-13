@@ -58,4 +58,8 @@
 		  parent="unifyumSqlMapClientDAO" />
     <bean id="arrfeedbackDAO" class="com.bupt.qrj.unifyum.dal.dao.impl.arrfeedbackDAOImpl"
           parent="unifyumSqlMapClientDAO" />
+	<bean id="addauditorDAO" class="com.bupt.qrj.unifyum.dal.dao.impl.addauditorDAOImpl"
+		  parent="unifyumSqlMapClientDAO" />
+	<bean id="arrsetmisDAO" class="com.bupt.qrj.unifyum.dal.dao.impl.arrsetmisDAOImpl"
+		  parent="unifyumSqlMapClientDAO" />
 </beans>

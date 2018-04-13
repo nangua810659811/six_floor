@@ -8,7 +8,7 @@ package com.bupt.qrj.unifyum.dal.dataobject;
  *         unifyum-dal 用途: - 用户账户基本信息
  *
  */
-public class arrfeedbackDO {
+public class arrsetmisDO {
 
 	public String getMission_description() {
 		return mission_description;
@@ -90,6 +90,41 @@ public class arrfeedbackDO {
 	private String work_instrument;
 	private String detail_info;
 
+	public String getPeriod_start_time() {
+		return period_start_time;
+	}
 
-	
+	public void setPeriod_start_time(String period_start_time) {
+		this.period_start_time = period_start_time;
+	}
+
+	public String getPeriod_end_time() {
+		return period_end_time;
+	}
+
+	public void setPeriod_end_time(String period_end_time) {
+		this.period_end_time = period_end_time;
+	}
+
+	public String getSet_start_time_code() {
+		return set_start_time_code;
+	}
+
+	public void setSet_start_time_code(String set_start_time_code) {
+		this.set_start_time_code = set_start_time_code;
+	}
+
+	private String period_start_time;
+	private String period_end_time;
+	private String set_start_time_code;
+
+	public String getWorker_name() {
+		return worker_name;
+	}
+
+	public void setWorker_name(String worker_name) {
+		this.worker_name = worker_name;
+	}
+
+	private String worker_name;
 }

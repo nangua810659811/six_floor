@@ -21,17 +21,21 @@
 				jdbcType="VARCHAR" />
 		<result property="detail_info" column="detail_info" javaType="java.lang.String"
 				jdbcType="VARCHAR" />
+		<result property="period_start_time" column="period_start_time" javaType="java.lang.String"
+				jdbcType="VARCHAR" />
+		<result property="period_end_time" column="period_end_time" javaType="java.lang.String"
+				jdbcType="VARCHAR" />
+		<result property="set_start_time_code" column="set_start_time_code" javaType="java.lang.String"
+				jdbcType="VARCHAR" />
 	</resultMap>
 
 
-	<insert id="arr-feedback-insert">
-        insert into set_mission
-		(mission_description,mission,cover_fields,mission_level,mission_source,authen_method,work_instrument,detail_info)
-        values(#mission_description#,#mission#,#cover_fields#,#mission_level#,#mission_source#,#authen_method#,#work_instrument#,#detail_info#);
+	<insert id="arr-set-mis-insert">
+        insert into mission
+		(mission_description,mission,cover_fields,mission_level,mission_source,authen_method,work_instrument,detail_info,period_start_time,period_end_time,set_start_time_code)
+        values(#mission_description#,#mission#,#cover_fields#,#mission_level#,#mission_source#,#authen_method#,#work_instrument#,#detail_info#,#period_start_time#,#period_end_time#,#set_start_time_code#);
 	</insert>
 
-	<select id="select-arrfeedback" resultMap="RM.arrfeedback">
-		select mission_description,mission,cover_fields,mission_level,mission_source,authen_method,work_instrument,detail_info from set_mission where mission =#mission# order by set_id desc limit 1;
-	</select>
+
 
 </sqlMap>

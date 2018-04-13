@@ -39,7 +39,7 @@ public class Filedownload extends HttpServlet{
             String phone = request.getParameter("phone");
             String mission_id = request.getParameter("mission_id");
             String event_id = request.getParameter("event_id");
-            String work_id = request.getParameter("work_id");//header
+            String work_name = request.getParameter("work_name");//header
 
 
 //			String patha = "";
@@ -57,7 +57,7 @@ public class Filedownload extends HttpServlet{
                 picinfoDO picinfoDO = new picinfoDO();
                 picinfoDO.setMission_id(mission_id);
                 picinfoDO.setEvent_id(event_id);
-                picinfoDO.setWork_id(work_id);
+                picinfoDO.setWork_name(work_name);
 
                 picinfoDO user = findpicDAO.get(picinfoDO);
                 String patha = user.getPic();
