@@ -52,13 +52,7 @@ public class arrfeedbackDO {
 
 
 
-	public String getWork_instrument() {
-		return work_instrument;
-	}
 
-	public void setWork_instrument(String work_instrument) {
-		this.work_instrument = work_instrument;
-	}
 
 
 
@@ -87,7 +81,16 @@ public class arrfeedbackDO {
 	}
 
 	private String authen_method;
-	private String work_instrument;
+	private String task_addition;
+
+	public String getTask_addition() {
+		return task_addition;
+	}
+
+	public void setTask_addition(String task_addition) {
+		this.task_addition = task_addition;
+	}
+
 	private String detail_info;
 
 

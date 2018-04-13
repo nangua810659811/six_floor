@@ -17,7 +17,7 @@
 				jdbcType="VARCHAR" />
         <result property="authen_method" column="authen_method" javaType="java.lang.String"
                 jdbcType="VARCHAR" />
-		<result property="work_instrument" column="work_instrument" javaType="java.lang.String"
+		<result property="task_addition" column="task_addition" javaType="java.lang.String"
 				jdbcType="VARCHAR" />
 		<result property="detail_info" column="detail_info" javaType="java.lang.String"
 				jdbcType="VARCHAR" />
@@ -26,12 +26,12 @@
 
 	<insert id="arr-feedback-insert">
         insert into set_mission
-		(mission_description,mission,cover_fields,mission_level,mission_source,authen_method,work_instrument,detail_info)
-        values(#mission_description#,#mission#,#cover_fields#,#mission_level#,#mission_source#,#authen_method#,#work_instrument#,#detail_info#);
+		(mission_description,mission,cover_fields,mission_level,mission_source,authen_method,task_addition,detail_info)
+        values(#mission_description#,#mission#,#cover_fields#,#mission_level#,#mission_source#,#authen_method#,#task_addition#,#detail_info#);
 	</insert>
 
 	<select id="select-arrfeedback" resultMap="RM.arrfeedback">
-		select mission_description,mission,cover_fields,mission_level,mission_source,authen_method,work_instrument,detail_info from set_mission where mission =#mission# order by set_id desc limit 1;
+		select mission_description,mission,cover_fields,mission_level,mission_source,authen_method,task_addition,detail_info from set_mission where mission =#mission# order by set_id desc limit 1;
 	</select>
 
 </sqlMap>

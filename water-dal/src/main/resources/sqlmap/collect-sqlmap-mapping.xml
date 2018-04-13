@@ -9,14 +9,15 @@
 				jdbcType="VARCHAR" nullValue="0"/>
 		<result property="count" column="count" javaType="java.lang.String"
 				jdbcType="int" nullValue="0"/>
-
-
-
+		<result property="status" column="status" javaType="java.lang.String"
+				jdbcType="int" nullValue="0"/>
 	</resultMap>
 
+
+
 	<select id="select-exception" resultMap="RM.collect">
-		select date_format(report_time,'%Y-%m') as time, count(*) as count from exception  where date_format(report_time,'%Y-%m')
-		between #ymmin# and #ymmax#  group by time;
+		select status,date_format(report_time,'%Y-%m') as time, count(*) as count from exception  where date_format(report_time,'%Y-%m')
+		between #ymmin# and #ymmax#  group by time,status;
 	</select>
 
 

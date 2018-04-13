@@ -537,7 +537,7 @@ public class arrangeControllerImpl implements arrangeController {
                 arrfeedbackDO.setMission_level(mission_level);
                 arrfeedbackDO.setMission_source(mission_source);
                 arrfeedbackDO.setAuthen_method(authen_method);
-                arrfeedbackDO.setWork_instrument(work_instrument);
+                arrfeedbackDO.setTask_addition(work_instrument);
                 arrfeedbackDO.setDetail_info(detail_info);
                 feedbackDAO.insert(arrfeedbackDO);
                 System.out.println("insert-ok-");
@@ -590,7 +590,7 @@ public class arrangeControllerImpl implements arrangeController {
                 arrsetmisDO.setMission_level(user.getMission_level());
                 arrsetmisDO.setMission_source(user.getMission_source());
                 arrsetmisDO.setAuthen_method(user.getAuthen_method());
-                arrsetmisDO.setWork_instrument(user.getWork_instrument());
+                arrsetmisDO.setWork_instrument(user.getTask_addition());
                 arrsetmisDO.setDetail_info(user.getDetail_info());
 
                 arrsetmisDO.setPeriod_start_time(period_start_time);

@@ -1764,7 +1764,7 @@ public class MissionControllerImpl implements MissionController {
                         JSONObject data1 = new JSONObject();
                         data1.put("time",Collect.getTime());
                         data1.put("count",Collect.getCount());
-
+                        data1.put("status",Collect.getStatus());
                         exception.add(data1);
                     }
 
