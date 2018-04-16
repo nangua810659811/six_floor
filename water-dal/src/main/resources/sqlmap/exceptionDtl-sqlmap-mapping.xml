@@ -30,7 +30,11 @@
 	</select>
 
 
-
+	<insert id="exception-insert">
+		insert into exception
+		(checkpoint,description,report_time,workshop,level,report_worker)
+		values(#checkpoint#,#description#,#report_time#,#workshop#,#level#,#report_worker#);
+	</insert>
 	<!--<select id="USER-LIST" resultClass="java.lang.String">-->
 		<!--select user_name from  login	group by user_name;		-->
 	<!--</select>-->

@@ -3,9 +3,9 @@
  */
 package com.bupt.qrj.unifyum.dal.dao.impl;
 
-import com.bupt.qrj.unifyum.dal.dao.checkInfoDAO;
 import com.bupt.qrj.unifyum.dal.dao.collectDAO;
-import com.bupt.qrj.unifyum.dal.dataobject.checkInfoDO;
+import com.bupt.qrj.unifyum.dal.dataobject.collect1DO;
+import com.bupt.qrj.unifyum.dal.dataobject.collect2DO;
 import com.bupt.qrj.unifyum.dal.dataobject.collectDO;
 import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
 
@@ -31,6 +31,25 @@ public class collectDAOImpl extends SqlMapClientDaoSupport implements collectDAO
         abbs.put("ymmax",ymmax);
         List<collectDO> rets = this.getSqlMapClientTemplate().queryForList("select-exception",abbs);
        
+        return rets;
+    }
+    public List<collect1DO> list1(String ymmin, String ymmax, String workshop) {
+
+        HashMap<String,Object> abbs = new HashMap<String,Object>();
+        abbs.put("ymmin",ymmin);
+        abbs.put("ymmax",ymmax);
+        abbs.put("workshop",workshop);
+        List<collect1DO> rets = this.getSqlMapClientTemplate().queryForList("select-collect1",abbs);
+
+        return rets;
+    }
+    public List<collect2DO> list2(String ymmin, String ymmax) {
+
+        HashMap<String,Object> abbs = new HashMap<String,Object>();
+        abbs.put("ymmin",ymmin);
+        abbs.put("ymmax",ymmax);
+        List<collect2DO> rets = this.getSqlMapClientTemplate().queryForList("select-collect2",abbs);
+
         return rets;
     }
 

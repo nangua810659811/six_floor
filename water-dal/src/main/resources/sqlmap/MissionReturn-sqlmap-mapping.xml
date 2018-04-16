@@ -51,8 +51,24 @@
 				jdbcType="VARCHAR" nullValue="0"/>
 	</resultMap>
 
+
+	<resultMap id="RM.Event_Detail1"
+			   class="com.bupt.qrj.unifyum.dal.dataobject.EventDetail1DO">
+		<result property="auditor" column="auditor" javaType="java.lang.String"
+				jdbcType="VARCHAR" nullValue="0"/>
+		<result property="auditor_opinion" column="auditor_opinion" javaType="java.lang.String"
+				jdbcType="VARCHAR" nullValue="0"/>
+		<result property="auditor_time" column="auditor_time" javaType="java.lang.String"
+				jdbcType="VARCHAR" nullValue="0"/>
+
+	</resultMap>
+
 	<select id="Mission-Return-Key" resultClass="java.lang.String">
 		select column_key from mission_return;
+	</select>
+
+	<select id="Mission-auditor" resultMap="RM.Event_Detail1" >
+		select auditor,auditor_opinion,auditor_time from mission where mission_id =#mission_id#;
 	</select>
 
 	<select id="Mission-Value" parameterClass="map" resultClass="java.lang.String" remapResults="true" >

@@ -3,6 +3,7 @@
  */
 package com.bupt.qrj.unifyum.dal.dao;
 
+import com.bupt.qrj.unifyum.dal.dataobject.EventDetail1DO;
 import com.bupt.qrj.unifyum.dal.dataobject.EventDetailDO;
 import com.bupt.qrj.unifyum.dal.dataobject.EventInfoDO;
 import com.bupt.qrj.unifyum.dal.dataobject.MissionReturnDO;
@@ -32,4 +33,6 @@ public interface MissionDetailDAO {
     public List<EventDetailDO> Event_Detail(String mission_id, String event_id);
 
     public MissionReturnDO get_first() throws DataAccessException;
+
+    public List<EventDetail1DO> Event_Detail1(String mission_id);
 }

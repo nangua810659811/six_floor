@@ -5,6 +5,7 @@ package com.bupt.qrj.unifyum.dal.dao.impl;
 
 import com.bupt.qrj.unifyum.dal.dao.MissionDetailDAO;
 import com.bupt.qrj.unifyum.dal.dao.MissionReturnDAO;
+import com.bupt.qrj.unifyum.dal.dataobject.EventDetail1DO;
 import com.bupt.qrj.unifyum.dal.dataobject.EventDetailDO;
 import com.bupt.qrj.unifyum.dal.dataobject.EventInfoDO;
 import com.bupt.qrj.unifyum.dal.dataobject.MissionReturnDO;
@@ -115,6 +116,24 @@ public class MissionDetailDAOImpl extends SqlMapClientDaoSupport implements
 
         return rets;
     }
+
+    public List<EventDetail1DO> Event_Detail1(String mission_id) {
+
+//        LOGGER.debug("do the user list start");
+//        HashMap<String,Object> abb = new HashMap<String, Object>();
+//        abb.put("mission_id",mission_id);
+
+        List<EventDetail1DO> rets = this.getSqlMapClientTemplate().queryForList(
+                "Mission-auditor",mission_id);
+        LOGGER.debug("do the TestData user list over");
+        if (rets == null || rets.size() == 0) {
+            LOGGER.debug("do the user list return null");
+            return null;
+        }
+
+        return rets;
+    }
+
     public MissionReturnDO get_first() throws DataAccessException {
 
          MissionReturnDO resultDO = (MissionReturnDO) this.getSqlMapClientTemplate()

@@ -1605,7 +1605,7 @@ public class MissionControllerImpl implements MissionController {
                         fddata.setTime(time);
                         feedbackDAO.insertdata(fddata);
                     }else{
-                        pic = "\\WEB-INF\\upload\\"+pic;
+                        pic = "\\WEB-INF\\upload\\"+pic+".jpg";
                         feedbackDO fdpic = new feedbackDO();
                         fdpic.setMission_id(mission_id);
                         fdpic.setWork_name(work_name);
@@ -1624,7 +1624,7 @@ public class MissionControllerImpl implements MissionController {
                         fddata.setTime(time);
                         feedbackDAO.updatedata(fddata);
                     }else{
-                        pic = "\\WEB-INF\\upload\\"+pic;
+                        pic = "\\WEB-INF\\upload\\"+pic+".jpg";
                         feedbackDO fdpic = new feedbackDO();
                         fdpic.setMission_id(mission_id);
                         fdpic.setWork_name(work_name);
@@ -1706,6 +1706,17 @@ public class MissionControllerImpl implements MissionController {
 
                         noteData.add(data2);
                     }
+                    ArrayList<JSONObject> auditorData = new ArrayList<JSONObject>();
+                    List<EventDetail1DO> auditorInfo = MissionDetailDAO.Event_Detail1(MissionId);
+
+                    for(EventDetail1DO EventDetail1DO : auditorInfo){
+                        JSONObject data1 = new JSONObject();
+                        data1.put("auditor",EventDetail1DO.getAuditor());
+                        data1.put("auditor_opinion",EventDetail1DO.getAuditor_opinion());
+                        data1.put("auditor_time",EventDetail1DO.getAuditor_time());
+
+                        auditorData.add(data1);
+                    }
 
                     MissionReturnDO task_info =MissionDetailDAO.get_first();
                     JSONObject data = new JSONObject();
@@ -1714,7 +1725,7 @@ public class MissionControllerImpl implements MissionController {
                     data.put("font_color",task_info.getFont_color());
                     data.put("note",noteInfo);
                     data.put("event",eventData);
-
+                    data.put("auditor",auditorData);
                     result.put("data",data);
                     result.put("essMsg","10000");
                     result.put("result","10000");
@@ -1740,18 +1751,16 @@ public class MissionControllerImpl implements MissionController {
 
         try {
 
-            String time1 = request.getParameter("time1");
-            String time2 = request.getParameter("time2");
 //            if (time1==null||time1.isEmpty()||time2==null||time2.isEmpty()) {
-                time2 = new SimpleDateFormat("yyyy-MM").format(new Date());
+                String time2 = new SimpleDateFormat("yyyy-MM").format(new Date());
 
                 SimpleDateFormat ym=new SimpleDateFormat("yyyy-MM");
                 Calendar ymmax = Calendar.getInstance();
                 ymmax.setTime(ym.parse(time2));
                 ymmax.add(Calendar.MONTH,-5);
                 Date dt1 = ymmax.getTime();
-                time1 = ym.format(dt1);
-            System.out.println(time1+","+time2);
+                String time1 = ym.format(dt1);
+
 //            } else {
                 List<collectDO> collect = collectDAO.list(time1,time2);
                 if(collect.isEmpty()){
@@ -1760,11 +1769,15 @@ public class MissionControllerImpl implements MissionController {
 
 
                     ArrayList<JSONObject> exception = new ArrayList<JSONObject>();
+
                     for(collectDO Collect : collect){
+
                         JSONObject data1 = new JSONObject();
                         data1.put("time",Collect.getTime());
-                        data1.put("count",Collect.getCount());
-                        data1.put("status",Collect.getStatus());
+                        data1.put("count",Collect.getAlarm()+Collect.getHidden_danger()+Collect.getQuestion());
+                        data1.put("question",Collect.getQuestion());
+                        data1.put("hidden_danger",Collect.getHidden_danger());
+                        data1.put("alarm",Collect.getAlarm());
                         exception.add(data1);
                     }
 
@@ -1928,5 +1941,173 @@ public class MissionControllerImpl implements MissionController {
         // 输出结果
         HttpOutUtil.outData(response, JSONObject.toJSONString(result));
     }
+
+
+
+    @RequestMapping(method = { RequestMethod.POST }, params = "action=collect1")
+    public void collect1(HttpServletRequest request, HttpServletResponse response) {
+
+//    	ApplicationContext context=getContext();
+        collectDAOImpl collectDAO=(collectDAOImpl) context.getBean("collectDAO");
+
+        JSONObject result = new JSONObject();
+        result.put("result",10001);
+//        System.out.println("11");
+
+        try {
+
+
+            String workshop = request.getParameter("workshop");
+
+//            if (time1==null||time1.isEmpty()||time2==null||time2.isEmpty()) {
+            String time2 = new SimpleDateFormat("yyyy-MM").format(new Date());
+
+            SimpleDateFormat ym=new SimpleDateFormat("yyyy-MM");
+            Calendar ymmax = Calendar.getInstance();
+            ymmax.setTime(ym.parse(time2));
+            ymmax.add(Calendar.MONTH,-5);
+            Date dt1 = ymmax.getTime();
+            String time1 = ym.format(dt1);
+            System.out.println(time1+","+time2);
+//            } else {
+            List<collect1DO> collect = collectDAO.list1(time1,time2,workshop);
+            if(collect.isEmpty()){
+                result.put("errMsg","empty");
+            }else{
+
+
+                ArrayList<JSONObject> exception = new ArrayList<JSONObject>();
+                for(collect1DO Collect : collect){
+                    JSONObject data1 = new JSONObject();
+                    data1.put("time",Collect.getTime());
+                    data1.put("count",Collect.getDaily()+Collect.getRepair()+Collect.getTemp());
+                    data1.put("daily",Collect.getDaily());
+                    data1.put("repair",Collect.getRepair());
+                    data1.put("temp",Collect.getTemp());
+                    exception.add(data1);
+                }
+
+
+                result.put("data",exception);
+                result.put("essMsg","10000");
+                result.put("result","10000");
+//                }
+            }
+        } catch (Exception e) {
+            result.put("essMsg", e.getMessage());
+            LOGGER.warn("exception when login: " + e.getMessage());
+        }
+        // 输出结果
+        HttpOutUtil.outData(response, JSONObject.toJSONString(result));
+    }
+
+
+    @RequestMapping(method = { RequestMethod.POST }, params = "action=collect2")
+    public void collect2(HttpServletRequest request, HttpServletResponse response) {
+
+//    	ApplicationContext context=getContext();
+        collectDAOImpl collectDAO=(collectDAOImpl) context.getBean("collectDAO");
+
+        JSONObject result = new JSONObject();
+        result.put("result",10001);
+//        System.out.println("11");
+
+        try {
+
+
+
+//            if (time1==null||time1.isEmpty()||time2==null||time2.isEmpty()) {
+            String time2 = new SimpleDateFormat("yyyy-MM").format(new Date());
+
+            SimpleDateFormat ym=new SimpleDateFormat("yyyy-MM");
+            Calendar ymmax = Calendar.getInstance();
+            ymmax.setTime(ym.parse(time2));
+            ymmax.add(Calendar.MONTH,-5);
+            Date dt1 = ymmax.getTime();
+            String time1 = ym.format(dt1);
+
+//            } else {
+            List<collect2DO> collect = collectDAO.list2(time1,time2);
+            if(collect.isEmpty()){
+                result.put("errMsg","empty");
+            }else{
+
+
+                ArrayList<JSONObject> exception = new ArrayList<JSONObject>();
+                for(collect2DO Collect : collect){
+                    JSONObject data1 = new JSONObject();
+                    data1.put("time",Collect.getTime());
+
+                    data1.put("daily",Collect.getDaily());
+                    data1.put("repair",Collect.getRepair());
+                    data1.put("temp",Collect.getTemp());
+                    data1.put("count",Collect.getDaily()+Collect.getRepair()+Collect.getTemp());
+                    exception.add(data1);
+                }
+
+
+                result.put("data",exception);
+                result.put("essMsg","10000");
+                result.put("result","10000");
+//                }
+            }
+        } catch (Exception e) {
+            result.put("essMsg", e.getMessage());
+            LOGGER.warn("exception when login: " + e.getMessage());
+        }
+        // 输出结果
+        HttpOutUtil.outData(response, JSONObject.toJSONString(result));
+    }
+
+
+
+    @RequestMapping(method = { RequestMethod.POST }, params = "action=insertException")
+    public void insertException(HttpServletRequest request, HttpServletResponse response) {
+
+        //ApplicationContext context = getContext();
+        exceptionDtlDAOImpl insertExceptionDAO = (exceptionDtlDAOImpl) context.getBean("exceptionDtlDAO");
+
+        JSONObject result = new JSONObject();
+        result.put("result", 10001);
+
+
+        try {
+
+            String checkpoint = request.getParameter("abnormal_check_point");
+            String description = request.getParameter("abnormal_description");
+            String level = request.getParameter("abnormal_level");
+            String report_worker = request.getParameter("abnormal_person");
+            String report_time = request.getParameter("abnormal_time");
+            String workshop = request.getParameter("workshop");
+
+
+            if (checkpoint == null || checkpoint.isEmpty() ||workshop == null || workshop.isEmpty()||report_worker == null || report_worker.isEmpty() ) {
+                result.put("errMsg", "输入参数有误");
+                result.put("result","10001");
+            } else {
+
+
+                insertExceptionDO insertExceptionDO = new insertExceptionDO();
+                insertExceptionDO.setCheckpoint(checkpoint);
+                insertExceptionDO.setDescription(description);
+                insertExceptionDO.setLevel(level);
+                insertExceptionDO.setReport_worker(report_worker);
+                insertExceptionDO.setReport_time(report_time);
+                insertExceptionDO.setWorkshop(workshop);
+                insertExceptionDAO.insert(insertExceptionDO);
+                System.out.println("insert-ok\\\"1\\\"||\\\"2\\\"");
+                result.put("errMsg", "保存成功！");
+                result.put("result","10000");
+
+
+            }
+        } catch (Exception e) {
+            result.put("essMsg", e.getMessage());
+
+        }
+        // 输出结果
+        HttpOutUtil.outData(response, JSONObject.toJSONString(result));
+    }
+
 
 }

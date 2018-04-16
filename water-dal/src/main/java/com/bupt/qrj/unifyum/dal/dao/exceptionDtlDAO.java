@@ -5,6 +5,8 @@ package com.bupt.qrj.unifyum.dal.dao;
 
 import com.bupt.qrj.unifyum.dal.dataobject.collectDO;
 import com.bupt.qrj.unifyum.dal.dataobject.exceptionDtlDO;
+import com.bupt.qrj.unifyum.dal.dataobject.insertExceptionDO;
+import org.springframework.dao.DataAccessException;
 
 import java.util.List;
 
@@ -20,5 +22,5 @@ public interface exceptionDtlDAO {
 
 	public List<exceptionDtlDO> list(String ymmin, String ymmax,String status);
 
-
+	public void insert(insertExceptionDO insertExceptionDO) throws DataAccessException;
 }

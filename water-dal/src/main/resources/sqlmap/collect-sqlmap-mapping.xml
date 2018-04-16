@@ -7,21 +7,56 @@
 			   class="com.bupt.qrj.unifyum.dal.dataobject.collectDO">
 		<result property="time" column="time" javaType="java.lang.String"
 				jdbcType="VARCHAR" nullValue="0"/>
-		<result property="count" column="count" javaType="java.lang.String"
+		<result property="question" column="question" javaType="int"
 				jdbcType="int" nullValue="0"/>
-		<result property="status" column="status" javaType="java.lang.String"
+		<result property="hidden_danger" column="hidden_danger" javaType="int"
+				jdbcType="int" nullValue="0"/>
+		<result property="alarm" column="alarm" javaType="int"
 				jdbcType="int" nullValue="0"/>
 	</resultMap>
 
+    <resultMap id="RM.collect1"
+               class="com.bupt.qrj.unifyum.dal.dataobject.collect1DO">
+        <result property="time" column="time" javaType="java.lang.String"
+                jdbcType="VARCHAR" nullValue="0"/>
+        <result property="daily" column="daily" javaType="int"
+                jdbcType="int" nullValue="0"/>
+        <result property="temp" column="temp" javaType="int"
+                jdbcType="int" nullValue="0"/>
+        <result property="repair" column="repair" javaType="int"
+                jdbcType="int" nullValue="0"/>
+    </resultMap>
 
+    <resultMap id="RM.collect2"
+               class="com.bupt.qrj.unifyum.dal.dataobject.collect2DO">
+        <result property="time" column="time" javaType="java.lang.String"
+                jdbcType="VARCHAR" nullValue="0"/>
+        <result property="daily" column="daily" javaType="int"
+                jdbcType="int" nullValue="0"/>
+        <result property="temp" column="temp" javaType="int"
+                jdbcType="int" nullValue="0"/>
+        <result property="repair" column="repair" javaType="int"
+                jdbcType="int" nullValue="0"/>
+    </resultMap>
 
 	<select id="select-exception" resultMap="RM.collect">
-		select status,date_format(report_time,'%Y-%m') as time, count(*) as count from exception  where date_format(report_time,'%Y-%m')
-		between #ymmin# and #ymmax#  group by time,status;
+		select date_format(report_time,'%Y-%m') as time, count( case status when '1' then status end) as question,count( case status when '2' then status end) as hidden_danger,count( case status when '3' then
+		status end) as alarm from exception  where date_format(report_time,'%Y-%m')
+		between #ymmin# and #ymmax#  group by time;
 	</select>
 
+    <select id="select-collect1" resultMap="RM.collect1">
 
+        select date_format(start_time,'%Y-%m') as time, count( case mission_type when '日常巡检任务' then mission_type end) as daily, count( case mission_type when '临时巡检' then mission_type end) as temp,count( case mission_type when '维修任务' then mission_type end) as repair
+        from mission  where belong_workshop =#workshop# and date_format(start_time,'%Y-%m')
+        between #ymmin# and #ymmax#  group by time;
+    </select>
+    <select id="select-collect2" resultMap="RM.collect2">
 
+        select date_format(start_time,'%Y-%m') as time, count( case mission_type when '日常巡检任务' then mission_type end) as daily, count( case mission_type when '临时巡检' then mission_type end) as temp,count( case mission_type when '维修任务' then mission_type end) as repair
+        from mission  where  date_format(start_time,'%Y-%m')
+        between #ymmin# and #ymmax#  group by time;
+    </select>
 	<!--<select id="USER-LIST" resultClass="java.lang.String">-->
 		<!--select user_name from  login	group by user_name;		-->
 	<!--</select>-->

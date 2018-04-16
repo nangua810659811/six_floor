@@ -19,27 +19,41 @@ public class collectDO {
 		this.time = time;
 	}
 
-	public String getCount() {
-		return count;
-	}
 
-	public void setCount(String count) {
-		this.count = count;
-	}
 
 	private String time;
-	private String count;
 
-	public String getStatus() {
-		return status;
+
+	public int getAlarm() {
+		return alarm;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
+	public void setAlarm(int alarm) {
+		this.alarm = alarm;
 	}
 
-	private String status;
+	public int getHidden_danger() {
+		return hidden_danger;
+	}
+
+	public void setHidden_danger(int hidden_danger) {
+		this.hidden_danger = hidden_danger;
+	}
+
+	public int getQuestion() {
+		return question;
+	}
+
+	public void setQuestion(int question) {
+		this.question = question;
+	}
+
+	private int alarm;
 
 
+
+	private int hidden_danger;
+
+	private int question;
 	
 }

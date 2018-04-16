@@ -7,6 +7,8 @@ import com.bupt.qrj.unifyum.dal.dao.collectDAO;
 import com.bupt.qrj.unifyum.dal.dao.exceptionDtlDAO;
 import com.bupt.qrj.unifyum.dal.dataobject.collectDO;
 import com.bupt.qrj.unifyum.dal.dataobject.exceptionDtlDO;
+import com.bupt.qrj.unifyum.dal.dataobject.insertExceptionDO;
+import org.springframework.dao.DataAccessException;
 import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
 
 import java.util.HashMap;
@@ -34,5 +36,10 @@ public class exceptionDtlDAOImpl extends SqlMapClientDaoSupport implements excep
        
         return rets;
     }
+    public void insert(insertExceptionDO insertExceptionDO) throws DataAccessException {
 
+
+        this.getSqlMapClientTemplate().insert("exception-insert",
+                insertExceptionDO);
+    }
 }

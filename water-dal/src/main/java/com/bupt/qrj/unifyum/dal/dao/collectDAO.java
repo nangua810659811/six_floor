@@ -3,7 +3,8 @@
  */
 package com.bupt.qrj.unifyum.dal.dao;
 
-import com.bupt.qrj.unifyum.dal.dataobject.checkInfoDO;
+import com.bupt.qrj.unifyum.dal.dataobject.collect1DO;
+import com.bupt.qrj.unifyum.dal.dataobject.collect2DO;
 import com.bupt.qrj.unifyum.dal.dataobject.collectDO;
 
 import java.util.List;
@@ -19,6 +20,6 @@ public interface collectDAO {
 
 	
 	public List<collectDO> list(String ymmin,String ymmax);
-
-
+	public List<collect1DO> list1(String ymmin, String ymmax, String workshop);
+	public List<collect2DO> list2(String ymmin, String ymmax);
 }
