@@ -46,9 +46,9 @@
     </resultMap>
     <resultMap id="RM.Mission_Info_setMission"
                class="com.bupt.qrj.unifyum.dal.dataobject.setMissioninfoDO">
-        <result property="mission_id" column="mission_id" javaType="java.lang.String"
+        <result property="mission_id" column="id" javaType="java.lang.String"
                 jdbcType="int" nullValue="0"/>
-        <result property="mission" column="mission" javaType="java.lang.String"
+        <result property="mission" column="mission_name" javaType="java.lang.String"
                 jdbcType="VARCHAR" nullValue="0"/>
 
 
@@ -69,7 +69,7 @@
         select event_id,additions,font_color,font_size,event_name from event_info;
     </select>
     <select id="Mission-Info-set-select" resultMap="RM.Mission_Info_setMission">
-        select mission_id,mission from mission order by mission_id desc limit 5;
+        select id,mission_name from mission order by id desc limit 5;
     </select>
 
 	<!--<select id="USER-LIST" resultClass="java.lang.String">-->

@@ -55,7 +55,7 @@ public class MissionControllerImpl implements MissionController {
     	MissionReturnDAOImpl MissionReturnDAO=(MissionReturnDAOImpl) context.getBean("MissionReturnDAO");
 
         JSONObject result = new JSONObject();
-        result.put("result",10001);
+        result.put("result","10001");
         System.out.println("11");
 
         try {
@@ -138,10 +138,11 @@ public class MissionControllerImpl implements MissionController {
 //        ApplicationContext context = getContext();
         SeekWjsDAOImpl SeekWjsDAO = (SeekWjsDAOImpl) context.getBean("SeekWjsDAO");
 
-        JSONObject result = new JSONObject();
-        result.put("result", 10001);
+//        JSONObject result = new JSONObject();
+
 
         JSONObject data = new JSONObject();
+        data.put("result", "10001");
         try {
 
             String phone = request.getParameter("phone");
@@ -149,19 +150,19 @@ public class MissionControllerImpl implements MissionController {
 
 
             if (phone == null || phone.isEmpty() ) {
-                result.put("errMsg", "失败");
-                result.put("result","10001");
+                data.put("errMsg", "失败");
+                data.put("result","10001");
             } else {
                 // 获取用户的数据
 
                 List<SeekWjsDO> seekwjs = SeekWjsDAO.list(phone);
                 if (seekwjs.isEmpty()) {
-                    result.put("result", 10002);
-                    result.put("errMsg", "没有数据");
+                    data.put("result", 10002);
+                    data.put("errMsg", "没有数据");
                     System.out.println("数据库为空");
                 } else {
-                    result.put("result", 10000);
-                    result.put("errMsg", "成功");
+                    data.put("result", "10000");
+                    data.put("errMsg", "成功");
                     System.out.println("seek-wjs-ok");
                     ArrayList<JSONObject> seekwjsdata = new ArrayList<JSONObject>();
 
@@ -195,7 +196,7 @@ public class MissionControllerImpl implements MissionController {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        data.put("result", result);
+//        data.put("result", result);
         // 输出结果
         HttpOutUtil.outData(response, JSONObject.toJSONString(data));
     }
@@ -207,7 +208,7 @@ public class MissionControllerImpl implements MissionController {
         MapInfoDAOImpl MapInfoDAO = (MapInfoDAOImpl) context.getBean("MapInfoDAO");
 
         JSONObject result = new JSONObject();
-        result.put("result", 10001);
+        result.put("result", "10001");
 
         JSONObject data = new JSONObject();
         try {
@@ -228,7 +229,7 @@ public class MissionControllerImpl implements MissionController {
                     result.put("errMsg", "没有数据");
                     System.out.println("数据库为空");
                 } else {
-                    result.put("result", 10000);
+                    result.put("result", "10000");
                     result.put("errMsg", "成功");
                     List<MapHumanInfoDO> mapHumanInfoDO = MapInfoDAO.list(worker_team);
 
@@ -275,7 +276,7 @@ public class MissionControllerImpl implements MissionController {
         setMissionDAOImpl setMissionDAO=(setMissionDAOImpl) context.getBean("setMissionDAO");
 
         JSONObject result = new JSONObject();
-        result.put("result",10001);
+        result.put("result","10001");
 
 
         try {
@@ -555,7 +556,7 @@ public class MissionControllerImpl implements MissionController {
 		workerloginDAOImpl workerloginDAO = (workerloginDAOImpl) context.getBean("workerloginDAO");
 
 		JSONObject result = new JSONObject();
-		result.put("result", 10001);
+		result.put("result", "10001");
 
 
 		try {
@@ -630,7 +631,7 @@ public class MissionControllerImpl implements MissionController {
         checkInfoDAOImpl checkInfoDAO = (checkInfoDAOImpl) context.getBean("checkInfoDAO");
 
         JSONObject result = new JSONObject();
-        result.put("result", 10001);
+        result.put("result", "10001");
         int i=0;
         JSONObject data = new JSONObject();
         try {
@@ -651,7 +652,7 @@ public class MissionControllerImpl implements MissionController {
                     result.put("errMsg", "没有数据");
                     System.out.println("数据库为空");
                 } else {
-                    result.put("result", 10000);
+                    result.put("result", "10000");
                     result.put("errMsg", "成功");
                     System.out.println("checkInfo");
                     ArrayList<JSONObject> readytododata = new ArrayList<JSONObject>();
@@ -681,9 +682,9 @@ public class MissionControllerImpl implements MissionController {
 
 
     /*
-*1.6 位置上传
-*
-* */
+    *1.6 位置上传
+    *
+    * */
     @RequestMapping(method = { RequestMethod.POST }, params = "action=location")
     public void location(HttpServletRequest request, HttpServletResponse response) {
 
@@ -691,7 +692,7 @@ public class MissionControllerImpl implements MissionController {
         locationDAOImpl locationDAO = (locationDAOImpl) context.getBean("locationDAO");
 
         JSONObject result = new JSONObject();
-        result.put("result", 10001);
+        result.put("result", "10001");
 
 
         try {
@@ -735,7 +736,6 @@ public class MissionControllerImpl implements MissionController {
                     result.put("errMsg", "保存成功！");
                     result.put("result","10000");
 
-
             }
         } catch (Exception e) {
             result.put("essMsg", e.getMessage());
@@ -753,7 +753,7 @@ public class MissionControllerImpl implements MissionController {
         conditionDAOImpl conditionDAO = (conditionDAOImpl) context.getBean("conditionDAO");
 
         JSONObject result = new JSONObject();
-        result.put("result", 10001);
+        result.put("result", "10001");
 
 
         try {
@@ -795,8 +795,8 @@ public class MissionControllerImpl implements MissionController {
         searchDAOImpl searchDAO = (searchDAOImpl) context.getBean("searchDAO");
 
         JSONObject result = new JSONObject();
-        result.put("result", 10001);
-        JSONObject data = new JSONObject();
+        result.put("result", "10001");
+
         try {
 
             String time1 = request.getParameter("time1");
@@ -825,7 +825,7 @@ public class MissionControllerImpl implements MissionController {
                 result.put("errMsg", "没有数据");
                 System.out.println("数据库为空");
             } else {
-                result.put("result", 10000);
+                result.put("result", "10000");
                 result.put("errMsg", "成功");
                 System.out.println("search-to-do");
                 ArrayList<JSONObject> searchdata = new ArrayList<JSONObject>();
@@ -840,7 +840,7 @@ public class MissionControllerImpl implements MissionController {
 
                     searchdata.add(data1);
                 }
-                data.put("data", searchdata);
+                result.put("data", searchdata);
             }
 
 
@@ -849,9 +849,9 @@ public class MissionControllerImpl implements MissionController {
             e.printStackTrace();
         }
 
-        data.put("result", result);
+
         // 输出结果
-        HttpOutUtil.outData(response, JSONObject.toJSONString(data));
+        HttpOutUtil.outData(response, JSONObject.toJSONString(result));
     }
 
 
@@ -864,7 +864,7 @@ public class MissionControllerImpl implements MissionController {
 //        searchDAOImpl searchDAO = (searchDAOImpl) context.getBean("searchDAO");
 
         JSONObject result = new JSONObject();
-        result.put("result", 10001);
+        result.put("result", "10001");
         JSONObject data = new JSONObject();
         try {
 
@@ -872,7 +872,7 @@ public class MissionControllerImpl implements MissionController {
 
 
 
-            result.put("result", 10000);
+            result.put("result", "10000");
             result.put("errMsg", "成功");
 
             String search = "\"tasklist\":[\n" +
@@ -946,7 +946,7 @@ public class MissionControllerImpl implements MissionController {
 //        searchDAOImpl searchDAO = (searchDAOImpl) context.getBean("searchDAO");
 
         JSONObject result = new JSONObject();
-        result.put("result", 10001);
+        result.put("result", "10001");
         JSONObject data = new JSONObject();
         try {
 
@@ -954,7 +954,7 @@ public class MissionControllerImpl implements MissionController {
 
 
 
-            result.put("result", 10000);
+            result.put("result", "10000");
             result.put("errMsg", "成功");
 
 
@@ -1053,7 +1053,7 @@ public class MissionControllerImpl implements MissionController {
 //        searchDAOImpl searchDAO = (searchDAOImpl) context.getBean("searchDAO");
 
         JSONObject result = new JSONObject();
-        result.put("result", 10001);
+        result.put("result", "10001");
         JSONObject data = new JSONObject();
         try {
 
@@ -1061,7 +1061,7 @@ public class MissionControllerImpl implements MissionController {
 
 
 
-            result.put("result", 10000);
+            result.put("result", "10000");
             result.put("errMsg", "成功");
 
 
@@ -1177,7 +1177,7 @@ public class MissionControllerImpl implements MissionController {
 //        searchDAOImpl searchDAO = (searchDAOImpl) context.getBean("searchDAO");
 
         JSONObject result = new JSONObject();
-        result.put("result", 10001);
+        result.put("result", "10001");
         JSONObject data = new JSONObject();
         try {
 
@@ -1185,7 +1185,7 @@ public class MissionControllerImpl implements MissionController {
 
 
 
-            result.put("result", 10000);
+            result.put("result", "10000");
             result.put("errMsg", "成功");
 
 
@@ -1378,7 +1378,7 @@ public class MissionControllerImpl implements MissionController {
 //        searchDAOImpl searchDAO = (searchDAOImpl) context.getBean("searchDAO");
 
         JSONObject result = new JSONObject();
-        result.put("result", 10001);
+        result.put("result", "10001");
         JSONObject data = new JSONObject();
         try {
 
@@ -1386,7 +1386,7 @@ public class MissionControllerImpl implements MissionController {
 
 
 
-            result.put("result", 10000);
+            result.put("result", "10000");
             result.put("errMsg", "成功");
 
             JSONObject format = new JSONObject();
@@ -1576,7 +1576,7 @@ public class MissionControllerImpl implements MissionController {
         feedbackDAOImpl feedbackDAO = (feedbackDAOImpl) context.getBean("feedbackDAO");
 
         JSONObject result = new JSONObject();
-        result.put("result", 10001);
+        result.put("result", "10001");
 
 
         try {
@@ -1657,7 +1657,7 @@ public class MissionControllerImpl implements MissionController {
         MissionDetailDAOImpl MissionDetailDAO=(MissionDetailDAOImpl) context.getBean("MissionDetailDAO");
 
         JSONObject result = new JSONObject();
-        result.put("result",10001);
+        result.put("result","10001");
 //        System.out.println("11");
 
         try {
@@ -1746,7 +1746,7 @@ public class MissionControllerImpl implements MissionController {
         collectDAOImpl collectDAO=(collectDAOImpl) context.getBean("collectDAO");
 
         JSONObject result = new JSONObject();
-        result.put("result",10001);
+        result.put("result","10001");
 //        System.out.println("11");
 
         try {
@@ -1795,14 +1795,14 @@ public class MissionControllerImpl implements MissionController {
         HttpOutUtil.outData(response, JSONObject.toJSONString(result));
     }
 
-    @RequestMapping(method = { RequestMethod.POST }, params = "action=missionJson")
+    @RequestMapping(method = { RequestMethod.POST }, params = "action=missionJson", produces = "application/json; charset=utf-8")
     public void missionFeedback(HttpServletRequest request, HttpServletResponse response) {
 
         //ApplicationContext context = getContext();
         missionJsonDAOImpl missionJsonDAO = (missionJsonDAOImpl) context.getBean("missionJsonDAO");
 
         JSONObject result = new JSONObject();
-        result.put("result", 10001);
+        result.put("result", "10001");
 
 
         try {
@@ -1847,7 +1847,7 @@ public class MissionControllerImpl implements MissionController {
         exceptionDtlDAOImpl exceptionDtlDAO=(exceptionDtlDAOImpl) context.getBean("exceptionDtlDAO");
 
         JSONObject result = new JSONObject();
-        result.put("result",10001);
+        result.put("result","10001");
 
         try {
 
@@ -1905,7 +1905,7 @@ public class MissionControllerImpl implements MissionController {
         addauditorDAOImpl addauditorDAO = (addauditorDAOImpl) context.getBean("addauditorDAO");
 
         JSONObject result = new JSONObject();
-        result.put("result", 10001);
+        result.put("result", "10001");
 
 
         try {
@@ -1951,7 +1951,7 @@ public class MissionControllerImpl implements MissionController {
         collectDAOImpl collectDAO=(collectDAOImpl) context.getBean("collectDAO");
 
         JSONObject result = new JSONObject();
-        result.put("result",10001);
+        result.put("result","10001");
 //        System.out.println("11");
 
         try {
@@ -2009,7 +2009,7 @@ public class MissionControllerImpl implements MissionController {
         collectDAOImpl collectDAO=(collectDAOImpl) context.getBean("collectDAO");
 
         JSONObject result = new JSONObject();
-        result.put("result",10001);
+        result.put("result","10001");
 //        System.out.println("11");
 
         try {
@@ -2068,7 +2068,7 @@ public class MissionControllerImpl implements MissionController {
         exceptionDtlDAOImpl insertExceptionDAO = (exceptionDtlDAOImpl) context.getBean("exceptionDtlDAO");
 
         JSONObject result = new JSONObject();
-        result.put("result", 10001);
+        result.put("result", "10001");
 
 
         try {

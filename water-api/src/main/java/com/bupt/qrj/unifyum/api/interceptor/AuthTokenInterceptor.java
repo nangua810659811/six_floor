@@ -52,7 +52,7 @@ public class AuthTokenInterceptor extends HandlerInterceptorAdapter {
                 "/mission.req?action=exception","/mission.req?action=missionJson","/mission.req?action=exceptionDetail","/arrange.req?action=arrangelist",
 				"/arrange.req?action=feedback","/mission.req?action=addauditor","/arrange.req?action=set_mission","/mission.req?action=collect2","/mission.req?action=collect1",
 
-				"/arrange.req?action=insertException"
+				"/mission.req?action=insertException"
 		};
 		String cPath = req.getContextPath();
 		String URI = req.getRequestURI();

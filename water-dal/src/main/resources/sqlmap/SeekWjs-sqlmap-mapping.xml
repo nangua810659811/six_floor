@@ -6,7 +6,7 @@
 
 	<resultMap id="RM.SeekWjs"
 			   class="com.bupt.qrj.unifyum.dal.dataobject.SeekWjsDO">
-		<result property="mission_id" column="mission_id" javaType="java.lang.String"
+		<result property="mission_id" column="id" javaType="java.lang.String"
 				jdbcType="VARCHAR" nullValue="0"/>
 		<result property="mission_condition" column="mission_condition" javaType="java.lang.String"
 				jdbcType="VARCHAR" nullValue="0"/>
@@ -18,7 +18,7 @@
 
 
 	<select id="Mission-Seek-Wjs" resultMap="RM.SeekWjs">
-		select mission_id,mission_condition,mission_addition from mission where worker_phone = #phone# ;
+		select id,mission_condition,mission_addition from mission where worker_phone = #phone# ;
 	</select>
 
 	<!--<select id="Mission-Value" parameterClass="map" resultClass="java.lang.String" remapResults="true" >-->

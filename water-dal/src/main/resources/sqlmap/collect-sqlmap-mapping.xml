@@ -41,8 +41,8 @@
 
 	<select id="select-exception" resultMap="RM.collect">
 		select date_format(report_time,'%Y-%m') as time, count( case status when '1' then status end) as question,count( case status when '2' then status end) as hidden_danger,count( case status when '3' then
-		status end) as alarm from exception  where date_format(report_time,'%Y-%m')
-		between #ymmin# and #ymmax#  group by time;
+        status end) as alarm from exception  where date_format(report_time,'%Y-%m')
+        between #ymmin# and #ymmax#  group by time;
 	</select>
 
     <select id="select-collect1" resultMap="RM.collect1">

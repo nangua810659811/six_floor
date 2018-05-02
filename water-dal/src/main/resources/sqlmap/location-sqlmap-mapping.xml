@@ -40,7 +40,7 @@
 	</resultMap>
 
 	<update id="location-UPDATE">
-		update worker_info set longitude=#longitude# , latitude=#latitude# , time=#time#
+		update worker_info set longitude=#longitude# , latitude=#latitude# , add_time=#time#
 		where phone=#phone#;
 	</update>
 
@@ -51,9 +51,9 @@
 <!--  parameterClass="com.bupt.qrj.unifyum.dal.dataobject.locationDO"
             -->
 	<insert id="location-insert">
-		insert into worker_info
+		insert into worker_location
 		(worker_id,longitude,latitude)
-		values(#worker_id#,#longitude#,#latitude#);
+		values(#id#,#longitude#,#latitude#);
 	</insert>
 
 

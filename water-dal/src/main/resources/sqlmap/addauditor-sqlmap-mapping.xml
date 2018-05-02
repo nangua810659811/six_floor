@@ -20,7 +20,7 @@
 
 
 	<update id="addauditor">
-		update mission set auditor = #auditor#,auditor_opinion = #auditor_opinion#,auditor_time = #auditor_time# where mission_id = #mission_id#;
+		update mission set auditor = #auditor#,auditor_opinion = #auditor_opinion#,auditor_time = #auditor_time# where id = #mission_id#;
 	</update>
 
 

@@ -18,11 +18,13 @@
 		</property> 
 		<property name="user" value="root">
 		</property>
-		<property name="password" value="M7Q0ZD4O">
+		<property name="password" value="123456">
 		</property>
 	</bean>
-<!---->
+<!--M7Q0ZD4O-->
 <!--123456789-->
+<!---->
+
 	<!-- ibatisÏà¹Ø -->
 
 	<!-- sqlMapClient -->

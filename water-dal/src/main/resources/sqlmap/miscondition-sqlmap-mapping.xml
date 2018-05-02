@@ -18,7 +18,7 @@
 
 	<update id="condition-UPDATE">
 		update mission set mission_condition=#mission_condition#
-		where mission_id=#mission_id#;
+		where id=#mission_id#;
 	</update>
 
 

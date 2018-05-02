@@ -45,7 +45,7 @@ public class arrangeControllerImpl implements arrangeController {
 	*1.4 insert
 	*
 	* */
-	@RequestMapping(method = { RequestMethod.POST }, params = "action=arrangeinsert")
+	@RequestMapping(method = { RequestMethod.POST }, params = "action=arrangeinsert", produces = "application/json; charset=utf-8")
 	public void arrangeinsert(HttpServletRequest request, HttpServletResponse response) {
 
 		//ApplicationContext context = getContext();
@@ -105,14 +105,15 @@ public class arrangeControllerImpl implements arrangeController {
             List<Object> listupdate = new ArrayList<Object>();
             for(int i=0;i<obj1.size();i++){
                 JSONObject getJsonObj = obj1.getJSONObject(i);
+                System.out.println(getJsonObj.toString());
                 String time11 = getJsonObj.getString("startTime");
                 String time22 = getJsonObj.getString("endTime");
-                String set_worker_time = obj.getString("set_worker_time");
-                String worker_name = obj.getString("worker_name");
-                String flag = obj.getString("flag");
+                String set_worker_time = getJsonObj.getString("set_worker_time");
+                String worker_name = getJsonObj.getString("worker_name");
+                String flag = getJsonObj.getString("flag");
                 String time1 = time11 + " 00:00:00";
                 String time2 = time22 + " 00:00:00";
-
+                System.out.println(flag);
                 /*Map<String, String> map = new HashMap<String, String>();
                 map.put("time1", time1);
                 map.put("time2", time2);
@@ -122,6 +123,7 @@ public class arrangeControllerImpl implements arrangeController {
                 //System.out.println(time1);
                 if(flag.equals("1")){
 //                    listinsert.add(i, map);
+                    System.out.println(i);
                     arrangeinsertDO arrangeinsertDO = new arrangeinsertDO();
                     arrangeinsertDO.setTime_left(time1);
                     arrangeinsertDO.setTime_right(time2);
@@ -129,9 +131,11 @@ public class arrangeControllerImpl implements arrangeController {
                     arrangeinsertDO.setWorker_name(worker_name);
                     arrangeinsertDO.setType(flag);
                     arrangeinsertDAO.insert(arrangeinsertDO);
+                    System.out.println(i);
 
                 }else{
 //                    listupdate.add(i, map);
+                    System.out.println(i+"error");
                     arrangeinsertDO arrangeinsertDO = new arrangeinsertDO();
                     arrangeinsertDO.setTime_left(time1);
                     arrangeinsertDO.setTime_right(time2);
@@ -141,11 +145,12 @@ public class arrangeControllerImpl implements arrangeController {
                     arrangeinsertDAO.update(arrangeinsertDO);
 
                 }
+            }
                 System.out.println("arrange-insert-ok");
-                result.put("result", 10000);
+                result.put("result", "10000");
                 result.put("errMsg", "成功");
 
-            }
+
 
         } catch (Exception e) {
 			result.put("essMsg", e.getMessage());
@@ -166,7 +171,7 @@ public class arrangeControllerImpl implements arrangeController {
         arrangeseekDAOImpl arrangeseekDAO = (arrangeseekDAOImpl) context.getBean("arrangeseekDAO");
 
         JSONObject result = new JSONObject();
-        result.put("result", 10001);
+        result.put("result", "10001");
         JSONObject data = new JSONObject();
         int i =0;
         try {
@@ -192,7 +197,7 @@ public class arrangeControllerImpl implements arrangeController {
                     result.put("errMsg", "没有数据");
                     System.out.println("数据库为空");
                 } else {
-                    result.put("result", 10000);
+                    result.put("result", "10000");
                     result.put("errMsg", "成功");
                     System.out.println("arrange-seek");
                     ArrayList<JSONObject> arrangeseekmisdata = new ArrayList<JSONObject>();
@@ -231,7 +236,7 @@ public class arrangeControllerImpl implements arrangeController {
         arrangeseekDAOImpl arrangeseekDAO = (arrangeseekDAOImpl) context.getBean("arrangeseekDAO");
 
         JSONObject result = new JSONObject();
-        result.put("result", 10001);
+        result.put("result", "10001");
         JSONObject data = new JSONObject();
         int i =0;
         try {
@@ -255,7 +260,7 @@ public class arrangeControllerImpl implements arrangeController {
                 result.put("errMsg", "没有数据");
                 System.out.println("数据库为空");
             } else {
-                result.put("result", 10000);
+                result.put("result", "10000");
                 result.put("errMsg", "成功");
                 System.out.println("arrange-seek");
                 ArrayList<JSONObject> arrangeseekdata = new ArrayList<JSONObject>();
@@ -307,7 +312,7 @@ public class arrangeControllerImpl implements arrangeController {
         arrangepermisDAOImpl arrangepermisDAO = (arrangepermisDAOImpl) context.getBean("arrangepermisDAO");
 
         JSONObject result = new JSONObject();
-        result.put("result", 10001);
+        result.put("result", "10001");
         JSONObject data = new JSONObject();
         int i =0;
         try {
@@ -331,7 +336,7 @@ public class arrangeControllerImpl implements arrangeController {
                 result.put("errMsg", "没有数据");
                 System.out.println("数据库为空");
             } else {
-                result.put("result", 10000);
+                result.put("result", "10000");
                 result.put("errMsg", "成功");
                 System.out.println("arrange-seek");
                 ArrayList<JSONObject> arrangepermisdata = new ArrayList<JSONObject>();
@@ -370,7 +375,7 @@ public class arrangeControllerImpl implements arrangeController {
         arrangelistDAOImpl arrangelistDAO = (arrangelistDAOImpl) context.getBean("arrangelistDAO");
 
         JSONObject result = new JSONObject();
-        result.put("result", 10001);
+        result.put("result", "10001");
         JSONObject data = new JSONObject();
         int i =0;
         try {
@@ -390,7 +395,7 @@ public class arrangeControllerImpl implements arrangeController {
                 result.put("errMsg", "没有数据");
                 System.out.println("数据库为空");
             } else {
-                result.put("result", 10000);
+                result.put("result", "10000");
                 result.put("errMsg", "成功");
                 System.out.println("arrange-list");
                 ArrayList<JSONObject> arrangelistdata = new ArrayList<JSONObject>();
@@ -427,7 +432,7 @@ public class arrangeControllerImpl implements arrangeController {
         MissionReturnArrDAOImpl MissionReturnArrDAO=(MissionReturnArrDAOImpl) context.getBean("MissionReturnArrDAO");
 
         JSONObject result = new JSONObject();
-        result.put("result",10001);
+        result.put("result","10001");
         System.out.println("11");
 
         try {
@@ -500,14 +505,14 @@ public class arrangeControllerImpl implements arrangeController {
     }
 
 
-    @RequestMapping(method = { RequestMethod.POST }, params = "action=feedback")
+    @RequestMapping(method = { RequestMethod.POST }, params = "action=feedback", produces = "application/json; charset=utf-8")
     public void feedback(HttpServletRequest request, HttpServletResponse response) {
 
         //ApplicationContext context = getContext();
         arrfeedbackDAOImpl feedbackDAO = (arrfeedbackDAOImpl) context.getBean("arrfeedbackDAO");
 
         JSONObject result = new JSONObject();
-        result.put("result", 10001);
+        result.put("result", "10001");
 
 
         try {
@@ -562,7 +567,7 @@ public class arrangeControllerImpl implements arrangeController {
         arrsetmisDAOImpl arrsetmisDAO = (arrsetmisDAOImpl) context.getBean("arrsetmisDAO");
 
         JSONObject result = new JSONObject();
-        result.put("result", 10001);
+        result.put("result", "10001");
 
 
         try {

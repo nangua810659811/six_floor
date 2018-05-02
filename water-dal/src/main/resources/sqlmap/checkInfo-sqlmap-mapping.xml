@@ -7,7 +7,7 @@
 			   class="com.bupt.qrj.unifyum.dal.dataobject.checkInfoDO">
 		<result property="finish_time" column="finish_time" javaType="java.lang.String"
 				jdbcType="VARCHAR" nullValue="0"/>
-		<result property="mission_id" column="mission_id" javaType="java.lang.String"
+		<result property="mission_id" column="id" javaType="java.lang.String"
 				jdbcType="VARCHAR" nullValue="0"/>
 		<result property="mission_condition" column="mission_condition" javaType="java.lang.String"
 				jdbcType="VARCHAR" nullValue="0"/>
@@ -18,7 +18,7 @@
 	</resultMap>
 
 	<select id="select-finish-mission" resultMap="RM.checkInfo">
-		select mission_id,mission_condition,worker_name,finish_time from mission where mission_condition = "5" order by mission_id desc;
+		select id,mission_condition,worker_name,finish_time from mission where mission_condition = "5" order by id desc;
 	</select>
 
 
