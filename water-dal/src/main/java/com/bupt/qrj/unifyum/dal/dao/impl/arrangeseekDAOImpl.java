@@ -38,8 +38,8 @@ public class arrangeseekDAOImpl extends SqlMapClientDaoSupport implements arrang
 
         HashMap<String,Object> abbys = new HashMap<String,Object>();
 
-        abbys.put("timemin",timemmin);
-        abbys.put("timemax",timemmax);
+        abbys.put("timemmin",timemmin);
+        abbys.put("timemmax",timemmax);
 //        System.out.println(timemmin+timemmax);
         List<arrangeseekmisDO> rets = this.getSqlMapClientTemplate().queryForList("arrange-seek-mis", abbys);
         /*System.out.println(rets);*/

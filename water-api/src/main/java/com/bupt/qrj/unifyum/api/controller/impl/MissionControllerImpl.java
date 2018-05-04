@@ -1594,7 +1594,7 @@ public class MissionControllerImpl implements MissionController {
                 result.put("result","10001");
             } else {
                 List<feedbackDO> feedback = feedbackDAO.seek(mission_id, event_id, work_name);
-
+                System.out.println(feedback);
                 if (feedback.isEmpty()) {
                     if (type.equals("1")){
                         feedbackDO fddata = new feedbackDO();
@@ -1634,12 +1634,12 @@ public class MissionControllerImpl implements MissionController {
                         feedbackDAO.updatepic(fdpic);
                     }
 
-                    System.out.println("ok");
-                    result.put("errMsg", "保存成功！");
-                    result.put("result", "10000");
 
 
-                }
+
+                }System.out.println("ok");
+                result.put("errMsg", "保存成功！");
+                result.put("result", "10000");
             }
         } catch (Exception e) {
             result.put("essMsg", e.getMessage());

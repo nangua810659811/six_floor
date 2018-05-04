@@ -18,7 +18,7 @@
 		select finish_time, id, worker_name
 		from mission where worker_name like concat('%', #worker_name#, '%') and mission_name like concat('%', #mission_name#, '%')
 		and mission_type like concat('%', #mission_type#, '%')		and mission_level like concat('%', #mission_level#, '%')
-		and start_time between #timemin# and #timemax#;
+		and send_time between #timemin# and #timemax#;
 	</select>
 
     <!--mission_condition = '1' and-->

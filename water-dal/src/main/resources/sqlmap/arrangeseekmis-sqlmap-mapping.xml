@@ -5,7 +5,7 @@
 	<resultMap id="RM.arrangeseekmis"
 		class="com.bupt.qrj.unifyum.dal.dataobject.arrangeseekmisDO">
 
-        <result property="set_start_time" column="set_start_time" javaType="java.lang.String"
+        <result property="period_start_time" column="period_start_time" javaType="java.lang.String"
                 jdbcType="varchar" nullValue="0"/>
 		<result property="set_start_time_code" column="set_start_time_code" javaType="java.lang.String"
 			    jdbcType="varchar" nullValue="0"/>
@@ -18,7 +18,7 @@
 	</resultMap>
 
 	<select id="arrange-seek-mis" resultMap="RM.arrangeseekmis">
-		select set_start_time,set_start_time_code,mission_condition,mission_name from mission where set_start_time &lt;= #timemax# and set_start_time &gt;= #timemin#;
+		select period_start_time,set_start_time_code,mission_condition,mission_name from mission where period_start_time &lt;= #timemmax# and period_start_time &gt;= #timemmin#;
 	</select>
 
     <!--mission_condition = '1' and-->

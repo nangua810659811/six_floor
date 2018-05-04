@@ -11,22 +11,6 @@ package com.bupt.qrj.unifyum.dal.dataobject;
 public class arrangepermisDO {
 
 
-    public String getSet_start_time() {
-        return set_start_time;
-    }
-
-    public void setSet_start_time(String set_start_time) {
-        this.set_start_time = set_start_time;
-    }
-
-    public String getMission_set_time() {
-        return mission_set_time;
-    }
-
-    public void setMission_set_time(String mission_set_time) {
-        this.mission_set_time = mission_set_time;
-    }
-
     public String getMission_condition() {
         return mission_condition;
     }
@@ -36,8 +20,7 @@ public class arrangepermisDO {
     }
 
 
-    private String set_start_time;
-    private String mission_set_time;
+    private String period_start_time;
     private String mission_condition;
 
     private String worker_name;
@@ -50,14 +33,23 @@ public class arrangepermisDO {
         this.worker_name = worker_name;
     }
 
-    public String getMission() {
-        return mission;
+
+    public String getPeriod_start_time() {
+        return period_start_time;
     }
 
-    public void setMission(String mission) {
-        this.mission = mission;
+    public void setPeriod_start_time(String period_start_time) {
+        this.period_start_time = period_start_time;
     }
 
-    private String mission;
+    public String getMission_name() {
+        return mission_name;
+    }
+
+    public void setMission_name(String mission_name) {
+        this.mission_name = mission_name;
+    }
+
+    private String mission_name;
 
 }

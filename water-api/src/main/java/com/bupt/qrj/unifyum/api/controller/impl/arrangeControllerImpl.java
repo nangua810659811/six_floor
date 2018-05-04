@@ -206,7 +206,7 @@ public class arrangeControllerImpl implements arrangeController {
                         JSONObject data1 = new JSONObject();
                         data1.put("mission_name", arrangeseekmisDO.getMission());
                         data1.put("mission_condition", arrangeseekmisDO.getMission_condition());
-                        data1.put("set_mission_time", arrangeseekmisDO.getSet_start_time());
+                        data1.put("set_mission_time", arrangeseekmisDO.getSet_start_time_code());
                         i++;
 
 
@@ -318,6 +318,7 @@ public class arrangeControllerImpl implements arrangeController {
         try {
 
 
+
             String time1 = request.getParameter("time1");
             String time2 = request.getParameter("time2");
             String set_start_time_code = request.getParameter("set_worker_time");
@@ -343,7 +344,7 @@ public class arrangeControllerImpl implements arrangeController {
 
                 for (arrangepermisDO arrangepermisDO : arrangepermis) {
                     JSONObject data1 = new JSONObject();
-                    data1.put("mission_name", arrangepermisDO.getMission());
+                    data1.put("mission_name", arrangepermisDO.getMission_name());
                     data1.put("mission_condition", arrangepermisDO.getMission_condition());
 
 

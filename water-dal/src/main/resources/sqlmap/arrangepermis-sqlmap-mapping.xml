@@ -5,13 +5,11 @@
 	<resultMap id="RM.arrangepermis"
 		class="com.bupt.qrj.unifyum.dal.dataobject.arrangepermisDO">
 
-        <result property="set_start_time" column="mission_set_start_time" javaType="java.lang.String"
+        <result property="period_start_time" column="period_start_time" javaType="java.lang.String"
                 jdbcType="varchar" nullValue="0"/>
-		<result property="set_start_time_code" column="set_start_time_code" javaType="java.lang.String"
-			    jdbcType="varchar" nullValue="0"/>
         <result property="mission_condition" column="mission_condition" javaType="java.lang.String"
                 jdbcType="varchar" nullValue="0"/>
-        <result property="mission" column="mission" javaType="java.lang.String"
+        <result property="mission" column="mission_name" javaType="java.lang.String"
                 jdbcType="varchar" nullValue="0"/>
 		<result property="worker_name" column="worker_name" javaType="java.lang.String"
 				jdbcType="varchar" nullValue="0"/>
@@ -20,7 +18,7 @@
 	</resultMap>
 
 	<select id="arrange-per-mis" resultMap="RM.arrangepermis">
-		select mission_set_start_time,mission_condition,mission,worker_name from mission where set_start_time &lt;= #timemax# and set_start_time &gt;= #timemin# and worker_name = #worker_name# and set_start_time_code = #set_start_time_code#;
+		select period_start_time,mission_condition,mission_name,worker_name from mission where period_start_time &lt;= #timemax# and period_start_time &gt;= #timemin# and worker_name = #worker_name# and set_start_time_code = #set_start_time_code#;
 	</select>
 
     <!--mission_condition = '1' and-->

@@ -64,9 +64,8 @@ public class Filedownload extends HttpServlet{
                 System.out.println(patha+" mission_pic");
 //            }
 
-
             //String path = "D:\\Program Files\\Apache Software Foundation\\apache-tomcat-7.0.73\\webapps\\water" +patha;
-            String path = "C:\\apache-tomcat-7.0.73\\webapps\\water" +patha;
+            String path = "C:\\apache-tomcat-8.5.23\\webapps\\water" +patha;
 
             /*String pathb = "F:\\upload\\abc.jpg";*/
             //witcher3
