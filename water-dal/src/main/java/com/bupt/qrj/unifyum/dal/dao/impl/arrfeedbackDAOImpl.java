@@ -3,10 +3,7 @@
  */
 package com.bupt.qrj.unifyum.dal.dao.impl;
 
-import com.bupt.qrj.unifyum.dal.dao.arrangeinsertDAO;
 import com.bupt.qrj.unifyum.dal.dao.arrfeedbackDAO;
-import com.bupt.qrj.unifyum.dal.dataobject.arrangeinsertDO;
-import com.bupt.qrj.unifyum.dal.dataobject.arrfeedbackDO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;

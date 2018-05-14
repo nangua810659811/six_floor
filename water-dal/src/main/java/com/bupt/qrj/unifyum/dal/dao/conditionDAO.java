@@ -3,8 +3,6 @@
  */
 package com.bupt.qrj.unifyum.dal.dao;
 
-import com.bupt.qrj.unifyum.dal.dataobject.locationDO;
-import com.bupt.qrj.unifyum.dal.dataobject.misconditionDO;
 import org.springframework.dao.DataAccessException;
 
 /**

@@ -3,8 +3,6 @@
  */
 package com.bupt.qrj.unifyum.dal.dao;
 
-import com.bupt.qrj.unifyum.dal.dataobject.checkInfoDO;
-
 
 import java.util.List;
 

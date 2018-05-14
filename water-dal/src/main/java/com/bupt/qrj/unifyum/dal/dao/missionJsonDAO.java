@@ -3,8 +3,6 @@
  */
 package com.bupt.qrj.unifyum.dal.dao;
 
-import com.bupt.qrj.unifyum.dal.dataobject.arrangeinsertDO;
-import com.bupt.qrj.unifyum.dal.dataobject.missionJsonDO;
 import org.springframework.dao.DataAccessException;
 
 /**

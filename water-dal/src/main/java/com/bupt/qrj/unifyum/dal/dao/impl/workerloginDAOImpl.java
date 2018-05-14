@@ -5,8 +5,6 @@ package com.bupt.qrj.unifyum.dal.dao.impl;
 
 import com.bupt.qrj.unifyum.dal.dao.workerloginDAO;
 
-import com.bupt.qrj.unifyum.dal.dataobject.workerLoginDO;
-
 import org.springframework.dao.DataAccessException;
 import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
 

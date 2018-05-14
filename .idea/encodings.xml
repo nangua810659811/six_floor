@@ -3,5 +3,6 @@
   <component name="Encoding" native2AsciiForPropertiesFiles="true">
     <file url="file://$PROJECT_DIR$/water-api/src/main/java/com/bupt/qrj/unifyum/api/controller/impl/FileUpload.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/water-api/src/main/java/com/bupt/qrj/unifyum/api/controller/impl/Filedownload.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/water-api/src/main/java/com/bupt/qrj/unifyum/api/controller/impl/agetContext.java" charset="GBK" />
   </component>
 </project>

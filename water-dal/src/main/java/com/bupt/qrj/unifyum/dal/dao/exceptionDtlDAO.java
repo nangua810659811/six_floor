@@ -3,9 +3,6 @@
  */
 package com.bupt.qrj.unifyum.dal.dao;
 
-import com.bupt.qrj.unifyum.dal.dataobject.collectDO;
-import com.bupt.qrj.unifyum.dal.dataobject.exceptionDtlDO;
-import com.bupt.qrj.unifyum.dal.dataobject.insertExceptionDO;
 import org.springframework.dao.DataAccessException;
 
 import java.util.List;

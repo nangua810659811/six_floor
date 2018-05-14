@@ -4,9 +4,6 @@
 package com.bupt.qrj.unifyum.dal.dao.impl;
 
 import com.bupt.qrj.unifyum.dal.dao.collectDAO;
-import com.bupt.qrj.unifyum.dal.dataobject.collect1DO;
-import com.bupt.qrj.unifyum.dal.dataobject.collect2DO;
-import com.bupt.qrj.unifyum.dal.dataobject.collectDO;
 import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
 
 import java.util.HashMap;

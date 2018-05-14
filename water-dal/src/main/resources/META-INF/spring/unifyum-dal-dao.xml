@@ -16,50 +16,5 @@
 
 
 
-	<bean id="MissionReturnDAO" class="com.bupt.qrj.unifyum.dal.dao.impl.MissionReturnDAOImpl"
-		  parent="unifyumSqlMapClientDAO" />
 
-	<bean id="SeekWjsDAO" class="com.bupt.qrj.unifyum.dal.dao.impl.SeekWjsDAOImpl"
-		  parent="unifyumSqlMapClientDAO" />
-
-	<bean id="MapInfoDAO" class="com.bupt.qrj.unifyum.dal.dao.impl.MapInfoDAOImpl"
-		  parent="unifyumSqlMapClientDAO" />
-	<bean id="setMissionDAO" class="com.bupt.qrj.unifyum.dal.dao.impl.setMissionDAOImpl"
-		  parent="unifyumSqlMapClientDAO" />
-	<bean id="workerloginDAO" class="com.bupt.qrj.unifyum.dal.dao.impl.workerloginDAOImpl"
-		  parent="unifyumSqlMapClientDAO" />
-	<bean id="checkInfoDAO" class="com.bupt.qrj.unifyum.dal.dao.impl.checkInfoDAOImpl"
-		  parent="unifyumSqlMapClientDAO" />
-	<bean id="locationDAO" class="com.bupt.qrj.unifyum.dal.dao.impl.locationDAOImpl"
-		  parent="unifyumSqlMapClientDAO" />
-	<bean id="conditionDAO" class="com.bupt.qrj.unifyum.dal.dao.impl.conditionDAOImpl"
-		  parent="unifyumSqlMapClientDAO" />
-	<bean id="arrangeinsertDAO" class="com.bupt.qrj.unifyum.dal.dao.impl.arrangeinsertDAOImpl"
-		  parent="unifyumSqlMapClientDAO" />
-	<bean id="arrangeseekDAO" class="com.bupt.qrj.unifyum.dal.dao.impl.arrangeseekDAOImpl"
-		  parent="unifyumSqlMapClientDAO" />
-	<bean id="arrangepermisDAO" class="com.bupt.qrj.unifyum.dal.dao.impl.arrangepermisDAOImpl"
-		  parent="unifyumSqlMapClientDAO" />
-	<bean id="searchDAO" class="com.bupt.qrj.unifyum.dal.dao.impl.searchDAOImpl"
-		  parent="unifyumSqlMapClientDAO" />
-	<bean id="feedbackDAO" class="com.bupt.qrj.unifyum.dal.dao.impl.feedbackDAOImpl"
-		  parent="unifyumSqlMapClientDAO" />
-	<bean id="findpicDAO" class="com.bupt.qrj.unifyum.dal.dao.impl.findpicDAOImpl"
-		  parent="unifyumSqlMapClientDAO" />
-	<bean id="MissionDetailDAO" class="com.bupt.qrj.unifyum.dal.dao.impl.MissionDetailDAOImpl"
-		  parent="unifyumSqlMapClientDAO" />
-	<bean id="collectDAO" class="com.bupt.qrj.unifyum.dal.dao.impl.collectDAOImpl"
-		  parent="unifyumSqlMapClientDAO" />
-	<bean id="missionJsonDAO" class="com.bupt.qrj.unifyum.dal.dao.impl.missionJsonDAOImpl"
-		  parent="unifyumSqlMapClientDAO" />
-	<bean id="exceptionDtlDAO" class="com.bupt.qrj.unifyum.dal.dao.impl.exceptionDtlDAOImpl"
-		  parent="unifyumSqlMapClientDAO" />
-	<bean id="arrangelistDAO" class="com.bupt.qrj.unifyum.dal.dao.impl.arrangelistDAOImpl"
-		  parent="unifyumSqlMapClientDAO" />
-    <bean id="arrfeedbackDAO" class="com.bupt.qrj.unifyum.dal.dao.impl.arrfeedbackDAOImpl"
-          parent="unifyumSqlMapClientDAO" />
-	<bean id="addauditorDAO" class="com.bupt.qrj.unifyum.dal.dao.impl.addauditorDAOImpl"
-		  parent="unifyumSqlMapClientDAO" />
-	<bean id="arrsetmisDAO" class="com.bupt.qrj.unifyum.dal.dao.impl.arrsetmisDAOImpl"
-		  parent="unifyumSqlMapClientDAO" />
 </beans>

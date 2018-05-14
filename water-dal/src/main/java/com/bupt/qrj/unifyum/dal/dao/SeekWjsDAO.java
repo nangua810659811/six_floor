@@ -3,11 +3,6 @@
  */
 package com.bupt.qrj.unifyum.dal.dao;
 
-import com.bupt.qrj.unifyum.dal.dataobject.EventInfoDO;
-import com.bupt.qrj.unifyum.dal.dataobject.MissionReturnDO;
-import com.bupt.qrj.unifyum.dal.dataobject.SeekWjsDO;
-import org.springframework.dao.DataAccessException;
-
 import java.util.List;
 
 /**

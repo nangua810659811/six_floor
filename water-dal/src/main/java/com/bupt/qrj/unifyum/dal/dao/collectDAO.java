@@ -3,10 +3,6 @@
  */
 package com.bupt.qrj.unifyum.dal.dao;
 
-import com.bupt.qrj.unifyum.dal.dataobject.collect1DO;
-import com.bupt.qrj.unifyum.dal.dataobject.collect2DO;
-import com.bupt.qrj.unifyum.dal.dataobject.collectDO;
-
 import java.util.List;
 
 /**

@@ -4,9 +4,6 @@
 package com.bupt.qrj.unifyum.dal.dao.impl;
 
 import com.bupt.qrj.unifyum.dal.dao.conditionDAO;
-import com.bupt.qrj.unifyum.dal.dao.locationDAO;
-import com.bupt.qrj.unifyum.dal.dataobject.locationDO;
-import com.bupt.qrj.unifyum.dal.dataobject.misconditionDO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;

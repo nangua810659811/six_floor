@@ -3,11 +3,7 @@
  */
 package com.bupt.qrj.unifyum.dal.dao.impl;
 
-import com.bupt.qrj.unifyum.dal.dao.collectDAO;
 import com.bupt.qrj.unifyum.dal.dao.exceptionDtlDAO;
-import com.bupt.qrj.unifyum.dal.dataobject.collectDO;
-import com.bupt.qrj.unifyum.dal.dataobject.exceptionDtlDO;
-import com.bupt.qrj.unifyum.dal.dataobject.insertExceptionDO;
 import org.springframework.dao.DataAccessException;
 import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
 

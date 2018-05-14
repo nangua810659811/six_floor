@@ -4,8 +4,6 @@
 package com.bupt.qrj.unifyum.dal.dao;
 
 
-import com.bupt.qrj.unifyum.dal.dataobject.searchDO;
-
 import java.util.List;
 
 /**

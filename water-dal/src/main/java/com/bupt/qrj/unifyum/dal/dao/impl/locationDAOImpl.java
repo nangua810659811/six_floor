@@ -4,17 +4,11 @@
 package com.bupt.qrj.unifyum.dal.dao.impl;
 
 import com.bupt.qrj.unifyum.dal.dao.locationDAO;
-import com.bupt.qrj.unifyum.dal.dataobject.locationDO;
 
-import com.bupt.qrj.unifyum.dal.dataobject.locationinsertDO;
-import com.bupt.qrj.unifyum.dal.dataobject.locationnameDO;
-import com.bupt.qrj.unifyum.dal.dataobject.workerLoginDO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
 import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
-
-import java.util.List;
 
 /**
  * @author renjun.qrj 2015年10月31日:下午6:00:56

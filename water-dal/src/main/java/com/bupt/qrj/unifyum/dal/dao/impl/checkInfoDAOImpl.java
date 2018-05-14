@@ -5,8 +5,6 @@ package com.bupt.qrj.unifyum.dal.dao.impl;
 
 import com.bupt.qrj.unifyum.dal.dao.checkInfoDAO;
 
-import com.bupt.qrj.unifyum.dal.dataobject.checkInfoDO;
-
 import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
 
 import java.util.List;
